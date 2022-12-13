@@ -31,6 +31,14 @@
             </select>
         </div>
     </div>
+    <div class="control">
+        <div class="select" name="category">
+            <select>
+                <option>Seleziona categoria</option>
+                <option></option>
+            </select>
+        </div>
+    </div>
 
     <div class="control">
         <button class="button is-primary">Submit</button>
