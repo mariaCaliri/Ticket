@@ -18,8 +18,7 @@ return new class extends Migration
             $table->text("text");
             $table->unsignedBigInteger("ticket_id")->default(1);
             $table->unsignedBigInteger("operator_id")->default(1);
-            $table->unsignedBigInteger("user
-            _id")->default(1);
+            $table->unsignedBigInteger("user_id")->default(1);
             $table->timestamps();
         });
     }

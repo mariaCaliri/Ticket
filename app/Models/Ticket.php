@@ -6,23 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Ticket extends Model
+
+use Illuminate\Support\Facades\App;class Ticket extends Model
 {
     use HasFactory;
 
 
+
     protected $fillable = [
-        'title',
-        'message',
-        'identification_code',
-        'start_date',
-        'end_date',
+       'title',
         'priority',
         'status',
-        'feedback',
-        'category_id',
-        'operator_id',
-        'user_id'
+        'category_id'
+
     ];
 
 

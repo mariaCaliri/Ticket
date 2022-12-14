@@ -23,7 +23,7 @@
             {{ session('status') }}
         </div>
 @endif
-    <form action="{{ route('tickets.update',$ticket->id) }}" method="Post" enctype="multipart/form-data">
+    <form action="{{ route('tickets.update', $ticket->id) }}" method="get" enctype="multipart/form-data">
 @csrf
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -66,7 +66,7 @@
                 </div>
 
             <div class="d-grid gap-2 d-md-block mb-5 text-center">
-                <button class="btn btn-primary " type="button">Invia</button>
+                <button class="btn btn-primary " type="submit">Invia</button>
             </div>
 
                 <div class="d-grid gap-2 d-md-block mt-5 text-center">

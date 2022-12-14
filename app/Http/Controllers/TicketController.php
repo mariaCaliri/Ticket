@@ -16,7 +16,7 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::all();
-       return redirect()->route('adminHome');
+       return redirect()->route('admin.Home');
     }
 
     /**
@@ -37,27 +37,30 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Request $request )
     {
 
-        $request->validate([
+       $validateData = $request->validate([
             'title'=> 'required',
             'priority'=> 'required',
             'start_date'=>'required',
             'status'=> 'required',
-            'category'=> 'required',
+            'category_id'=> 'required',
         ]);
+       Ticket::create($validateData);
 
-        Ticket::create($request->post());
-        return  redirect()->route('admineHome')->with('Il tuo ticket è stato modificato');
+//               $ticket->title = $request->title;
+//                $ticket->start_date = $request->start_date;
+//                $ticket->category_id = $request->category_id;
 
-//        //dd($storeData);
+           //     $ticket->save();
+
+
+                return  redirect('adminHome')->with('Il tuo ticket è stato modificato');
+
+
 //        $ticket = new Ticket();
-//        $ticket->title = $request->title;
-//        $ticket->start_date = $request->start_date;
-//        $ticket->category_id = $request->category_id;
 //
-//        $ticket->save();
 
 ////        dd($ticket);
 //
@@ -102,16 +105,18 @@ class TicketController extends Controller
      */
     public function update(Request $request,  $id)
     {
-        $request->validate([
+       $validateData = $request->validate([
             'title'=> 'required',
             'priority'=> 'required',
-            'start_date'=>'required',
-            'status'=> 'required',
-            'category'=> 'required',
-        ]);
-        $ticket = new Ticket();
-        $ticket->fill($request->post())->save();
 
+            'status'=> 'required',
+            'category_id'=> 'required',
+        ]);
+
+        Ticket::whereId($id)->update($validateData);
+        $ticket = new Ticket();
+//        $ticket->fill($request->post())->save();
+            $ticket->save();
         return redirect()->route('adminhome');
    }
 
