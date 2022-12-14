@@ -10,14 +10,12 @@
 <body>
 <div class="container mt-2">
     <div class="row">
+
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Modifica Ticket</h2>
             </div>
-            <div class="pull-right">
-                <a class="btn btn-primary" href=" {{ route('admin.home') }}" >
-                    Indietro</a>
-            </div>
+
         </div>
     </div>
     @if(session('status'))
@@ -25,7 +23,7 @@
             {{ session('status') }}
         </div>
 @endif
-    <form action="{{ route('tickets.update',$ticket->id) }}" method="GET" enctype="multipart/form-data">
+    <form action="{{ route('tickets.update',$ticket->id) }}" method="Post" enctype="multipart/form-data">
 @csrf
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -57,20 +55,28 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Categoria:</strong>
-                    <input type="text" name="category" class="form-control" placeholder="Categoria" value="{{ $ticket->category->name }}">
-                    @error('name')
-                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                    @enderror
+            <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
+                <div class="form-floating">
+                        <select name="category" >
+                            <option selected>Seleziona categoria</option>
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                 </div>
+
+            <div class="d-grid gap-2 d-md-block mb-5 text-center">
+                <button class="btn btn-primary " type="button">Invia</button>
             </div>
 
-            <button type="submit" class="btn btn-primary ml-3">Submit</button>
-
+                <div class="d-grid gap-2 d-md-block mt-5 text-center">
+                    <a class="btn btn-primary" type="submit" href=" {{ route('admin.home') }}" >
+                        Indietro</a>
+                </div>
+            </div>
         </div>
     </form>
+
 </div>
 </body>
 

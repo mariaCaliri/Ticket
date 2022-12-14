@@ -22,8 +22,8 @@
     <textarea class="textarea" name="message" value="{{ old('message') }}" placeholder="Messaggio"></textarea>
 
     <div class="control">
-        <div class="select" name="status">
-            <select>
+        <div class="select">
+            <select name="status">
                 <option>Seleziona gravità del problema</option>
                 <option value="1">Urgente</option>
                 <option value="2">Mediamente Urgente</option>
@@ -33,10 +33,13 @@
     </div>
     <div class="control">
         <div class="select" name="category">
-            <select>
-                <option>Seleziona categoria</option>
-                <option></option>
+            <select name="category" class="form-control">
+                <option value="">Seleziona categoria</option>
+                @foreach($categories as $category)
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
             </select>
+
         </div>
     </div>
 

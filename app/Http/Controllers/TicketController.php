@@ -16,19 +16,19 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::all();
-       return redirect()->route('admin/home');
+       return redirect()->route('adminHome');
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
         $tickets = Ticket::all();
 
-        return redirect()->route('create');
+        return view('tickets.create');
     }
 
     /**
@@ -39,31 +39,33 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        $storeData = $request->validate([
+
+        $request->validate([
             'title'=> 'required',
-            'message'=>'required',
-            'starting_date'=>'required',
+            'priority'=> 'required',
+            'start_date'=>'required',
+            'status'=> 'required',
             'category'=> 'required',
         ]);
 
-        //dd($storeData);
-        $ticket = new Ticket();
-        $ticket->title = $request->title;
-        $ticket->start_date = $request->start_date;
-        $ticket->category_id = $request->category_id;
+        Ticket::create($request->post());
+        return  redirect()->route('admineHome')->with('Il tuo ticket è stato modificato');
 
-        $ticket->save();
+//        //dd($storeData);
+//        $ticket = new Ticket();
+//        $ticket->title = $request->title;
+//        $ticket->start_date = $request->start_date;
+//        $ticket->category_id = $request->category_id;
+//
+//        $ticket->save();
 
-//        dd($ticket);
+////        dd($ticket);
+//
+//        $message = new Message();
+//        $message->ticket_id = $ticket->id;
+//        $message->text = $request->message;
+//        $message->save();
 
-        $message = new Message();
-        $message->ticket_id = $ticket->id;
-        $message->text = $request->message;
-        $message->save();
-
-
-
-        return redirect('show');
     }
 
     /**
@@ -82,13 +84,13 @@ class TicketController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function edit($id)
     {
         $ticket = Ticket::findOrFail($id);
 
-        return response()->view('edit', compact('ticket'));
+        return view('edit', compact('ticket'));
     }
 
     /**
@@ -96,12 +98,22 @@ class TicketController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return bool
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
-        return true;
-    }
+        $request->validate([
+            'title'=> 'required',
+            'priority'=> 'required',
+            'start_date'=>'required',
+            'status'=> 'required',
+            'category'=> 'required',
+        ]);
+        $ticket = new Ticket();
+        $ticket->fill($request->post())->save();
+
+        return redirect()->route('adminhome');
+   }
 
     /**
      * Remove the specified resource from storage.
@@ -114,6 +126,6 @@ class TicketController extends Controller
         $ticket = Ticket::findOrFail($id);
         $ticket->delate();
 
-        return redirect('/tickets');
+        return redirect()->route('adminHome')->with('Il ticket è stato cancellato');
     }
 }
