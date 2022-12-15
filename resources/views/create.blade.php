@@ -14,8 +14,6 @@
         <input class="input" type="text" name="title" value="{{ old('title') }}" placeholder="Inserisci tipo di problema">
     </div>
 
-
-
     <div class="control">
         <input class="input" type="text" name="category"  value="{{ old('category') }}" placeholder="Inserisci la categoria">
     </div>
@@ -44,7 +42,7 @@
     </div>
 
     <div class="control">
-        <button class="button is-primary">Submit</button>
+        <button type="submit" class="button is-primary">Submit</button>
     </div>
 
 

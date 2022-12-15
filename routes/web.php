@@ -28,11 +28,13 @@ Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home
 
 //rotte per il crud del ticket
 Route::resource('tickets', TicketController::class);
-//rotte per operatore
-Route::resource('operators', \App\Models\Operator::class)->only('index','show','store', 'update');
-Route::resource('operators', \App\Models\Operator::class)->except('create','destroy');
-//rotte per User
 
-Route::resource('users', \App\Models\User::class)->only('create','index');
-Route::resource('users', \App\Models\User::class)->except('edit', 'store', 'destroy');
+//rotte per operatore
+//Route::resource('operators', \App\Models\Operator::class)->only('index','show','store', 'update');
+//Route::resource('operators', \App\Models\Operator::class)->except('create','destroy');
+//
+//
+////rotte per User
+//Route::resource('users', \App\Models\User::class)->only('create','index');
+//Route::resource('users', \App\Models\User::class)->except('edit', 'store', 'destroy');
 

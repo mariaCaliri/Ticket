@@ -25,8 +25,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $tickets = Ticket::all();
-        view()->share('tickets', $tickets);
+//        $tickets = Ticket::all();
+//        view()->share('tickets', $tickets);
 
         $categories = Category::all();
         view()->share('categories', $categories);

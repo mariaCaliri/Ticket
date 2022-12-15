@@ -7,54 +7,50 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 <body>
-<div>
-    <h1>Dettaglio Ticket "{{ $ticket->id }}"</h1>
+    <div>
+        <h1>Dettaglio Ticket "{{ $ticket->id }}"</h1>
 
-    <div>
-        <strong>Titolo: </strong>
-        <span>{{ $ticket->title }}</span>
-    </div>
-    <div>
-        <strong>Data di Apertura</strong>
-        <span>{{ $ticket->start_date }}</span>
-    </div>
-    <div>
-        <strong>Priorità</strong>
-        <span>{{ $ticket->priority }}</span>
-    </div>
-    <div>
-        <strong>Status</strong>
-        <span>{{ $ticket->status }}</span>
-    </div>
-    <div>
-        <strong>Category</strong>
-        <span>{{ $ticket->category->name }}</span>
-    </div>
-    <div>
-        <strong>Operator</strong>
-        <span>{{ $ticket->operator->name }}</span>
-    </div>
-
-    <div class="control">
-        <button class="button is-primary">
-            <a href="/tickets/{{ $ticket->id }}/edit">Modifica Ticket</a>
-        </button>
+        <div>
+            <strong>Titolo: </strong>
+            <span>{{ $ticket->title }}</span>
+        </div>
+        <div>
+            <strong>Data di Apertura</strong>
+            <span>{{ $ticket->start_date }}</span>
+        </div>
+        <div>
+            <strong>Priorità</strong>
+            <span>{{ $ticket->priority }}</span>
+        </div>
+        <div>
+            <strong>Status</strong>
+            <span>{{ $ticket->status }}</span>
+        </div>
+        <div>
+            <strong>Category</strong>
+            <span>{{ $ticket->category->name }}</span>
+        </div>
+        <div>
+            <strong>Operator</strong>
+            <span>{{ $ticket->operator->name }}</span>
+        </div>
 
         <div class="control">
-            <button class="button is-primary mt-5">
-                <a href="/tickets" >Torna alla dashboard</a>
-            </button>
+            <form method="get" action="{{ route('tickets.edit', $ticket->id )  }}">
+                @csrf
+                @method('PUT')
+            <button class="button is-primary mt-5">Modifica</button>
+            </form>
 
             <div class="control">
                 <button class="button is-primary mt-5">
-                    <a href="/tickets/{{ $ticket->id }}/delete" >Elimina Ticket</a>
+                    <a href=" {{ route('admin.home') }}" >Torna alla dashboard</a>
                 </button>
 
+        </div>
 
-            </div>
+            </form>
         </div>
     </div>
-
-</div>
 </body>
 </html>

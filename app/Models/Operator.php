@@ -13,7 +13,7 @@ class Operator extends Model
         'email',
         'password'
     ];
-    public function ticket()
+    public function tickets()
     {
         return $this->hasMany(Ticket::class);
     }
@@ -27,4 +27,5 @@ class Operator extends Model
     {
         return $this->belongsToMany('App\Category', 'operator_has_categories', 'operator_id', 'category_id');
     }
+
 }

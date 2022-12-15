@@ -15,20 +15,18 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::all();
-       return redirect()->route('admin.Home');
+        $tickets = Ticket::latest()->get();
+       return redirect()->route('admin.Home', compact('tickets'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function create()
     {
-        $tickets = Ticket::all();
-
-        return view('tickets.create');
+        return redirect()->route('tickets.create');
     }
 
     /**
@@ -40,35 +38,16 @@ class TicketController extends Controller
     public function store(Request $request )
     {
 
-       $validateData = $request->validate([
+        $request->validate([
             'title'=> 'required',
             'priority'=> 'required',
-            'start_date'=>'required',
             'status'=> 'required',
             'category_id'=> 'required',
         ]);
-       Ticket::create($validateData);
 
-//               $ticket->title = $request->title;
-//                $ticket->start_date = $request->start_date;
-//                $ticket->category_id = $request->category_id;
+             Ticket::create($request->all());
 
-           //     $ticket->save();
-
-
-                return  redirect('adminHome')->with('Il tuo ticket è stato modificato');
-
-
-//        $ticket = new Ticket();
-//
-
-////        dd($ticket);
-//
-//        $message = new Message();
-//        $message->ticket_id = $ticket->id;
-//        $message->text = $request->message;
-//        $message->save();
-
+                 return redirect()->route('tickets.show')->with('Ticket creato correttamente');
     }
 
     /**
@@ -100,24 +79,22 @@ class TicketController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, TICKET $ticket): \Illuminate\Http\RedirectResponse
     {
-       $validateData = $request->validate([
+
+        $request->validate([
             'title'=> 'required',
             'priority'=> 'required',
-
             'status'=> 'required',
             'category_id'=> 'required',
-        ]);
 
-        Ticket::whereId($id)->update($validateData);
-        $ticket = new Ticket();
-//        $ticket->fill($request->post())->save();
-            $ticket->save();
-        return redirect()->route('adminhome');
+        ]);
+        $ticket->update($request->all());
+
+      return redirect()->route('admin.home')->with('Ticket Modificato correttamente');
    }
 
     /**
@@ -129,8 +106,8 @@ class TicketController extends Controller
     public function destroy($id)
     {
         $ticket = Ticket::findOrFail($id);
-        $ticket->delate();
+        $ticket->delete();
 
-        return redirect()->route('adminHome')->with('Il ticket è stato cancellato');
+        return redirect()->route('admin.home')->with('Il ticket è stato cancellato');
     }
 }

@@ -9,11 +9,9 @@ class Message extends Model
 {
     use HasFactory;
     protected $fillable = [
-        "date",
-        "text",
-        "ticket_id",
-        "operator_id",
-        "user_id"
+
+        "body",
+
     ];
     public function ticket()
     {

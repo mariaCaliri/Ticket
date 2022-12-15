@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->text("text");
-            $table->unsignedBigInteger("ticket_id")->default(1);
-            $table->unsignedBigInteger("operator_id")->default(1);
-            $table->unsignedBigInteger("user_id")->default(1);
+            $table->text('body');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('operator_id')->constrained();
+            $table->foreignId('ticket_id')->constrained();
             $table->timestamps();
+
         });
     }
 

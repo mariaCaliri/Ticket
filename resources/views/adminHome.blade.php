@@ -2,7 +2,7 @@
 
 @section('content')
     <!DOCTYPE html>
-<html>
+<html lang="it">
 
 <head>
     <meta charset="utf-8">
@@ -138,10 +138,13 @@
                                         <td>{{ $ticket->start_date }}</td>
                                         <td>{{ $ticket->end_date }}</td>
                                         <td class="btn-container">
-                                            <a href=" {{route('tickets.show',['ticket'=>$ticket['id']])  }}" class="btn btn-search d-flex "> <i class="fa-solid fa-magnifying-glass"></i></a>
-                                            <a href="{{route('tickets.edit',['ticket'=>$ticket['id']])  }}" class="btn btn-mod d-flex"><i class="fa-solid fa-pencil"></i></a>
-                                            <a href="/tickets/{{ $ticket->id }}/delete" class="btn  d-flex"><i class="fa-solid fa-trash"></i></a>
-
+                                            <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
+                                                <a href=" {{route('tickets.show',$ticket->id)  }}" class="btn btn-search d-flex "> <i class="fa-solid fa-magnifying-glass"></i></a>
+                                                <a href="{{route('tickets.edit',$ticket->id)  }}" class="btn btn-mod d-flex"><i class="fa-solid fa-pencil"></i></a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                     @endforeach
