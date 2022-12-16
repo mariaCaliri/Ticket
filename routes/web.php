@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
@@ -38,12 +39,17 @@ Route::middleware(['auth', 'user-access:admin'])->group(function () {
 //All Admin Routes List
 Route::middleware(['auth', 'user-access:operator'])->group(function () {
 
-    Route::get('/manager/home', [HomeController::class, 'operatorHome'])->name('operator.home');
+    Route::get('/operator/home', [HomeController::class, 'operatorHome'])->name('operator.home');
+
 });
 
+//rotta chat
+Route::resource('chats', ChatsController::class)->only('index', 'create', 'store', 'show');
+Route::resource('chats', ChatsController::class)->except('update', 'delete');
 
 //rotte per il crud del ticket
 Route::resource('tickets', TicketController::class);
+
 
 //rotte per operatore
 //Route::resource('operators', \App\Models\Operator::class)->only('index','show','store', 'update');
