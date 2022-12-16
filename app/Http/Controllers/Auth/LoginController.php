@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -47,15 +47,19 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password']))) {
-            if (auth()->user()->is_admin == 1) {
+        if(auth()->attempt(array('email' => $input['email'], 'password' => $input['password'])))
+        {
+            if (auth()->user()->type == 'admin') {
                 return redirect()->route('admin.home');
-            } else {
+            }else if (auth()->user()->type == 'operator') {
+                return redirect()->route('operator.home');
+            }else{
                 return redirect()->route('home');
             }
-        } else {
+        }else{
             return redirect()->route('login')
-                ->with('error', 'Email-Address And Password Are Wrong.');
+                ->with('error','Email-Address And Password Are Wrong.');
         }
+
     }
 }

@@ -21,20 +21,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(): \Illuminate\Contracts\Support\Renderable
     {
         return view('home');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function adminHome(): \Illuminate\Contracts\Support\Renderable
     {
         return view('adminHome');
     }
-
+    public function operatorHome(): \Illuminate\Contracts\Support\Renderable
+    {
+        return view('operatorHome');
+    }
 
 }

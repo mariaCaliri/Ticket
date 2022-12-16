@@ -12,16 +12,16 @@ class UserAccess
      *
      * @param \Illuminate\Http\Request $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Http\JsonResponse
      */
 
-
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next, $userType)
     {
-        if(auth()->user()->is_admin == 1){
+        if(auth()->user()->type == $userType){
             return $next($request);
         }
 
-        return redirect('home')->with('error',"You don't have admin access.");
+        return response()->json(['You do not have permission to access for this page.']);
+        /* return response()->view('errors.check-permission'); */
     }
 }

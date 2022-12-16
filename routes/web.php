@@ -22,9 +22,25 @@ Route::get('/', function () {
 
 Auth::routes();
 
-//rotte per l' autenticazione
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+//All Normal Users Routes List
+Route::middleware(['auth', 'user-access:user'])->group(function () {
+
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+});
+
+//All Admin Routes List
+
+Route::middleware(['auth', 'user-access:admin'])->group(function () {
+
+    Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+});
+
+//All Admin Routes List
+Route::middleware(['auth', 'user-access:operator'])->group(function () {
+
+    Route::get('/manager/home', [HomeController::class, 'operatorHome'])->name('operator.home');
+});
+
 
 //rotte per il crud del ticket
 Route::resource('tickets', TicketController::class);
@@ -38,3 +54,6 @@ Route::resource('tickets', TicketController::class);
 //Route::resource('users', \App\Models\User::class)->only('create','index');
 //Route::resource('users', \App\Models\User::class)->except('edit', 'store', 'destroy');
 
+//vecchie rotte
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
