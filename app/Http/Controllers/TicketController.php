@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\Ticket;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\Console\Input\Input;
 
 class TicketController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function index()
     {
@@ -22,7 +24,7 @@ class TicketController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function create()
     {
@@ -33,7 +35,7 @@ class TicketController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function store(Request $request )
     {
@@ -80,28 +82,32 @@ class TicketController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
-    public function update(Request $request, TICKET $ticket): \Illuminate\Http\RedirectResponse
+    public function update(Request $request, Ticket $ticket): RedirectResponse
     {
 
-        $request->validate([
+      $request->validate([
             'title'=> 'required',
             'priority'=> 'required',
             'status'=> 'required',
             'category_id'=> 'required',
 
         ]);
-        $ticket->update($request->all());
+
+             $ticket->update($request->all());
+             $ticket->save();
+
 
       return redirect()->route('admin.home')->with('Ticket Modificato correttamente');
    }
+
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy($id)
     {

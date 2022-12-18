@@ -29,14 +29,14 @@ Route::middleware(['auth', 'user-access:user'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
-//All Admin Routes List
+//Admin Route
 
 Route::middleware(['auth', 'user-access:admin'])->group(function () {
 
     Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
 });
 
-//All Admin Routes List
+//Operator Route
 Route::middleware(['auth', 'user-access:operator'])->group(function () {
 
     Route::get('/operator/home', [HomeController::class, 'operatorHome'])->name('operator.home');

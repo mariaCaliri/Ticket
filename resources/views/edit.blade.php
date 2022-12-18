@@ -25,12 +25,12 @@
 @endif
     <form method="Post" action="{{ route('tickets.update', $ticket->id) }}"  enctype="multipart/form-data">
 @csrf
-@method('PUT')
+@method('Put')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Titolo:</strong>
-                    <input type="text" name="title" value="{{ $ticket->title }}" class="form-control" placeholder="Company name">
+                    <input type="text" name="title" value="{{ $ticket->title }}" class="form-control" placeholder="Titolo">
                     @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
@@ -58,7 +58,7 @@
 
             <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
                 <div class="form-floating">
-                        <select name="category" >
+                        <select name="category_id" >
                             <option selected>Seleziona categoria</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
