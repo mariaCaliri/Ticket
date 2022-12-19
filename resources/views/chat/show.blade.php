@@ -17,7 +17,7 @@
             <form method="get" >
                 <div class="field">
                     <div class="control  mt-5">
-                        <a href="{{ route('chats.create') }}" class="button  is-link ">Rispondi</a>
+                        <a href="{{ route('chats.create', $ticket->id) }}" class="button  is-link ">Rispondi</a>
                     </div>
                     <div class="control mt-5">
                         <a href="{{ route('chats.index', $ticket->id) }}"  class="button  is-link ">Torna indietro</a>

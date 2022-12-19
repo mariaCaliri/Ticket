@@ -19,6 +19,8 @@ class Ticket extends Model
         'priority',
         'status',
         'category_id',
+        'user_id',
+        'message'
 
 
 
@@ -36,6 +38,6 @@ class Ticket extends Model
     }
     public function messages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Chat::class);
     }
 }

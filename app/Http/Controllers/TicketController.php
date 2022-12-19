@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Message;
+use App\Models\Chat;
 use App\Models\Ticket;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\Console\Input\Input;
 
 class TicketController extends Controller
@@ -40,16 +41,24 @@ class TicketController extends Controller
     public function store(Request $request , Ticket $ticket )
     {
 
-        $request->validate([
+      $request->validate([
             'title'=> 'required',
             'priority'=> 'required',
             'category_id'=> 'required',
+            'message'=>'required'
         ]);
 
-        $ticket->create($request->all());
-        $ticket->save();
+      $ticket = new Ticket([
+          'title' =>$request->get('title'),
+          'priority'=>$request->get('priority'),
+          'category_id'=> $request->get('category_id'),
+          'message'=> $request->get('message'),
+          'user_id'=> 1
+      ]);
+      $ticket->save();
 
-        return redirect()->route('ticket.show')->with('Ticket creato correttamente');
+       return redirect()->route('home')->with('Ticket creato correttamente');
+
     }
 
     /**
@@ -93,6 +102,7 @@ class TicketController extends Controller
             'priority'=> 'required',
             'status'=> 'required',
             'category_id'=> 'required',
+
 
         ]);
 

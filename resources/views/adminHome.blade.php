@@ -135,7 +135,7 @@
                                     <tr>
                                         <td>{{ $ticket->id }}</td>
                                         <td>{{ $ticket->title }}</td>
-                                        <td>{{ $ticket->start_date }}</td>
+                                        <td>{{ $ticket->registered_at }}</td>
                                         <td>{{ $ticket->end_date }}</td>
                                         <td class="btn-container">
                                             <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">

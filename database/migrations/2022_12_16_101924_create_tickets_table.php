@@ -22,9 +22,10 @@ return new class extends Migration
             $table->string('status')->default('in lavorazione');
             $table->string('priority')->default('mediamente urgente');
             $table->text('feedback')->nullable();
+
             $table->foreignId('category_id')->index()->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
-            $table->foreignId('operator_id')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->default('0')->index()->constrained()->cascadeOnDelete();
+            $table->foreignId('operator_id')->default('2')->index()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@
                     <div class="card-header">{{ __('Dashboard') }}</div>
                     <div class="card-body">
 
-                            @if(auth()->user()->is_admin == 1)
+                            @if(auth()->user()->type == 1)
                                 <a href="{{url('admin/routes')}}">Admin</a>
                             @else
                                 <div class=”panel-heading”>Normal User</div>
@@ -58,6 +58,11 @@
                                 </h3>
                                 <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
                             </main>
+
+                            <section>
+
+
+                            </section>
 
 
                          </div>

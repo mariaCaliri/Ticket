@@ -9,13 +9,7 @@
 <body>
 <div id="container">
 
-    <div>
-        <h1>Stai rispondendo al ticket : "{{ $ticket->id }}"</h1>
-        <strong>Messaggio:</strong>
-        <span>{{ $ticket->message }}</span>
-    </div>
-
-    <form method="post" action="{{ route('chats.store') }}">
+    <form method="post" action="{{ route('chats.store')}}">
         @csrf
 
         <div class="field">
@@ -24,7 +18,7 @@
             <textarea
                 name="body"
                 class="textarea"
-                placeholder="Content"
+                placeholder="Contenuto"
                 minlength="5"
                 maxlength="2000"
                 required rows="10"

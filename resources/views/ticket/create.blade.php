@@ -39,11 +39,11 @@
         </div>
     </div>
 
-    <label for="start">Data di oggi:</label>
+{{--    <label for="start">Data di oggi:</label>--}}
 
-    <input type="date"  name="start_date"
-           value="2018-07-22"
-           min="2018-01-01" max="2022-12-31">
+{{--    <input type="date"  name="start_date"--}}
+{{--           value="2018-07-22"--}}
+{{--           min="2018-01-01" max="2022-12-31">--}}
 
     <div class="control m-5">
         <button type="submit" class="button is-primary">Submit</button>
