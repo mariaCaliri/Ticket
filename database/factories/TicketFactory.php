@@ -22,11 +22,9 @@ class TicketFactory extends Factory
         return [
             "title"=>$this->faker->sentence(3, true),
             "message"=>$this->faker->sentence(5, true),
-            "identification_code"=>$this->faker->numerify('user-####'),
-            "start_date"=>$this->faker->dateTime(),
             "end_date"=>$this->faker->dateTime(),
-            "priority"=>$this->faker->numberBetween(1,3),
-            "status"=>$this->faker->numberBetween(1,3),
+            "priority"=>$this->faker->randomKey(['completato' =>1, 'in lavorazione'=>2,'in attesa'=>3 ]),
+            "status"=>$this->faker->randomKey(['urgente'=>1, 'mediamente urgente'=>2, 'non urgente'=>3]),
             "feedback"=>$this->faker->paragraph(),
             "category_id"=>Category::inRandomOrder()->first()->id,
             "operator_id"=>Operator::inRandomOrder()->first()->id,

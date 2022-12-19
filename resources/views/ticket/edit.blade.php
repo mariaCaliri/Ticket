@@ -36,30 +36,36 @@
                     @enderror
                 </div>
             </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 col-sm-12 col-md-12 m-5">
                     <div class="form-group">
-                        <strong>Priorità:</strong>
-                        <input type="text" name="priority" class="form-control" placeholder="Priorità" value="{{ $ticket->priority }}">
-                        @error('name')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
+
+                        <div class="select is-multiple ">
+                            <strong>Priorità:</strong>
+                            <select name="priority" >
+                                <option>{{ $ticket->priority}} </option>
+                                <option value="urgente" >urgente</option>
+                                <option value="mediamente urgente" >mediamente urgente</option>
+                                <option value="non urgente" >non urgente</option>
+                            </select>
                     </div>
                 </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Stato:</strong>
-                    <input type="text" name="status" class="form-control" placeholder="Stato" value="{{ $ticket->status }}">
-                    @error('name')
-                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                    @enderror
+            <div class="col-xs-12 col-sm-12 col-md-12 m-5">
+                <div class="select is-multiple ">
+                    <strong>Status:</strong>
+                    <select name="status" >
+                        <option>{{ $ticket->status}} </option>
+                        <option value="in lavorazione" >in lavorazione</option>
+                        <option value="completato" >completato</option>
+                        <option value="in attesa" >in attesa</option>
+                    </select>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-md-12 mt-5">
+            <div class="col-xs-12 col-sm-12 col-md-12 m-5">
                 <div class="form-floating">
+                    <strong>Categoria:</strong>
                         <select name="category_id" >
-                            <option selected>Seleziona categoria</option>
                             @foreach($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach

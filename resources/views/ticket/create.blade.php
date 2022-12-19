@@ -10,38 +10,42 @@
 <h1>Crea Nuovo Ticket</h1>
 <form method="post" action="{{ route('tickets.store') }}">
     @csrf
-    <div class="control">
-        <input class="input" type="text" name="title" value="{{ old('title') }}" placeholder="Inserisci tipo di problema">
+    <div class="control m-5">
+        <input class="input" type="text" name="title" value="{{ old('title') }}" placeholder="Inserisci titolo">
     </div>
 
-    <div class="control">
-        <input class="input" type="text" name="category"  value="{{ old('category') }}" placeholder="Inserisci la categoria">
-    </div>
     <textarea class="textarea" name="message" value="{{ old('message') }}" placeholder="Messaggio"></textarea>
 
-    <div class="control">
+
+    <div class="control m-5">
         <div class="select">
-            <select name="status">
-                <option>Seleziona gravità del problema</option>
-                <option value="1">Urgente</option>
-                <option value="2">Mediamente Urgente</option>
-                <option value="3">Non urgente</option>
+            <select name="priority">
+                <option>Seleziona la priorità problema</option>
+                <option value="urgente">Urgente</option>
+                <option value="mediamente urgente">Mediamente Urgente</option>
+                <option value="non urgente">Non urgente</option>
             </select>
         </div>
     </div>
-    <div class="control">
-        <div class="select" name="category">
-            <select name="category" class="form-control">
-                <option value="">Seleziona categoria</option>
+
+    <div class="control m-5">
+        <div class="select">
+            <select name="category_id" >
+                <option selected>Seleziona categoria</option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-
         </div>
     </div>
 
-    <div class="control">
+    <label for="start">Data di oggi:</label>
+
+    <input type="date"  name="start_date"
+           value="2018-07-22"
+           min="2018-01-01" max="2022-12-31">
+
+    <div class="control m-5">
         <button type="submit" class="button is-primary">Submit</button>
     </div>
 

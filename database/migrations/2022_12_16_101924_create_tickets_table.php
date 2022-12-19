@@ -17,13 +17,11 @@ return new class extends Migration
             $table->id();
             $table->text('title');
             $table->text('message')->nullable();
-            $table->string('identification_code', 10)->unique();
-            $table->date('start_date');
+            $table->timestamp('registered_at')->useCurrent();
             $table->date('end_date')->nullable();
-            $table->enum('status',['1', '2', '3']);
-            $table->enum('priority', ['1', '2', '3']);
+            $table->string('status')->default('in lavorazione');
+            $table->string('priority')->default('mediamente urgente');
             $table->text('feedback')->nullable();
-
             $table->foreignId('category_id')->index()->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->index()->constrained()->cascadeOnDelete();
             $table->foreignId('operator_id')->index()->constrained()->cascadeOnDelete();

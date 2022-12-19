@@ -18,17 +18,17 @@ class TicketController extends Controller
     public function index()
     {
         $tickets = Ticket::latest()->get();
-       return redirect()->route('admin.Home', compact('tickets'));
+       return redirect()->route('admin.home', compact('tickets'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return RedirectResponse
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        return redirect()->route('tickets.create');
+        return view('ticket.create');
     }
 
     /**
@@ -37,19 +37,19 @@ class TicketController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request )
+    public function store(Request $request , Ticket $ticket )
     {
 
         $request->validate([
             'title'=> 'required',
             'priority'=> 'required',
-            'status'=> 'required',
             'category_id'=> 'required',
         ]);
 
-             Ticket::create($request->all());
+        $ticket->create($request->all());
+        $ticket->save();
 
-                 return redirect()->route('tickets.show')->with('Ticket creato correttamente');
+        return redirect()->route('ticket.show')->with('Ticket creato correttamente');
     }
 
     /**
@@ -61,7 +61,7 @@ class TicketController extends Controller
     public function show($id): \Illuminate\Http\Response
     {
         $ticket = Ticket::findOrFail($id);
-        return response()->view('show', compact('ticket'));
+        return response()->view('ticket.show', compact('ticket'));
     }
 
     /**
@@ -74,7 +74,8 @@ class TicketController extends Controller
     {
         $ticket = Ticket::findOrFail($id);
 
-        return view('edit', compact('ticket'));
+
+        return view('ticket.edit', compact('ticket'));
     }
 
     /**

@@ -30,6 +30,8 @@ class AppServiceProvider extends ServiceProvider
 
         $categories = Category::all();
         view()->share('categories', $categories);
+
+        
     }
 
 }
