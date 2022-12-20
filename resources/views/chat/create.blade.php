@@ -11,7 +11,6 @@
 
     <form method="post" action="{{ route('chats.store')}}">
         @csrf
-
         <div class="field">
             <label class="label">Contenuto</label>
             <div class="control">

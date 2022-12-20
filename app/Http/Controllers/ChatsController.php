@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ticket;
+use http\Message;
 use Illuminate\Http\Request;
 use App\Models\Chat;
 
@@ -45,12 +46,13 @@ class ChatsController extends Controller
         $message = new Chat([
             'body'=>$request->get('body'),
             'user_id'=>2,
-            'ticket_id'=> 20
-
+            'ticket_id'=> 11
         ]);
 
+
+
         $message->save();
-        return view('operatorHome');
+        return view('chat.index',);
     }
 
     /**
@@ -62,6 +64,7 @@ class ChatsController extends Controller
     public function show($id)
     {
         $ticket = Ticket::findOrFail($id);
+
         return response()->view('chat.show', compact('ticket'));
     }
 

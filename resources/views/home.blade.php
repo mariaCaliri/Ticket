@@ -6,6 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
+
                     <div class="card-body">
 
                             @if(auth()->user()->type == 1)
@@ -16,8 +17,6 @@
 
 
                         <!DOCTYPE html>
-                        <html lang="it">
-
                         <head>
                             <meta charset="utf-8">
                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,16 +28,14 @@
                             <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
                             <link rel="stylesheet" type="text/css" href="../css/admin.css">
                         </head>
-                        <body>
+                        <div>
                         <div class="column is-9">
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
                                     <li><a href="../">Bulma</a></li>
                                     <li><a href="../">Templates</a></li>
                                     <li><a href="../">Examples</a></li>
-                                    <li class="is-active"><a href="#" aria-current="page">Admin</a></li>
                                 </ul>
-                                <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Logout</a>
                             </nav>
                             <section class="hero is-info welcome is-small">
                                 <div class="hero-body">
@@ -59,20 +56,16 @@
                                 <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
                             </main>
 
-                            <section>
-
-
-                            </section>
-
 
                          </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    </body>
-    </html>
+
     @endsection
 
