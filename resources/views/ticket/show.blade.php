@@ -58,7 +58,7 @@
                     @csrf
                             <div class="control mt-5">
                                     <button class="button is-primary mt-5">
-                                        <a href="{{ route('chats.show',  $ticket->id ) }}">Apri chat</a>
+                                        <a href="{{ route('chat.show',  $ticket->id ) }}">Apri chat</a>
                                     </button>
 
                             </div>

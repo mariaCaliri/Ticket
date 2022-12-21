@@ -14,11 +14,11 @@
         <strong>Messaggio:</strong>
         <span>{{ $ticket->message }}</span>
 
-        <form method="post" action="{{ route('chats.store')}}">
+        <form method="post">
         @csrf
             <div class="field">
                 <div class="control  mt-5">
-                    <a href="{{ route('chats.create', $ticket->id) }}" class="button  is-link ">Rispondi</a>
+                    <a href="{{ route('chat.create', $ticket->id) }}" class="button  is-link ">Rispondi</a>
                     <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
                 </div>
             </div>

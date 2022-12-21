@@ -9,7 +9,7 @@
 <body>
 <div id="container">
 
-    <form method="post" action="{{ route('chats.store')}}">
+    <form method="post" action="{{ route('chat.store')}}">
         @csrf
         <div class="field">
             <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">

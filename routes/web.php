@@ -29,8 +29,14 @@ Route::get('/operator/home', [HomeController::class, 'index'])->name('operator.h
 
 
 //rotta chat
-Route::resource('chats', ChatsController::class)->only('index', 'create', 'store', 'show');
-Route::resource('chats', ChatsController::class)->except('update', 'delete');
+Route::get('/chat', [ChatsController::class, 'index'])->name('chat');
+Route::get('/chat/create', [ChatsController::class, 'create'])->name('chat.create');
+Route::post('/chat',[ChatsController::class, 'store'])->name('chat.store');
+Route::get('/chat/{id}', [ChatsController::class, 'show'])->name('chat');
+Route::get('chat/{id}/edit', [ChatsController::class, 'edit'])->name('chat.edit');
+
+
+
 
 //rotte per il crud del ticket
 Route::resource('tickets', TicketController::class);

@@ -49,20 +49,19 @@
                                     </div>
                                 </div>
                             </section>
+                            <form method="GET" >
+                                @csrf
                             <main>
-                                <h3>
-                                    Non ci sono Ticket aperti.
-                                </h3>
                                 <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
                             </main>
                             <main>
                                 <h3>
                                      Chats
                                 </h3>
-                                <a class="button" href="{{ route('chats.index')  }}">Mostra chat</a>
+                                <a class="button" href="{{ route('chat')  }}">Mostra chat</a>
                             </main>
 
-
+                            </form>
                          </div>
                         </div>
 
