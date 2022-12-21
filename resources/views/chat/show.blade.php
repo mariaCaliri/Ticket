@@ -14,10 +14,12 @@
             <span>{{ $ticket->message }}</span>
         </div>
         <div>
-            <form method="get" >
+            <form method="post">
+                @csrf
                 <div class="field">
                     <div class="control  mt-5">
                         <a href="{{ route('chats.create', $ticket->id) }}" class="button  is-link ">Rispondi</a>
+                        <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
                     </div>
                     <div class="control mt-5">
                         <a href="{{ route('chats.index', $ticket->id) }}"  class="button  is-link ">Torna indietro</a>

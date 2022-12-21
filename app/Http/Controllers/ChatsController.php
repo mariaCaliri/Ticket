@@ -6,6 +6,7 @@ use App\Models\Ticket;
 use http\Message;
 use Illuminate\Http\Request;
 use App\Models\Chat;
+use Symfony\Component\Console\Input\Input;
 
 class ChatsController extends Controller
 {
@@ -25,10 +26,9 @@ class ChatsController extends Controller
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create(Ticket $ticket)
     {
-
-        return view('chat.create');
+        return view('chat.create')->with('ticket', $ticket);
     }
 
     /**
@@ -37,8 +37,10 @@ class ChatsController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function store(Request $request)
+    public function store(Request $request, Ticket $ticket)
     {
+        $id = $request->input('ticket_id');
+
         $request->validate([
             'body'=>'required|string|min:5|max:2000' ,
         ]);
@@ -46,13 +48,14 @@ class ChatsController extends Controller
         $message = new Chat([
             'body'=>$request->get('body'),
             'user_id'=>2,
-            'ticket_id'=> 11
+            'ticket_id'=>2
         ]);
 
 
 
         $message->save();
-        return view('chat.index',);
+
+        return view('chat.index');
     }
 
     /**

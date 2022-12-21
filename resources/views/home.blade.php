@@ -55,6 +55,12 @@
                                 </h3>
                                 <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
                             </main>
+                            <main>
+                                <h3>
+                                     Chats
+                                </h3>
+                                <a class="button" href="{{ route('chats.index')  }}">Mostra chat</a>
+                            </main>
 
 
                          </div>

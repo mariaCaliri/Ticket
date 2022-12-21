@@ -12,6 +12,7 @@
     <form method="post" action="{{ route('chats.store')}}">
         @csrf
         <div class="field">
+            <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
             <label class="label">Contenuto</label>
             <div class="control">
             <textarea
