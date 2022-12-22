@@ -26,7 +26,7 @@
                             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
                             <!-- Bulma Version 0.9.0-->
                             <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
-                            <link rel="stylesheet" type="text/css" href="../css/admin.css">
+                            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </head>
                         <div>
                         <div class="column is-9">
@@ -54,14 +54,38 @@
                             <main>
                                 <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
                             </main>
-                            <main>
-                                <h3>
-                                     Chats
-                                </h3>
-                                <a class="button" href="{{ route('chat')  }}">Mostra chat</a>
-                            </main>
 
                             </form>
+
+                            <div class="card-table">
+                                <div class="content">
+                                    <table class="table is-fullwidth is-striped">
+                                        <thead>
+                                        <tr class="info">
+                                            <th >Id</th>
+                                            <th >Title</th>
+                                            <th >starting_date</th>
+                                            <th >Closing_date</th>
+                                            <th >Actions</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($tickets as $ticket)
+                                            <tr>
+                                                <td>{{ $ticket->id }}</td>
+                                                <td>{{ $ticket->title }}</td>
+                                                <td>{{ $ticket->registered_at }}</td>
+                                                <td>{{ $ticket->end_date }}</td>
+                                                <td class="btn-container">
+                                                    <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
+                                                        <a href=" {{route('tickets.show',$ticket->id)  }}" class="btn btn-search d-flex "> <i class="fa-solid fa-magnifying-glass"></i></a>
+
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                          </div>
                         </div>
 

@@ -30,9 +30,9 @@ Route::get('/operator/home', [HomeController::class, 'index'])->name('operator.h
 
 //rotta chat
 Route::get('/chat', [ChatsController::class, 'index'])->name('chat');
-Route::get('/chat/create', [ChatsController::class, 'create'])->name('chat.create');
+Route::get('/chat/create{id}', [ChatsController::class, 'create'])->name('chat.create');
 Route::post('/chat',[ChatsController::class, 'store'])->name('chat.store');
-Route::get('/chat/{id}', [ChatsController::class, 'show'])->name('chat');
+Route::get('/chat/{id}', [ChatsController::class, 'show'])->name('chat.show');
 Route::get('chat/{id}/edit', [ChatsController::class, 'edit'])->name('chat.edit');
 
 

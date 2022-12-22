@@ -9,29 +9,7 @@
 <body>
 <div id="container">
 
-    <form method="post" action="{{ route('chat.store')}}">
-        @csrf
-        <div class="field">
-            <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
-            <label class="label">Contenuto</label>
-            <div class="control">
-            <textarea
-                name="body"
-                class="textarea"
-                placeholder="Contenuto"
-                minlength="5"
-                maxlength="2000"
-                required rows="10"
-            >{{ old('body') }}</textarea>
-            </div>
-        </div>
 
-        <div class="field">
-            <div class="control">
-                <button type="submit" class="button is-link is-outlined">Pubblica</button>
-            </div>
-        </div>
-    </form>
 
 
 

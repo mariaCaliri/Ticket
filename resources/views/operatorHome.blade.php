@@ -69,6 +69,7 @@
                                                     <th >Title</th>
                                                     <th >starting_date</th>
                                                     <th >Closing_date</th>
+                                                    <th >Status</th>
                                                     <th >Actions</th>
                                                 </tr>
                                                 </thead>
@@ -79,6 +80,16 @@
                                                         <td>{{ $ticket->title }}</td>
                                                         <td>{{ $ticket->registered_at }}</td>
                                                         <td>{{ $ticket->end_date }}</td>
+                                                        <td>
+                                                            @if( $ticket->status =='urgente')
+                                                                <a class=" has-text-danger" href="">urgente</a>
+                                                            @elseif($ticket->status == 'mediamente urgente')
+                                                                <a class=" has-text-warning" href=""> mediamente urgente</a>
+                                                            @elseif($ticket->status == 'non urgente')
+                                                                <a class=" has-text-success" href=""> non urgente</a>
+
+                                                            @endif
+                                                        </td>
                                                         <td class="btn-container">
                                                             <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
                                                                 <a href=" {{route('tickets.show',$ticket->id)  }}" class="btn btn-search d-flex "> <i class="fa-solid fa-magnifying-glass"></i></a>

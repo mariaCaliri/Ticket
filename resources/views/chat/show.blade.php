@@ -18,17 +18,13 @@
                 @csrf
                 <div class="field">
                     <div class="control  mt-5">
-                        <a href="{{ route('chats.create', $ticket->id) }}" class="button  is-link ">Rispondi</a>
-                        <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+                        <a href="{{ route('chat.create', $ticket->id) }}" class="button  is-link ">Rispondi</a>
                     </div>
                     <div class="control mt-5">
-                        <a href="{{ route('chats.index', $ticket->id) }}"  class="button  is-link ">Torna indietro</a>
+                        <a href="{{ route('chat', $ticket->id) }}"  class="button  is-link ">Torna indietro</a>
                     </div>
                 </div>
-            </form>
-            <div class="card">
-
-            </div>
+            </form>.
 
         </div>
 </div>

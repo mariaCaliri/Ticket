@@ -53,7 +53,9 @@ class TicketController extends Controller
           'priority'=>$request->get('priority'),
           'category_id'=> $request->get('category_id'),
           'message'=> $request->get('message'),
-          'user_id'=> 1
+          'user_id'=> 1,
+          'end_date'=> null
+
       ]);
       $ticket->save();
 
@@ -70,7 +72,7 @@ class TicketController extends Controller
     public function show($id): \Illuminate\Http\Response
     {
         $ticket = Ticket::findOrFail($id);
-        return response()->view('ticket.show', compact('ticket'));
+        return response()->view('ticket.show', compact(['ticket']));
     }
 
     /**
