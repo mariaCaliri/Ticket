@@ -62,25 +62,24 @@
         <div class="column is-3 ">
             <aside class="menu is-hidden-mobile">
                 <p class="menu-label">
-                    General
+                   GENERALE
                 </p>
                 <ul class="menu-list">
                     <li><a class="is-active">Dashboard</a></li>
-                    <li><a>Customers</a></li>
-                    <li><a>Other</a></li>
+                    <li><a>Utenti</a></li>
+                    <li><a>Altro</a></li>
                 </ul>
                 <p class="menu-label">
-                    Administration
+                  AMMINISTRAZIONE
                 </p>
                 <ul class="menu-list">
                     <li><a>Team Settings</a></li>
                     <li>
-                        <a>Manage Your Team</a>
+                       GESTIONE OPERATORI
                         <ul>
-                            <li><a>Members</a></li>
-                            <li><a>Plugins</a></li>
-                            <li><a>Add a member</a></li>
-                            <li><a>Remove a member</a></li>
+                            <li><a href="{{ route('admin.operatore.index') }}">Tutti gli Operatori</a></li>
+                            <li><a href="{{ route('admin.operatore.create') }}">Aggiungi Operatore</a></li>
+                            <li><a>Rimuovi Operatore</a></li>
                         </ul>
                     </li>
 
@@ -124,10 +123,10 @@
                                     <thead>
                                     <tr class="info">
                                         <th >Id</th>
-                                        <th >Title</th>
-                                        <th >starting_date</th>
-                                        <th >Closing_date</th>
-                                        <th >Status</th>
+                                        <th >Titolo</th>
+                                        <th >Data di apertura</th>
+                                        <th >Categoria</th>
+                                        <th >Stato</th>
                                         <th >Actions</th>
                                     </tr>
                                     </thead>
@@ -137,15 +136,14 @@
                                         <td>{{ $ticket->id }}</td>
                                         <td>{{ $ticket->title }}</td>
                                         <td>{{ $ticket->registered_at }}</td>
-                                        <td>{{ $ticket->end_date }}</td>
+                                        <td>{{ $ticket->category->name }}</td>
                                         <td>
-                                            @if( $ticket->status =='urgente')
-                                                <a class=" has-text-danger" href="">urgente</a>
-                                            @elseif($ticket->status == 'mediamente urgente')
-                                                <a class=" has-text-warning" href=""> mediamente urgente</a>
-                                            @elseif($ticket->status == 'non urgente')
-                                                <a class=" has-text-success" href=""> non urgente</a>
-
+                                            @if( $ticket->status =='in attesa')
+                                                <a class=" has-text-danger" href="">In Attesa</a>
+                                            @elseif($ticket->status == 'in lavorazione')
+                                                <a class=" has-text-warning" href=""> In Lavorazione</a>
+                                            @elseif($ticket->status == 'completato')
+                                                <a class=" has-text-success" href=""> Ticket chiuso</a>
                                             @endif
                                         </td>
                                         <td class="btn-container">

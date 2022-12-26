@@ -29,12 +29,12 @@
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </head>
                         <div>
-                        <div class="column is-9">
+                        <div class="column is-12">
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
-                                    <li><a href="../">Bulma</a></li>
-                                    <li><a href="../">Templates</a></li>
-                                    <li><a href="../">Examples</a></li>
+                                    <li><a href="../">Profilo</a></li>
+                                    <li><a href="../">Modifica Password</a></li>
+                                    <li><a href="../">Lista Accessi</a></li>
                                 </ul>
                             </nav>
                             <section class="hero is-info welcome is-small">
@@ -49,23 +49,24 @@
                                     </div>
                                 </div>
                             </section>
-                            <form method="GET" >
-                                @csrf
-                            <main>
-                                <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
-                            </main>
-
-                            </form>
-
+                            <div class="mt-5">
+                                <form method="GET" >
+                                    @csrf
+                                <main>
+                                    <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
+                                </main>
+                                </form>
+                            </div>
                             <div class="card-table">
                                 <div class="content">
                                     <table class="table is-fullwidth is-striped">
                                         <thead>
                                         <tr class="info">
                                             <th >Id</th>
-                                            <th >Title</th>
-                                            <th >starting_date</th>
-                                            <th >Closing_date</th>
+                                            <th >Titolo</th>
+                                            <th >Data di apertura</th>
+                                            <th >Categoria</th>
+                                            <th >Stato</th>
                                             <th >Actions</th>
                                         </tr>
                                         </thead>
@@ -75,7 +76,16 @@
                                                 <td>{{ $ticket->id }}</td>
                                                 <td>{{ $ticket->title }}</td>
                                                 <td>{{ $ticket->registered_at }}</td>
-                                                <td>{{ $ticket->end_date }}</td>
+                                                <td>{{ $ticket->category->name }}</td>
+                                                <td>
+                                                    @if( $ticket->status =='in attesa')
+                                                        <a class=" has-text-danger" href="">In Attesa</a>
+                                                    @elseif($ticket->status == 'in lavorazione')
+                                                        <a class=" has-text-warning" href=""> In Lavorazione</a>
+                                                    @elseif($ticket->status == 'completato')
+                                                        <a class=" has-text-success" href=""> Ticket chiuso</a>
+                                                    @endif
+                                                </td>
                                                 <td class="btn-container">
                                                     <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
                                                         <a href=" {{route('tickets.show',$ticket->id)  }}" class="btn btn-search d-flex "> <i class="fa-solid fa-magnifying-glass"></i></a>

@@ -66,13 +66,6 @@
                 <span>{{ $ticket->message }}</span>
             </div>
             <div class="control mt-5">
-                <button class="button is-primary m-5">
-                    <a href="{{ route('chat.create',  $ticket->id ) }}">Rispondi</a>
-                </button>
-                <button class="button is-primary m-5">
-                    <a href="">Chiudi Ticket</a>
-                </button>
-
                 <div class="mt-5">
                     <table class="table is-bordered mt-5">
                         <tr>
@@ -119,6 +112,9 @@
                     <div class="control">
                         <button type="submit" class="button is-link is-outlined">Pubblica</button>
                     </div>
+                    <button class="button is-primary mt-5">
+                        <a href="">Chiudi Ticket</a>
+                    </button>
                 </div>
             </form>
 
