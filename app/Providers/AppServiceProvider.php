@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Chat;
+use App\Models\Operator;
 use App\Models\Ticket;
+use App\Models\User;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -31,9 +33,12 @@ class AppServiceProvider extends ServiceProvider
 
         $categories = Category::all();
         view()->share('categories', $categories);
-//
-//        $messages = Chat::all();
-//        view()->share('messages', $messages);
+
+        $users = User::all();
+        view()->share('users', $users);
+
+        $operators =Operator::all();
+        view()->share('operators', $operators);
     }
 
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OperatorController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,16 @@ Route::get('chat/{id}/edit', [ChatsController::class, 'edit'])->name('chat.edit'
 
 //rotte per il crud del ticket
 Route::resource('tickets', TicketController::class);
+
+//Rotte per utente
+Route::get('admin/utente', [UserController::class, 'index'])->name('admin.utente.index');
+Route::get('admin/utente/create', [UserController::class, 'create'])->name('admin.utente.create');
+Route::post('admin/utente', [UserController::class, 'store'])->name('admin.utente.store');
+Route::get('admin/utente/{id}', [UserController::class, 'show'])->name('admin.utente.show');
+Route::get('admin/utente/{id}/edit', [UserController::class, 'edit'])->name('admin.utente.edit');
+Route::put('admin/utente/{id}', [UserController::class, 'update'])->name('admin.utente.update');
+Route::delete('admin/utente/{id}',[ UserController::class, 'destroy'])->name('admin.utente.destroy');
+
 
 //rotte per operatori
 Route::get('admin/operatore', [OperatorController::class, 'index'])->name('admin.operatore.index');

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Modifica Operatore</title>
+    <title>Aggiungi Utente</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
@@ -11,11 +11,11 @@
 <div class="container mt-2">
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Modifica Operatore</h2>
+            <div class="pull-left mb-2">
+                <h2>Aggiungi Utente</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('admin.operatore.index') }}" enctype="multipart/form-data">Indietro</a>
+                <a class="btn btn-primary" href="{{ route('admin.utente.index') }}"> Indietro</a>
             </div>
         </div>
     </div>
@@ -24,15 +24,13 @@
             {{ session('status') }}
         </div>
     @endif
-    <form action="{{ route('admin.operatore.update',$operator->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.utente.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Nome Operatore:</strong>
-                    <input type="text" name="name" value="{{ $operator->name }}" class="form-control"
-                           placeholder="nome">
+                    <strong>Nome utente:</strong>
+                    <input type="text" name="name" class="form-control" placeholder="Nome Utente">
                     @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
@@ -40,9 +38,8 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Email:</strong>
-                    <input type="email" name="email" class="form-control" placeholder="Email"
-                           value="{{ $operator->email }}">
+                    <strong>Email Utente:</strong>
+                    <input type="email" name="email" class="form-control" placeholder="Email">
                     @error('email')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
@@ -51,16 +48,16 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Password:</strong>
-                    <input type="text" name="password" value="{{ $operator->password }}" class="form-control"
-                           placeholder="password">
+                    <input type="text" name="email" class="form-control" placeholder="Password">
                     @error('address')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                     @enderror
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary ml-3">Modifica</button>
+            <button type="submit" class="btn btn-primary ml-3">Aggiungi</button>
         </div>
     </form>
 </div>
 </body>
+
 </html>

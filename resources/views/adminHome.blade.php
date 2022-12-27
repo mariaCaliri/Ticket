@@ -66,7 +66,7 @@
                 </p>
                 <ul class="menu-list">
                     <li><a class="is-active">Dashboard</a></li>
-                    <li><a>Utenti</a></li>
+                    <li><a href="{{ route('admin.utente.index') }}">Tutti gli Utenti</a></li>
                     <li><a>Altro</a></li>
                 </ul>
                 <p class="menu-label">
@@ -79,7 +79,6 @@
                         <ul>
                             <li><a href="{{ route('admin.operatore.index') }}">Tutti gli Operatori</a></li>
                             <li><a href="{{ route('admin.operatore.create') }}">Aggiungi Operatore</a></li>
-                            <li><a>Rimuovi Operatore</a></li>
                         </ul>
                     </li>
 

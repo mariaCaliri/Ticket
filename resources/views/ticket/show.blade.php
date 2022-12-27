@@ -16,9 +16,6 @@
 </head>
 <body>
 <div id="container">
-    @php
-        // dd($ticket->messages);
-    @endphp
     <h1>Dettaglio Ticket "{{ $ticket->id }}"</h1>
 
     <div>

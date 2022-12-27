@@ -15,32 +15,8 @@
 
 </head>
 <body>
-    <div id="container">
-    <h1>Dettaglio Operatore "{{ $operator->id }}"</h1>
+<div id="container">
+    <h1><strong>Dettaglio Utente "{{ $user->id }}"</strong></h1>
     </div>
-    <div>
-        <strong>Nome</strong>
-        <span>{{ $operator->name }}</span>
-    </div>
-    <div>
-        <strong>Email</strong>
-        <span>{{ $operator->email }}</span>
-    </div>
-
-    <div class="control">
-        <!-- pulsante modifica -->
-        <form method="get" action="{{ route('admin.operatore.edit', $operator->id )  }}">
-            @csrf
-            @method('PUT')
-            <button class="button is-primary mt-5">Modifica</button>
-        </form>
-        <!-- pulsante torna indietro -->
-        <div class="control mb-5">
-            <button class="button is-primary mt-5">
-                <a href=" {{ route('admin.home') }}">Torna alla dashboard</a>
-            </button>
-        </div>
-    </div>
-
 </body>
 </html>
