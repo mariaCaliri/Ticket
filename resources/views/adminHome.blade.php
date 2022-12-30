@@ -67,7 +67,7 @@
                 <ul class="menu-list">
                     <li><a class="is-active">Dashboard</a></li>
                     <li><a href="{{ route('admin.utente.index') }}">Tutti gli Utenti</a></li>
-                    <li><a>Altro</a></li>
+                    <li><a href="{{ route('categories.index') }}">Categorie</a></li>
                 </ul>
                 <p class="menu-label">
                   AMMINISTRAZIONE

@@ -36,7 +36,9 @@ Route::get('/chat/create{id}', [ChatsController::class, 'create'])->name('chat.c
 Route::post('/chat',[ChatsController::class, 'store'])->name('chat.store');
 Route::get('/chat/{id}', [ChatsController::class, 'show'])->name('chat.show');
 Route::get('chat/{id}/edit', [ChatsController::class, 'edit'])->name('chat.edit');
- //
+
+ //rotte per categorie
+Route::resource('categories', \App\Http\Controllers\CategoryController::class);
 
 //rotte per il crud del ticket
 Route::resource('tickets', TicketController::class);

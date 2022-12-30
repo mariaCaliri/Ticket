@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Operator;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class OperatorController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class OperatorController extends Controller
      */
     public function index()
     {
-        $operators = Operator::all();
-        return view('operator.index', compact('operators'));
+        $categories = Category::all();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -25,7 +25,7 @@ class OperatorController extends Controller
      */
     public function create()
     {
-        return view('operator.create');
+        return view('categories.create');
     }
 
     /**
@@ -34,20 +34,16 @@ class OperatorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
         $request->validate([
-           'name'=>'required|min:5|',
-           'email'=>'required',
-           'password'=>'required'
+           'name'=>'required'
         ]);
-        $operator = new Operator([
-           'name'=>$request->get('name'),
-           'email'=>$request->get('email'),
-           'password'=>$request->get('password')
+        $category = new Category([
+            'name'=>$request->get('name')
         ]);
-        $operator->save();
-        return redirect()->route('admin.operatore.index');
+        $category->save();
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -58,8 +54,8 @@ class OperatorController extends Controller
      */
     public function show($id)
     {
-        $operator = Operator::findOrFail($id);
-        return response()->view('operator.show', compact('operator'));
+        $category = Category::findOrFail($id);
+        return response()->view('categories.show', compact('category'));
     }
 
     /**
@@ -70,8 +66,8 @@ class OperatorController extends Controller
      */
     public function edit($id)
     {
-        $operator = Operator::findOrfail($id);
-        return view('operator.edit', compact('operator'));
+        $category = Category::findOrfail($id);
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -81,18 +77,15 @@ class OperatorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Operator $operator)
+    public function update(Request $request, Category $category)
     {
         $request->validate([
-           'name'=>'required',
-           'email'=>'required',
-           'password'=>'required'
+            'name'=>'required'
         ]);
+        $category->update($request->all());
+        $category->save();
 
-        $operator->update($request->all());
-        $operator->save();
-
-        return redirect()->route('admin.operatore.index');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -103,9 +96,9 @@ class OperatorController extends Controller
      */
     public function destroy($id)
     {
-        $operator = Operator::findorfail($id);
-        $operator->delete();
+        $category = Category::findOrfail($id);
+        $category->delete();
 
-        return redirect()->route('admin.operatore.index');
+        return redirect()->route('categories.index')->with('categoria eliminata');
     }
 }
