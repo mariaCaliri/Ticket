@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\LoginHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,7 +25,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+
         if (Auth::user()->type == '0') {
+            $user = Auth::user();
+            event(new LoginHistory($user));
+
             return view('home');
         }
         elseif (Auth::user()->type == '1') {

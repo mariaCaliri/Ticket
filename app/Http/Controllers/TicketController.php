@@ -58,7 +58,6 @@ class TicketController extends Controller
 
       ]);
       $ticket->save();
-
        return redirect()->route('home')->with('Ticket creato correttamente');
 
     }

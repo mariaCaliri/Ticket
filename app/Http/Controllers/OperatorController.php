@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OperatorRegistred;
 use App\Models\Operator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OperatorController extends Controller
 {
@@ -47,6 +49,7 @@ class OperatorController extends Controller
            'password'=>$request->get('password')
         ]);
         $operator->save();
+        Mail::to($operator)->send(new OperatorRegistred($operator));
         return redirect()->route('admin.operatore.index');
     }
 
@@ -88,6 +91,8 @@ class OperatorController extends Controller
            'email'=>'required',
            'password'=>'required'
         ]);
+
+        dd($operator);
 
         $operator->update($request->all());
         $operator->save();

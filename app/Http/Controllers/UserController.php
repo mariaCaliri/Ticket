@@ -34,7 +34,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, User $user)
     {
         $request->validate([
             'name'=>'required|min:5|',
@@ -47,7 +47,7 @@ class UserController extends Controller
             'password'=>$request->get('password'),
             'type'=> 0
         ]);
-        dd($request);
+
         $user->save();
         return redirect()->route('admin.utente.index');
     }
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::findOrfail($id);
-        return response()->view('user.show');
+        return response()->view('user.show', compact('user'));
 
     }
 
@@ -92,6 +92,8 @@ class UserController extends Controller
             'password'=>'required'
         ]);
         $user->update($request->all());
+
+        $user->save();
         return redirect()->route('admin.utente.index');
     }
 

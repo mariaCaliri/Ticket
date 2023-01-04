@@ -63,10 +63,10 @@ Route::put('admin/operatore/{id}', [OperatorController::class, 'update'])->name(
 Route::delete('admin/operatore/{id}',[ OperatorController::class, 'destroy'])->name('admin.operatore.destroy');
 
 
-////rotte per User
-//Route::resource('users', \App\Models\User::class)->only('create','index');
-//Route::resource('users', \App\Models\User::class)->except('edit', 'store', 'destroy');
+//rotte per UserProfile
+Route::get('user/login-history', [\App\Http\Controllers\ProfileController::class, 'LoginHistory'])->name('login.history');
+Route::get('user/change-password', [\App\Http\Controllers\ProfileController::class, 'ChangePassword'])->name('change-password');
+Route::post('/change-password', [\App\Http\Controllers\ProfileController::class,'updatePassword'])->name('update-password');
+Route::get('user/profile', [\App\Http\Controllers\ProfileController::class, 'ShowProfile'])->name('user.profile.profile');
 
-//vecchie rotte
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-//Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+

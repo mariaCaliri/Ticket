@@ -33,8 +33,8 @@
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
                                     <li><a href="../">Profilo</a></li>
-                                    <li><a href="../">Modifica Password</a></li>
-                                    <li><a href="../">Lista Accessi</a></li>
+                                    <li><a href="">Modifica Password</a></li>
+                                    <li><a href="">Lista Accessi</a></li>
                                 </ul>
                             </nav>
                             <section class="hero is-info welcome is-small">

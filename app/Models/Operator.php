@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Operator extends Model
 {
     use HasFactory;
+    use Notifiable;
+
+    protected $guard = 'operator';
+
     protected $fillable = [
         'name',
         'email',

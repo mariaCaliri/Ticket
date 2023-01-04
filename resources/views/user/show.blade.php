@@ -17,6 +17,25 @@
 <body>
 <div id="container">
     <h1><strong>Dettaglio Utente "{{ $user->id }}"</strong></h1>
+</div>
+<div>
+    <strong>Nome</strong>
+    <span>{{ $user->name }}</span>
+</div>
+<div class="control">
+    <!-- pulsante modifica -->
+    <form method="get" action="{{ route('admin.utente.edit', $user->id )  }}">
+        @csrf
+        @method('PUT')
+        <button class="button is-primary mt-5">Modifica</button>
+    </form>
+    <!-- pulsante torna indietro -->
+    <div class="control mb-5">
+        <button class="button is-primary mt-5">
+            <a href=" {{ route('admin.home') }}">Torna alla dashboard</a>
+        </button>
     </div>
+</div>
+
 </body>
 </html>

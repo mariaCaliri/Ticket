@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
         $operators =Operator::all();
         view()->share('operators', $operators);
+
     }
 
 }
