@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notification;
 class TicketCreated extends Notification
 {
     use Queueable;
+    private $details;
 
 
     /**
@@ -17,9 +18,9 @@ class TicketCreated extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($details)
     {
-
+        $this->details = $details;
     }
 
     /**
@@ -42,10 +43,10 @@ class TicketCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->greeting('Ciao!')
-                    ->line('Abbiamo ricevuto il tuo ticket.')
-                    ->action('Visualizza ticket', url('/'))
-                    ->line('grazie per aver usato la nostra applicazione!');
+                    ->greeting($this->details['greeting'])
+                    ->line($this->details['body'])
+                    ->action($this->details['action-text'], $this->details['action-url'])
+                    ->line($this->details['end-text']);
     }
 
     /**

@@ -15,7 +15,7 @@
 <body>
 <div class="card-table">
     <div class="content">
-        <table class="table is-fullwidth is-striped">
+        <table class="table is-bordered is-striped ">
             <thead>
             <tr class="info">
                 <th >Name</th>
@@ -25,14 +25,19 @@
             </thead>
             <tbody>
             <tr>
-
-                <td></td>
-                <td></td>
-                <td></td>
+            @foreach($logs as $log)
+                <td> {{ $log->name }}</td>
+                <td> {{ $log->email }}</td>
+                <td> {{ $log->created_at }}</td>
             </tbody>
-
+            @endforeach
         </table>
     </div>
-
+</div>
+<div class="control mb-5">
+    <button class="button is-info mt-5">
+        <a href=" {{ route('home') }}">Torna alla dashboard</a>
+    </button>
+</div>
 </body>
 </html>

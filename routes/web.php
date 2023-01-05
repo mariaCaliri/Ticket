@@ -64,9 +64,14 @@ Route::delete('admin/operatore/{id}',[ OperatorController::class, 'destroy'])->n
 
 
 //rotte per UserProfile
-Route::get('user/login-history', [\App\Http\Controllers\ProfileController::class, 'LoginHistory'])->name('login.history');
+Route::get('user/login-history', [\App\Http\Controllers\ProfileController::class, 'LoginHistory'])->name('login-history');
 Route::get('user/change-password', [\App\Http\Controllers\ProfileController::class, 'ChangePassword'])->name('change-password');
 Route::post('/change-password', [\App\Http\Controllers\ProfileController::class,'updatePassword'])->name('update-password');
-Route::get('user/profile', [\App\Http\Controllers\ProfileController::class, 'ShowProfile'])->name('user.profile.profile');
+Route::get('/user/profile', [\App\Http\Controllers\ProfileController::class, 'ShowProfile'])->name('user.profile');
 
+//rotta per le notifiche agli operatori
+Route::get('send/mail/view/{id}', [OperatorController::class, 'send'])->name('send.email.view');
+Route::post('/store/email/{id}', [OperatorController::class, 'storeSingleEmail'])->name('store.operator.email');
+Route::post('/store/email/all', [OperatorController::class, 'storeAllEmail'])->name('store.allOperator.email');
 
+//TODO: VISTA PER EMAIL A TUTTI GLI OPERATORI m 38:16

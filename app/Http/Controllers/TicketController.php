@@ -18,7 +18,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::latest()->get();
+        $tickets = auth()->user()->tickets()->orderBy('created_at', 'desc')->get();
        return redirect()->route('admin.home', compact('tickets'));
     }
 

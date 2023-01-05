@@ -22,12 +22,7 @@ class Ticket extends Model
         'end_date',
         'category_id',
         'user_id',
-
-
-
-
     ];
-
 
     public function operator(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

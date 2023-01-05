@@ -15,6 +15,7 @@
             <div class="pull-right mb-2">
                 <a class="btn btn-success" href="{{ route('admin.operatore.create') }}"> Crea Operatore</a>
                 <a class="btn btn-success" href="{{ route('admin.home') }}"> Torna alla dashboard</a>
+                <a class="btn btn-success" href="{{ route('store.allOperator.email') }}"> Manda email a tutti gli operatori</a>
             </div>
         </div>
     </div>
@@ -43,6 +44,7 @@
                     <form action="{{ route('admin.operatore.destroy',$operator->id) }}" method="Post">
                         <a class="btn btn-primary" href="{{ route('admin.operatore.edit',$operator->id) }}">Modifica</a>
                         <a class="btn btn-warning" href="{{ route('admin.operatore.show',$operator->id) }}">Dettaglio</a>
+                        <a class="btn btn-info" href="{{ route('send.email.view',$operator->id) }}">Manda Email</a>
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger mt-2">Cancella</button>

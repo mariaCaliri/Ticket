@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LogActivity;
+use App\Models\User;
+use App\Providers\StoreUserLoginHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -9,15 +12,17 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
+
     public function LoginHistory()
     {
-
-        return view('UserProfile.login.history', );
+        //$logs = LogActivity::latest()->get();
+        $logs = LogActivity::where('user_id', Auth::id())->paginate(5);
+        return view('user-profile.login-history');
     }
 
-    public function ChangePassword()
+    public function ChangePassword(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        return view('change-password');
+        return view('user-profile.change-password');
     }
 
     public function updatePassword(Request $request): \Illuminate\Http\RedirectResponse
@@ -45,6 +50,6 @@ class ProfileController extends Controller
 
     public function ShowProfile()
     {
-        return view( 'user');
+        return view( 'user-profile.index');
     }
 }

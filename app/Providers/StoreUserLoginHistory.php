@@ -32,9 +32,9 @@ class StoreUserLoginHistory
 
         $userinfo = $event->user;
 
-        $saveHistory = DB::table('login_history')->insert(
+        $logs = DB::table('login_history')->insert(
             ['name' => $userinfo->name, 'email' => $userinfo->email, 'created_at' => $current_timestamp, 'updated_at' => $current_timestamp]
         );
-        return $saveHistory;
+        return $logs;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Chat;
+use App\Models\LogActivity;
 use App\Models\Operator;
 use App\Models\Ticket;
 use App\Models\User;
@@ -39,6 +40,9 @@ class AppServiceProvider extends ServiceProvider
 
         $operators =Operator::all();
         view()->share('operators', $operators);
+
+        $logs = LogActivity::all();
+        view()->share( 'logs', $logs);
 
     }
 

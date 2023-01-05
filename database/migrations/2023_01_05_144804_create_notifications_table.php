@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('login_history', function (Blueprint $table) {
-            $table->id();
-            $table->string('name', 100);
-            $table->string('email', 200);
-            $table->foreignId('user_id')->nullable()->constrained();
+        Schema::create('notifications', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('type');
+            $table->morphs('notifiable');
+            $table->text('data');
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('login_history');
+        Schema::dropIfExists('notifications');
     }
 };

@@ -21,7 +21,7 @@
                             <meta charset="utf-8">
                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
                             <meta name="viewport" content="width=device-width, initial-scale=1">
-                            <title>Admin - Free Bulma template</title>
+                            <title>Ticket System Utente</title>
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
                             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
                             <!-- Bulma Version 0.9.0-->
@@ -32,9 +32,9 @@
                         <div class="column is-12">
                             <nav class="breadcrumb" aria-label="breadcrumbs">
                                 <ul>
-                                    <li><a href="../">Profilo</a></li>
-                                    <li><a href="">Modifica Password</a></li>
-                                    <li><a href="">Lista Accessi</a></li>
+                                    <li><a href="{{ route('user.profile') }}">Profilo</a></li>
+                                    <li><a href="{{ route('change-password') }}">Modifica Password</a></li>
+                                    <li><a href="{{ route('login-history') }}">Lista Accessi</a></li>
                                 </ul>
                             </nav>
                             <section class="hero is-info welcome is-small">
@@ -55,6 +55,11 @@
                                 <main>
                                     <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
                                 </main>
+                                    <div class="control mb-5">
+                                        <button class="button is-primary mt-5">
+                                            <a href=" {{ route('send.email.view') }}">Manda segnalazione</a>
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
                             <div class="card-table">

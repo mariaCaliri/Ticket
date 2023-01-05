@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Models\Ticket;
+use App\Notifications\TicketCreated;
+use Illuminate\Notifications\Notification;
 
 class TicketObserver
 {
@@ -14,6 +16,7 @@ class TicketObserver
      */
     public function created(Ticket $ticket)
     {
+      //  Notification::send($operators, new TicketCreated());
 
     }
 

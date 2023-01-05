@@ -54,4 +54,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Chat::class);
     }
+
+    public function logs(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return$this->hasMany(LogActivity::class);
+    }
+
 }

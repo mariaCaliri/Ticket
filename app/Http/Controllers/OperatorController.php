@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Mail\OperatorRegistred;
 use App\Models\Operator;
+use App\Notifications\TicketCreated;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 
 class OperatorController extends Controller
 {
@@ -18,6 +21,46 @@ class OperatorController extends Controller
     {
         $operators = Operator::all();
         return view('operator.index', compact('operators'));
+    }
+
+    public function send($id)
+    {
+        $data = Operator::find($id);
+        return view('operator.send_email_view', compact('data'));
+    }
+    public function storeSingleEmail(Request $request, $id)
+    {
+        $operator = Operator::find($id);
+        $details = array();
+
+        $details['greeting'] = $request->get('greeting');
+        $details['body'] = $request->get('body');
+        $details['action-text'] = $request->get('action-text');
+        $details['action-url'] = $request->get('action-url');
+        $details['end-text'] = $request->get('end-text');
+
+        Notification::send($operator, new TicketCreated($details));
+
+        return redirect()->route('admin.operatore.index');
+
+    }
+    public function storeAllEmail(Request $request)
+    {
+        $operators = Operator::all();
+
+        $details = array();
+
+        $details['greeting'] = $request->get('greeting');
+        $details['body'] = $request->get('body');
+        $details['action-text'] = $request->get('action-text');
+        $details['action-url'] = $request->get('action-url');
+        $details['end-text'] = $request->get('end-text');
+
+        foreach ($operators as $operator){
+            Notification::send($operator, new TicketCreated($details));
+        }
+        return redirect()->route('admin.operatore.index');
+
     }
 
     /**
