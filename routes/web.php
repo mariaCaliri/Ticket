@@ -69,9 +69,13 @@ Route::get('user/change-password', [\App\Http\Controllers\ProfileController::cla
 Route::post('/change-password', [\App\Http\Controllers\ProfileController::class,'updatePassword'])->name('update-password');
 Route::get('/user/profile', [\App\Http\Controllers\ProfileController::class, 'ShowProfile'])->name('user.profile');
 
-//rotta per le notifiche agli operatori
-Route::get('send/mail/view/{id}', [OperatorController::class, 'send'])->name('send.email.view');
-Route::post('/store/email/{id}', [OperatorController::class, 'storeSingleEmail'])->name('store.operator.email');
+//rotte per mandare le email a tutti gli operatori
+Route::get('/send/email/view/all', [OperatorController::class, 'emailViewAll'])->name('send.email.all.view');
 Route::post('/store/email/all', [OperatorController::class, 'storeAllEmail'])->name('store.allOperator.email');
 
-//TODO: VISTA PER EMAIL A TUTTI GLI OPERATORI m 38:16
+//rotta per le email ai singoli operatori
+Route::get('send/mail/view/{id}', [OperatorController::class, 'send'])->name('send.email.view');
+Route::post('/store/email/{id}', [OperatorController::class, 'storeSingleEmail'])->name('store.operator.email');
+
+
+

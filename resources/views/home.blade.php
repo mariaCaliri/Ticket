@@ -55,11 +55,6 @@
                                 <main>
                                     <a class="button" href="{{ route('tickets.create')  }}">Apri ticket</a>
                                 </main>
-                                    <div class="control mb-5">
-                                        <button class="button is-primary mt-5">
-                                            <a href=" {{ route('send.email.view') }}">Manda segnalazione</a>
-                                        </button>
-                                    </div>
                                 </form>
                             </div>
                             <div class="card-table">

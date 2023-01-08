@@ -28,6 +28,7 @@ class OperatorController extends Controller
         $data = Operator::find($id);
         return view('operator.send_email_view', compact('data'));
     }
+
     public function storeSingleEmail(Request $request, $id)
     {
         $operator = Operator::find($id);
@@ -39,12 +40,18 @@ class OperatorController extends Controller
         $details['action-url'] = $request->get('action-url');
         $details['end-text'] = $request->get('end-text');
 
-        Notification::send($operator, new TicketCreated($details));
+      //  Notification::send($operator, new TicketCreated($details));
 
         return redirect()->route('admin.operatore.index');
 
     }
-    public function storeAllEmail(Request $request)
+
+    public function emailViewAll(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('operator.send_email_all_view');
+    }
+
+    public function storeAllEmail(Request $request): \Illuminate\Http\RedirectResponse
     {
         $operators = Operator::all();
 

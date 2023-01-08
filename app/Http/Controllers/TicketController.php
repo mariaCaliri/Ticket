@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TicketRegistred;
 use App\Models\Chat;
 use App\Models\Ticket;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\Input;
 
 class TicketController extends Controller
@@ -18,7 +20,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = auth()->user()->tickets()->orderBy('created_at', 'desc')->get();
+        $tickets = Ticket::all();
        return redirect()->route('admin.home', compact('tickets'));
     }
 
@@ -58,6 +60,7 @@ class TicketController extends Controller
 
       ]);
       $ticket->save();
+      Mail::to('maria.caliri@tecnasoft.it')->send(new TicketRegistred());
        return redirect()->route('home')->with('Ticket creato correttamente');
 
     }

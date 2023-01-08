@@ -15,7 +15,7 @@
             <div class="pull-right mb-2">
                 <a class="btn btn-success" href="{{ route('admin.operatore.create') }}"> Crea Operatore</a>
                 <a class="btn btn-success" href="{{ route('admin.home') }}"> Torna alla dashboard</a>
-                <a class="btn btn-success" href="{{ route('store.allOperator.email') }}"> Manda email a tutti gli operatori</a>
+                <a class="btn btn-success" href="{{ route('send.email.all.view') }}"> Manda email a tutti gli operatori</a>
             </div>
         </div>
     </div>
