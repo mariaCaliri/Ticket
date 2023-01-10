@@ -14,7 +14,8 @@ class LogActivity extends Model
         'name',
         'email',
         'created_at',
-        'update_at'
+        'updated_at',
+        'user_id'
 
     ];
 }

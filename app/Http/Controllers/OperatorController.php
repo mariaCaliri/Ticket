@@ -40,7 +40,7 @@ class OperatorController extends Controller
         $details['action-url'] = $request->get('action-url');
         $details['end-text'] = $request->get('end-text');
 
-      //  Notification::send($operator, new TicketCreated($details));
+        Notification::send($operator, new TicketCreated($details));
 
         return redirect()->route('admin.operatore.index');
 
@@ -131,20 +131,21 @@ class OperatorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Operator $operator)
+    public function update(Request $request, int $id)
     {
+
         $request->validate([
            'name'=>'required',
            'email'=>'required',
            'password'=>'required'
         ]);
 
-        dd($operator);
-
+        $operator = Operator::findOrfail($id);
         $operator->update($request->all());
+
         $operator->save();
 
         return redirect()->route('admin.operatore.index');
