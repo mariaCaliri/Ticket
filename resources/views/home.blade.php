@@ -1,27 +1,31 @@
 @extends('layouts.app')
-
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+    <div class="container is-fluid">
+        <div class="columns">
+            <div class=" box column is-2 has-background-info-dark ">
+                <aside class="menu is-hidden-mobile">
+                    <p class="menu-label has-text-white">
+                        GENERALE
+                    </p>
+                    <ul class="menu-list">
+                        <li><a href="{{ route('user.profile') }}"> <i class="fa-solid fa-user"></i> Profilo</a></li>
+                        <li><a href="{{ route('change-password') }}"> <i class="fa-solid fa-lock"></i> Modifica Password</a></li>
+                        <li><a href="{{ route('login-history') }}"> <i class="fa-solid fa-list"></i> Lista Accessi</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
+                    <div class="card-header has-background-grey-lighter  ">{{ __('Dashboard') }}</div>
 
                     <div class="card-body">
-
-                            @if(auth()->user()->type == 1)
-                                <a href="{{url('admin/routes')}}">Admin</a>
-                            @else
-                                <div class=”panel-heading”>Normal User</div>
-                            @endif
-
-
                         <!DOCTYPE html>
+                        <html lang="it">
                         <head>
                             <meta charset="utf-8">
                             <meta http-equiv="X-UA-Compatible" content="IE=edge">
                             <meta name="viewport" content="width=device-width, initial-scale=1">
-                            <title>Ticket System Utente</title>
+                            <title>Dashboard Utente</title>
                             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
                             <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
                             <!-- Bulma Version 0.9.0-->
@@ -29,26 +33,46 @@
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
                         </head>
                         <div>
-                        <div class="column is-12">
-                            <nav class="breadcrumb" aria-label="breadcrumbs">
-                                <ul>
-                                    <li><a href="{{ route('user.profile') }}">Profilo</a></li>
-                                    <li><a href="{{ route('change-password') }}">Modifica Password</a></li>
-                                    <li><a href="{{ route('login-history') }}">Lista Accessi</a></li>
-                                </ul>
-                            </nav>
-                            <section class="hero is-info welcome is-small">
-                                <div class="hero-body">
-                                    <div class="container">
-                                        <h1 class="title">
-                                            Hello, Utente.
-                                        </h1>
-                                        <h2 class="subtitle">
-                                            I hope you are having a great day!
-                                        </h2>
+                        <div class="container">
+                            <nav class="level">
+                                <!-- Left side -->
+                                <div class="level-left">
+                                    <div class="level-item">
+                                        <p class="subtitle is-5">
+                                            <strong>10 </strong>Tickets
+                                        </p>
+                                    </div>
+                                    <div class="level-item">
+                                        <div class="field has-addons">
+                                            <p class="control">
+                                                <input class="input" type="text" placeholder="Find a ticket">
+                                            </p>
+                                            <p class="control ">
+                                                <button class="button is-info">
+                                                    Search
+                                                </button>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </section>
+
+                                <!-- Right side -->
+                                <div class="level-right">
+                                    <label class="radio">
+                                        <input type="radio" name="answer">
+                                        Tutti
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="answer">
+                                        Aperti
+                                    </label>
+                                    <label class="radio">
+                                        <input type="radio" name="answer">
+                                        Chiusi
+                                    </label>
+                                    {{--                            <p class="level-item"><a class="button is-success">New</a></p>--}}
+                                </div>
+                            </nav>
                             <div class="mt-5">
                                 <form method="GET" >
                                     @csrf
@@ -87,10 +111,7 @@
                                                     @endif
                                                 </td>
                                                 <td class="btn-container">
-                                                    <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
-                                                        <a href=" {{route('tickets.show',$ticket->id)  }}" class="btn btn-search d-flex "> <i class="fa-solid fa-magnifying-glass"></i></a>
-
-                                                    </form>
+                                                    <span class=" has-text-info">  <a href=" {{route('tickets.show',$ticket->id)  }}" class="btn btn-search d-flex "> <i class="fa-solid fa-magnifying-glass"></i></a></span>
                                                 </td>
                                             </tr>
                                         @endforeach

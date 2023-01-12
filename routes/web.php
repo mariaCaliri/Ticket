@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OperatorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OperatorProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,14 @@ Route::get('user/login-history', [\App\Http\Controllers\ProfileController::class
 Route::get('user/change-password', [\App\Http\Controllers\ProfileController::class, 'ChangePassword'])->name('change-password');
 Route::post('/change-password', [\App\Http\Controllers\ProfileController::class,'updatePassword'])->name('update-password');
 Route::get('/user/profile', [\App\Http\Controllers\ProfileController::class, 'ShowProfile'])->name('user.profile');
+
+//rotte per profilo operatore
+Route::get('operator/operator-login-history', [\App\Http\Controllers\OperatorProfileController::class, 'LoginHistory'])->name('operator-login-history');
+Route::get('operator/operator-change-password', [\App\Http\Controllers\OperatorProfileController::class, 'ChangePassword'])->name('operator-change-password');
+Route::post('/change-password', [\App\Http\Controllers\OperatorProfileController::class,'updatePassword'])->name('update-password');
+Route::get('/operator/profile', [\App\Http\Controllers\OperatorProfileController::class, 'ShowProfile'])->name('operator.profile');
+
+
 
 //rotte per mandare le email a tutti gli operatori
 Route::get('/send/email/view/all', [OperatorController::class, 'emailViewAll'])->name('send.email.all.view');
