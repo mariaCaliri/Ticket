@@ -4,14 +4,16 @@
     <div class="columns">
         <div class=" box column is-2 has-background-info-dark ">
             <aside class="menu is-hidden-mobile">
+                <img style="width: 50px" src="/img/logo2.png">
+                <span style="color: white;" > Benvenuto<strong ><span style="color: white;" > Operatore </strong></span></span>
                 <p class="menu-label has-text-white">
-                    GENERALE
+                   <span style="font-size: 20px;"><i class="fas fa-user-cog"></i> GENERALE</span>
                 </p>
                 <ul class="menu-list">
-                    <li><a href="{{ route('operator.profile') }}"> <i class="fa-solid fa-user"></i> Profilo</a></li>
-                    <li><a href="{{ route('operator-change-password') }}"> <i class="fa-solid fa-lock"></i> Modifica Password</a>
+                    <li ><a style="color: lightsteelblue;" href="{{ route('operator.profile') }}"> <i class="fa-solid fa-user"></i> Profilo</a></li>
+                    <li><a style="color: lightsteelblue;" href="{{ route('operator-change-password') }}"> <i class="fa-solid fa-lock"></i> Modifica Password</a>
                     </li>
-                    <li><a href=""> <i class="fa-solid fa-list"></i> Lista Accessi</a></li>
+                    <li><a style="color: lightsteelblue;" href="{{ route('operator-login-history') }}"> <i class="fa-solid fa-list"></i> Lista Accessi</a></li>
                 </ul>
             </aside>
         </div>
@@ -92,12 +94,12 @@
                                             <table class="table is-fullwidth is-striped">
                                                 <thead>
                                                 <tr class="info">
-                                                    <th>Id</th>
-                                                    <th>Titolo</th>
-                                                    <th>Data di apertura</th>
-                                                    <th>Categoria</th>
-                                                    <th>Stato</th>
-                                                    <th>Actions</th>
+                                                    <th>Id  <i class="fa-solid fa-right-left"></i></th>
+                                                    <th>Titolo  <i class="fa-solid fa-right-left"></i></th>
+                                                    <th>Data di apertura  <i class="fa-solid fa-right-left"></i></th>
+                                                    <th>Categoria  <i class="fa-solid fa-right-left"></i></th>
+                                                    <th>Stato  <i class="fa-solid fa-right-left"></i></th>
+                                                    <th>Actions  <i class="fa-solid fa-right-left"></i></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>

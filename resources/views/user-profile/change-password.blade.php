@@ -1,7 +1,6 @@
 @extends('layouts.app')
-
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -45,8 +44,9 @@
                         </div>
 
                         <div class="card-footer">
-                            <button class="btn btn-info">Conferma</button>
-                            <button class="btn btn-danger"><a href="{{ route('home') }}"> Annulla</a></button>
+                            <button class="btn btn-info" style="color: white;">Conferma</button>
+                            <button class="btn btn-danger"><a style="text-decoration:none;color: white;" href="{{ route('home') }}"> Annulla</a></button>
+                            <button type="button" class="btn btn-primary"><a style="text-decoration:none;color: white;" href="{{ route('home') }}">Torna alla dashboard</a></button>
                         </div>
 
                     </form>

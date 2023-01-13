@@ -4,13 +4,15 @@
         <div class="columns">
             <div class=" box column is-2 has-background-info-dark ">
                 <aside class="menu is-hidden-mobile">
-                    <p class="menu-label has-text-white">
-                        GENERALE
+                    <img style="width: 80px" src="/img/user-img.png">
+                    <span style="color: white;" > Benvenuto</span><strong ><span style="color: white;" > Utente</span> </strong>
+                    <p style="font-size: 20px;" class="menu-label has-text-white">
+                        <i class="fas fa-user-cog"></i> GENERALE
                     </p>
                     <ul class="menu-list">
-                        <li><a href="{{ route('user.profile') }}"> <i class="fa-solid fa-user"></i> Profilo</a></li>
-                        <li><a href="{{ route('change-password') }}"> <i class="fa-solid fa-lock"></i> Modifica Password</a></li>
-                        <li><a href="{{ route('login-history') }}"> <i class="fa-solid fa-list"></i> Lista Accessi</a></li>
+                        <li><a style="color: lightsteelblue;" href="{{ route('user.profile') }}"> <i class="fa-solid fa-user"></i> Profilo</a></li>
+                        <li><a style="color:lightsteelblue;" href="{{ route('change-password') }}"> <i class="fa-solid fa-lock"></i> Modifica Password</a></li>
+                        <li><a style="color: lightsteelblue;" href="{{ route('login-history') }}"> <i class="fa-solid fa-list"></i> Lista Accessi</a></li>
                     </ul>
                 </aside>
             </div>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
+    <title>dettaglio ticket</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
@@ -15,47 +15,57 @@
 
 </head>
 <body>
-<div id="container">
-    <h1>Dettaglio Ticket "{{ $ticket->id }}"</h1>
+<div class="container" style="width: 40%;">
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+             Dettaglio Ticket "{{ $ticket->id }}"
+            </p>
+        </header>
+        <div class="card-content">
+            <div class="content">
+                <strong>Titolo: </strong>
+                <span>{{ $ticket->title }}</span>
+            </div>
+            <div>
+                <strong>Data di Apertura</strong>
+                <span>{{ $ticket->start_date }}</span>
+            </div>
+            <div>
+                <strong>Priorità</strong>
+                <span>{{ $ticket->priority }}</span>
+            </div>
+            <div>
+                <strong>Status</strong>
+                <span>{{ $ticket->status }}</span>
+            </div>
+            <div>
+                <strong>Categoria</strong>
+                <span>{{ $ticket->category->name }}</span>
+            </div>
+            <div>
+                <strong>Operator</strong>
+                <span>{{ $ticket->operator->name }}</span>
+            </div>
 
-    <div>
-        <strong>Titolo: </strong>
-        <span>{{ $ticket->title }}</span>
-    </div>
-    <div>
-        <strong>Data di Apertura</strong>
-        <span>{{ $ticket->start_date }}</span>
-    </div>
-    <div>
-        <strong>Priorità</strong>
-        <span>{{ $ticket->priority }}</span>
-    </div>
-    <div>
-        <strong>Status</strong>
-        <span>{{ $ticket->status }}</span>
-    </div>
-    <div>
-        <strong>Categoria</strong>
-        <span>{{ $ticket->category->name }}</span>
-    </div>
-    <div>
-        <strong>Operator</strong>
-        <span>{{ $ticket->operator->name }}</span>
-    </div>
 
-    <div class="control">
-        <!-- pulsante modifica -->
-        <form method="get" action="{{ route('tickets.edit', $ticket->id )  }}">
-            @csrf
-            @method('PUT')
-            <button class="button is-primary mt-5">Modifica</button>
-        </form>
-        <!-- pulsante torna indietro -->
-        <div class="control mb-5">
-            <button class="button is-primary mt-5">
-                <a href=" {{ route('admin.home') }}">Torna alla dashboard</a>
-            </button>
+                <footer class="card-footer">
+
+                    <form method="get" action="{{ route('tickets.edit', $ticket->id )  }}">
+                        @csrf
+                        @method('PUT')
+                        <button class="button is-info mt-5">Modifica</button>
+                    </form>
+
+                    <button class="button is-primary mt-5">
+                        <a href=" {{ route('admin.home') }}">Torna alla dashboard</a>
+                    </button>
+                    <a href="#" class="card-footer-item">Chiudi</a>
+                </footer>
+
         </div>
+    </div>
+</div>
         <!-- pulsante chat -->
         <div class="control mt-5">
             <div>
@@ -117,6 +127,6 @@
 
         </div>
     </div>
-</div>
+
 </body>
 </html>

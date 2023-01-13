@@ -48,8 +48,8 @@ class ProfileController extends Controller
         return back()->with("status", "Password changed successfully!");
     }
 
-    public function ShowProfile()
+    public function ShowProfile(User $user)
     {
-        return view( 'user-profile.index');
+        return view( 'user-profile.index', compact('user'));
     }
 }

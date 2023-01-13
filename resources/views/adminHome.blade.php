@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>TicketSystem</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css"/>
@@ -25,31 +24,32 @@
     <div class="columns">
         <div class=" box column is-2  has-background-info-dark ">
             <aside class="menu is-hidden-mobile">
-                <img src="{{ URL::to('/assets/img/logo.jpg') }}">
-                <ul class="menu-list">
-                    <li><a class="is-active">Dashboard</a></li>
-                    <li><a href="{{ route('admin.utente.index') }}"> <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
-                    </li>
+                <img style="width: 50px" src="/img/logo2.png">
+                <span style="color: lightsteelblue;" > Benvenuto<strong style="color: lightsteelblue;"> Admin </strong></span>
 
-                </ul>
                 <p class="menu-label has-text-white">
                     AMMINISTRAZIONE
                 </p>
                 <ul class="menu-list has-text-white">
 
-                    <li><a href="{{ route('categories.index') }}"> <i class="fa-regular fa-rectangle-list"></i>
+                    <li><a style="color: lightsteelblue;" href="{{ route('admin.utente.index') }}"> <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
+                    </li>
+
+
+                    <li><a style="color: lightsteelblue;" href="{{ route('categories.index') }}"> <i class="fa-regular fa-rectangle-list"></i>
                             Categorie</a></li>
                     <li>
                         GESTIONE OPERATORI
-                        <ul class="has-text-white">
-                            <li><a href="{{ route('admin.operatore.index') }}"> <i class="fa-light fa-user-headset"></i>Tutti
+                        <ul class="menu-label has-text-white">
+                            <li><a style="color: lightsteelblue;" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i>Tutti
                                     gli Operatori</a></li>
-                            <li><a href="{{ route('admin.operatore.create') }}"> <i class="fa-solid fa-user-plus"></i>Aggiungi
+                            <li><a style="color: lightsteelblue;" href="{{ route('admin.operatore.create') }}"> <i class="fa-solid fa-user-plus"></i>Aggiungi
                                     Operatore</a></li>
                         </ul>
                     </li>
 
                 </ul>
+
             </aside>
         </div>
         <div class="column is-9">
@@ -108,12 +108,18 @@
                                     <table class="table is-fullwidth is-striped">
                                         <thead>
                                         <tr>
-                                            <th> Id</th>
-                                            <th>Titolo</th>
-                                            <th>Data di apertura</th>
-                                            <th>Categoria</th>
-                                            <th>Stato</th>
-                                            <th>Actions</th>
+                                            <th> Id <i class="fa-solid fa-right-left"></i>
+                                            </th>
+                                            <th>Titolo <i class="fa-solid fa-right-left"></i>
+                                            </th>
+                                            <th>Data di apertura <i class="fa-solid fa-right-left"></i>
+                                            </th>
+                                            <th>Categoria <i class="fa-solid fa-right-left"></i>
+                                            </th>
+                                            <th>Stato <i class="fa-solid fa-right-left"></i>
+                                            </th>
+                                            <th>Actions <i class="fa-solid fa-right-left"></i>
+                                            </th>
                                         </tr>
                                         </thead>
                                         <tbody>
