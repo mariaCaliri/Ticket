@@ -2,11 +2,11 @@
 @section('content')
     <div class="container is-fluid">
         <div class="columns">
-            <div class=" box column is-2 has-background-info-dark ">
+            <div id="aside" class=" box column is-2  ">
                 <aside class="menu is-hidden-mobile">
                     <img style="width: 50px; border-radius: 50%;" src="/img/logo2.png">
                     <p style="color: white;" class="menu-label has-text-white">
-                        <span style="font-size: 20px;"><i class="fas fa-user-cog"></i> GENERALE</span>
+                        <span id="bg-text" style="font-size: 20px;"><i class="fas fa-user-cog"></i> GENERALE</span>
                     </p>
                     <ul class="menu-list">
                         <li ><a style="color:lightsteelblue;" href="{{ route('user.profile') }}"> <i class="fa-solid fa-user"></i> Profilo</a></li>
@@ -31,6 +31,15 @@
                             <!-- Bulma Version 0.9.0-->
                             <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+                            <style>
+                                #aside{
+                                    background-color: #212C32;
+                                    padding: 20px;
+                                }
+                                #bg-test{
+                                    background-color:#1C272C ;
+                                }
+                            </style>
                         </head>
                         <body>
                         <img style="width: 50px" src="/img/operatore-blu.png">

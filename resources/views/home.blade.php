@@ -1,12 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="container is-fluid">
         <div class="columns">
-            <div class=" box column is-2 has-background-info-dark ">
+            <div id="aside" class=" box column is-2 ">
                 <aside class="menu is-hidden-mobile">
                     <img style="width: 80px" src="/img/user-img.png">
                     <span style="color: white;" > Benvenuto</span><strong ><span style="color: white;" > Utente</span> </strong>
-                    <p style="font-size: 20px;" class="menu-label has-text-white">
+                    <p id="bg-test" style="font-size: 20px;" class="menu-label has-text-white">
                         <i class="fas fa-user-cog"></i> GENERALE
                     </p>
                     <ul class="menu-list">
@@ -33,6 +34,15 @@
                             <!-- Bulma Version 0.9.0-->
                             <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
                             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+                            <style>
+                                #aside{
+                                    background-color: #212C32;
+                                    padding: 20px;
+                                }
+                                #bg-test{
+                                    background-color:#1C272C ;
+                                }
+                            </style>
                         </head>
                         <div>
                         <div class="container">
