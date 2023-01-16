@@ -44,17 +44,18 @@
                     </li>
 
 
-                    <li><a style="color: lightsteelblue;" href="{{ route('categories.index') }}"> <i class="fa-regular fa-rectangle-list"></i>
+                    <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i class="fa-regular fa-rectangle-list"></i>
                             Categorie</a></li>
-                    <li>
-                      <span id="bg-test">  GESTIONE OPERATORI</span>
-                        <ul class="menu-label has-text-white">
-                            <li><a style="color: lightsteelblue;margin: 20px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i>Tutti
+
+                      <p id="bg-test">  GESTIONE OPERATORI</p>
+
+                        <ul class="menu-list has-text-white">
+                            <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i>Tutti
                                     gli Operatori</a></li>
                             <li><a style="color: lightsteelblue;" href="{{ route('admin.operatore.create') }}"> <i class="fa-solid fa-user-plus"></i>Aggiungi
                                     Operatore</a></li>
                         </ul>
-                    </li>
+
 
                 </ul>
 
