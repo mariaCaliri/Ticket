@@ -40,7 +40,7 @@
                 </p>
                 <ul class="menu-list has-text-white">
 
-                    <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('admin.utente.index') }}"> <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
+                    <li><a style="color: lightsteelblue;margin-bottom: 10px" href="{{ route('admin.utente.index') }}"> <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
                     </li>
 
 
@@ -50,9 +50,9 @@
                       <p id="bg-test">  GESTIONE OPERATORI</p>
 
                         <ul class="menu-list has-text-white">
-                            <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i>Tutti
+                            <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                     gli Operatori</a></li>
-                            <li><a style="color: lightsteelblue;" href="{{ route('admin.operatore.create') }}"> <i class="fa-solid fa-user-plus"></i>Aggiungi
+                            <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.create') }}"> <i class="fa-solid fa-user-plus"></i> Aggiungi
                                     Operatore</a></li>
                         </ul>
 
@@ -149,8 +149,7 @@
                                                 </td>
                                                 <td>
 
-                                                    <form action="{{ route('tickets.destroy',$ticket->id) }}"
-                                                          method="post">
+                                                    <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
                                                         <span class=" has-text-info"> <a
                                                                 href=" {{route('tickets.show',$ticket->id)  }}"
                                                                 class="btn btn-search "> <i
