@@ -52,8 +52,6 @@
                         <ul class="menu-list has-text-white">
                             <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                     gli Operatori</a></li>
-                            <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.create') }}"> <i class="fa-solid fa-user-plus"></i> Aggiungi
-                                    Operatore</a></li>
                         </ul>
 
 
