@@ -35,6 +35,7 @@
                                 #aside{
                                     background-color: #212C32;
                                     padding: 20px;
+                                    height: 94vh;
                                 }
                                 #bg-test{
                                     background-color:#1C272C ;
@@ -44,33 +45,38 @@
                         <body>
                         <img style="width: 70px" src="/img/user-profile.png">
                         <h1 style="font-size: 20px;display: inline; text-transform: uppercase">Dettaglio utente"{{ auth()->user()->id }}"</h1>
-                        <hr>
-                        <div class="card-table">
-                            <div class="content">
+                        <form method="POST" action="{{ route('profile.update',auth()->id()) }}">
+                            @csrf
+                            <div class="card-table">
+                                <div class="content">
 
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="mb-3 col-md-6">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="mb-3 col-md-6">
 
-                                            <input class="form-control" type="text" id="name" name="name" value="{{ auth()->user()->name }}" autofocus="" required>
+                                                <input class="form-control" type="text" id="name" name="name" value="{{ auth()->user()->name }}" autofocus="" required>
 
-                                        </div>
-                                        <div class="mb-3 col-md-6">
+                                            </div>
+                                            <div class="mb-3 col-md-6">
 
-                                            <input class="form-control" type="text" id="email" name="email" value="{{ auth()->user()->email }}" placeholder="john.doe@example.com">
+                                                <input class="form-control" type="text" id="email" name="email" value="{{ auth()->user()->email }}" placeholder="john.doe@example.com">
 
-                                        </div>
-                                        <div class="mt-2">
+                                            </div>
+                                            <div class="mt-2">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="control mb-5">
-                            <button class="button is-info mt-5">
-                                <a style="color: white;" href=" {{ route('home') }}">Torna alla dashboard</a>
-                            </button>
-                        </div>
+                            <div class="control mb-5">
+                                <button type="button" class="btn btn-primary">
+                                    <a style="color: white;" href=" {{ route('home') }}">Torna alla dashboard</a>
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <a style="color: white;" >Salva Modifica</a>
+                                </button>
+                            </div>
+                        </form>
                         </body>
                         </html>
 @endsection

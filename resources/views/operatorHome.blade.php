@@ -5,7 +5,7 @@
         <div id="aside" class=" box column is-2 ">
             <aside class="menu is-hidden-mobile">
                 <img style="width: 50px" src="/img/logo2.png">
-                <span style="color: white;" > Benvenuto<strong ><span style="color: white;" > Operatore </strong></span></span>
+                <span style="color: white;" > Benvenuto</span><strong ><span style="color: white;" > Operatore</span> </strong>
                 <p class="menu-label has-text-white">
                    <span id="bg-text" style="font-size: 20px;"><i class="fas fa-user-cog"></i> GENERALE</span>
                 </p>
@@ -41,6 +41,7 @@
                             #aside{
                                 background-color: #212C32;
                                 padding: 20px;
+                                height: 94vh;
                             }
                             #bg-test{
                                 background-color:#1C272C ;
@@ -86,7 +87,6 @@
                                     <input type="radio" name="answer">
                                     Chiusi
                                 </label>
-                                {{--                            <p class="level-item"><a class="button is-success">New</a></p>--}}
                             </div>
                         </nav>
                         <div class="columns">
@@ -129,14 +129,12 @@
                                                         </td>
                                                         <td>
 
-                                                            <span class=" has-text-info"> <a
-                                                                    href=" {{route('tickets.show',$ticket->id)  }}"
-                                                                    class="btn btn-search"> <i
-                                                                        class="fa-solid fa-magnifying-glass"></i></a> </span>
-                                                            <span class=" has-text-info">  <a
-                                                                    href="{{route('tickets.edit',$ticket->id)  }}"
-                                                                    class="btn btn-mod"><i
-                                                                        class="fa-solid fa-pencil"></i></a></span>
+                                                            <a class="button is-info" style="color: black"
+                                                                    href=" {{route('tickets.show',$ticket->id)  }}"> <i
+                                                                        class="fa-solid fa-magnifying-glass"></i></a>
+                                                            <a class="button is-primary" style="color: black"
+                                                                    href="{{route('tickets.edit',$ticket->id)  }}"><i
+                                                                        class="fa-solid fa-pencil"></i></a>
 
                                                         </td>
                                                     </tr>

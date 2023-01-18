@@ -16,9 +16,11 @@
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
 <style>
+
     #aside{
         background-color: #212C32;
         padding: 20px;
+        height: 94vh;
     }
     #bg-test{
         background-color:#1C272C ;
@@ -81,6 +83,7 @@
                                             Search
                                         </button>
                                     </p>
+
                                 </div>
                             </div>
                         </div>
@@ -148,20 +151,11 @@
                                                 <td>
 
                                                     <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
-                                                        <span class=" has-text-info"> <a
-                                                                href=" {{route('tickets.show',$ticket->id)  }}"
-                                                                class="btn btn-search "> <i
-                                                                    class="fa-solid fa-magnifying-glass"></i></a></span>
-                                                        <span class=" has-text-info"> <a
-                                                                href="{{route('tickets.edit',$ticket->id)  }}"
-                                                                class="btn btn-mod "><i class="fa-solid fa-pencil"></i></a></span>
+                                                         <a class="button is-info" style="color: black" href=" {{route('tickets.show',$ticket->id)  }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+                                                        <a class="button is-primary" style="color: black" href="{{route('tickets.edit',$ticket->id)  }}"><i class="fa-solid fa-pencil"></i></a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="button" type="submit">
-                                                        <span class="icon is-small">
-                                                        <i class="fa-solid fa-trash has-text-danger "></i>
-                                                        </span>
-                                                        </button>
+                                                        <button class="button is-danger" type="submit"><i class="fa-solid fa-trash has-text-black"></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -176,13 +170,11 @@
                         </footer>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
-<script async type="text/javascript" src="../js/bulma.js"></script>
+
 </body>
 
 </html>

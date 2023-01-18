@@ -63,7 +63,7 @@
 
             </aside>
         </div>
-        <div class="column is-full">
+        <div class="column is-four-fifths">
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">

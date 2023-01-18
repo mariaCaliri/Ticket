@@ -21,13 +21,13 @@
                             @endif
 
                             <div class="mb-3">
-                                <label for="Greeting">Greeting</label>
-                                <input name="greeting" type="text" class="form-control" placeholder="Greeting">
+                                <label for="Greeting">Titolo</label>
+                                <input name="greeting" type="text" class="form-control" placeholder="titolo">
                             </div>
                             <div class="mb-3">
-                                <label for="Body" class="form-label">Body</label>
+                                <label for="Body" class="form-label">Testo</label>
                                 <input name="body" type="text" class="form-control"
-                                       placeholder="body">
+                                       placeholder="testo">
                             </div>
                             <div class="mb-3">
                                 <label for="action-text" class="form-label">Action</label>
@@ -39,14 +39,14 @@
                                 <input name="action-url" type="text" class="form-control" placeholder="action-url">
                             </div>
                             <div class="mb-3">
-                                <label for="end-text">End text</label>
+                                <label for="end-text">Fine testo</label>
                                 <input name="end-text" type="text" class="form-control" placeholder="end-text">
                             </div>
 
                         </div>
 
                         <div class="card-footer">
-                            <button class="btn btn-success">Invia</button>
+                            <button class="btn btn-primary">Invia</button>
                         </div>
 
                     </form>

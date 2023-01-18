@@ -18,6 +18,7 @@
         #aside {
             background-color: #212C32;
             padding: 20px;
+            height: 94vh;
         }
 
         #bg-test {
@@ -100,6 +101,9 @@
                         <li><a style="color: lightsteelblue;margin-top: 5px"
                                href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                 gli Operatori</a></li>
+                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
+                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
+                                Torna alla dashboard</a> </li>
 
                     </ul>
 
@@ -108,7 +112,7 @@
 
             </aside>
         </div>
-        <div class="column is-full">
+        <div class="column is-four-fifths">
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
@@ -127,32 +131,41 @@
                         @csrf
                         @method('PUT')
                         <button class="button is-info mt-5">Modifica</button>
-                        <button class="button is-info mt-5"><a class="has-text-white" href="{{ route('admin.home') }}">
-                                Torna alla dashboard</a>
-                        </button>
-
                     </form>
-                    <button class="js-modal-trigger" data-target="modal-js-example">
-                        Open JS example modal
-                    </button>
                 </footer>
             </div>
         </div>
     </div>
 </div>
-<div class="modal">
+<div id="modal-js-example" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title">Modal title</p>
+            <p class="modal-card-title">Modifica Categoria</p>
             <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
             <!-- Content ... -->
+            <form id="addCategory" name="addCategory" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Nome Categoria:</strong>
+                            <input type="text" name="name" value="{{ $category->name }}" class="form-control"
+                                   placeholder="nome">
+                            @error('name')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                 </div>
+            </form>
         </section>
         <footer class="modal-card-foot">
-            <button class="button is-success">Save changes</button>
-            <button class="button">Cancel</button>
+            <button class="button is-link">Salva </button>
+            <button class="button">Annulla</button>
         </footer>
     </div>
 </div>

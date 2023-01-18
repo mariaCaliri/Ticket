@@ -16,6 +16,7 @@
         #aside {
             background-color: #212C32;
             padding: 20px;
+            height: 94vh;
         }
 
         #bg-test {
@@ -53,6 +54,9 @@
                         <li><a style="color: lightsteelblue;margin-top: 5px"
                                href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                 gli Operatori</a></li>
+                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
+                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
+                                Torna alla dashboard</a> </li>
 
                     </ul>
 
@@ -84,6 +88,7 @@
                         <!-- Right side -->
                         <div class="level-right">
                             <p class="level-item"><a class="button is-info" href="{{ route('admin.operatore.create') }}"> <span style="margin-right: 2px"><i class="fa-solid fa-plus"></i></span> Aggiungi Operatore</a></p>
+                            <p class="level-item"><a class="button is-link" href="{{ route(('send.email.all.view')) }}"><span class="mr-2"> <i class="fa-solid fa-envelopes-bulk"></i> </span> Invia email a tutti gli operatori</a></p>
                         </div>
 
                     </nav>
@@ -118,13 +123,12 @@
                                                 <td>{{ $operator->email }}</td>
                                                 <td>
                                                     <form action="{{ route('admin.operatore.destroy',$operator->id) }}" method="Post">
-                                                        <span class=" has-text-info">  <a class="btn btn-success"  href="{{ route('admin.operatore.edit',$operator->id) }}"><i class="fa-solid fa-pencil"></i></a></span>
-                                                        <span class=" has-text-info"> <a class="btn btn-warning"  href="{{ route('admin.operatore.show',$operator->id) }}"> <i
-                                                                    class="fa-solid fa-magnifying-glass"></i></a></span>
-                                                        <a class="btn btn-info" href="{{ route('send.email.view',$operator->id) }}"><i class="fa-regular fa-envelope"></i></a>
+                                                         <a class="button is-primary" style="color: black" href="{{ route('admin.operatore.edit',$operator->id) }}"><i class="fa-solid fa-pencil"></i></a>
+                                                         <a class="button is-info" style="color: black"  href="{{ route('admin.operatore.show',$operator->id) }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+                                                        <a class="button is-warning" style="color: black"   href="{{ route('send.email.view',$operator->id) }}"><i class="fa-regular fa-envelope"></i></a>
                                                         @csrf
                                                         @method('DELETE')
-                                                            <span class=" has-text-info"><button type="submit" >  <i class="fa-solid fa-trash has-text-danger "></i></span></button>
+                                                          <button class="button is-danger" type="submit" >  <i class="fa-solid fa-trash has-text-black "></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -143,55 +147,9 @@
             </div>
         </div>
     </div>
-    <button class="button is-info"><a class="has-text-white" href="{{ route('admin.home') }}">
-            Torna alla dashboard</a>
-    </button>
 
 </div>
 
-
-{{--<div class="container mt-2">--}}
-{{--    <div class="row">--}}
-{{--        <div class="col-lg-12 margin-tb">--}}
-{{--            <div class="pull-left">--}}
-{{--                <h2>Lista Operatori</h2>--}}
-{{--            </div>--}}
-{{--            <div class="pull-right mb-2">--}}
-{{--                <a class="btn btn-success" href="{{ route('admin.operatore.create') }}"> Crea Operatore</a>--}}
-{{--                <a class="btn btn-success" href="{{ route('admin.home') }}"> Torna alla dashboard</a>--}}
-{{--                <a class="btn btn-success" href="{{ route('send.email.all.view') }}"> Manda email a tutti gli operatori</a>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    @if ($message = Session::get('success'))--}}
-{{--        <div class="alert alert-success">--}}
-{{--            <p>{{ $message }}</p>--}}
-{{--        </div>--}}
-{{--    @endif--}}
-{{--    <table class="table table-bordered">--}}
-{{--        <thead>--}}
-{{--        <tr>--}}
-{{--            <th>ID</th>--}}
-{{--            <th>NOME</th>--}}
-{{--            <th> Email</th>--}}
-{{--            <th width="280px">Action</th>--}}
-{{--        </tr>--}}
-{{--        </thead>--}}
-{{--        <tbody>--}}
-{{--        @foreach ($operators as $operator)--}}
-{{--            <tr>--}}
-{{--                <td>{{ $operator->id }}</td>--}}
-{{--                <td>{{ $operator->name }}</td>--}}
-{{--                <td>{{ $operator->email }}</td>--}}
-
-{{--                <td>--}}
-
-{{--                </td>--}}
-{{--            </tr>--}}
-{{--        @endforeach--}}
-{{--        </tbody>--}}
-{{--    </table>--}}
-{{--</div>--}}
 </body>
 </html>
 @endsection

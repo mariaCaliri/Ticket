@@ -10,11 +10,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        .container{
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
 
 </head>
 <body>
-<div class="container" style="width: 40%;margin: 10px;">
-    <div class="card ">
+<div class="container is-fluid" >
+    <div class="card " >
         <header class="card-header">
             <p class="card-header-title">
                 Dettaglio Ticket "{{ $ticket->id }}"
@@ -27,7 +33,7 @@
             </div>
             <div>
                 <strong>Data di Apertura</strong>
-                <span>{{ $ticket->created_at }}</span>
+                <span>{{ $ticket->registered_at }}</span>
             </div>
             <div>
                 <strong>Priorità</strong>
@@ -41,105 +47,121 @@
                 <strong>Categoria</strong>
                 <span>{{ $ticket->category->name }}</span>
             </div>
-            <div>
-                <strong>Operator</strong>
-                <span>{{ $ticket->operator->name }}</span>
-            </div>
-
-
-            <footer class="card-footer">
-
-                <form method="get" action="{{ route('tickets.edit', $ticket->id )  }}">
-                    @csrf
-                    @method('PUT')
-                    <button style="margin: 10px" class="button is-info">Modifica</button>
-                </form>
-
-
-                <button style="margin: 10px" class="button is-link "><a class="has-text-white"
-                                                                        href=" {{ route('admin.home') }}"> Torna alla
-                        dashboard</a></button>
-
-                <button style="margin: 10px" href="#" class="button is-success">Chiudi</button>
-            </footer>
 
         </div>
     </div>
 </div>
 <!-- pulsante chat -->
 <div class="column">
-{{--    <div>--}}
-{{--        <strong>Messaggio:<strong>--}}
-{{--        <span>{{ $ticket->message }}</span>--}}
-{{--    </div>--}}
 
-    <div class="column is-one-fifth ">
-            <img src="/img/user-profile.png" alt="utente" style="width: 50px">
-        <div class=" column is-one-fifth is-inline " >
-            <div class="card">
-                <div class="card-content">
-                    {{ $ticket->message }}
-                </div>
+    <div class="box" style="width: 30%">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    <img src="/img/user-profile.png" alt="Image">
+                </figure>
             </div>
-        </div>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>Messaggio:</strong>
+                        <br>
+                        {{ $ticket->message }}
+                    </p>
+                </div>
+                <nav class="level is-mobile">
+                    <div class="level-left">
+
+                    </div>
+                </nav>
+            </div>
+        </article>
     </div>
-{{--   <div class=" card column is-one-third ">--}}
-{{--       <div class="card-content is-inline">--}}
-{{--           <div>{{ $ticket->message }}</div>--}}
-{{--       </div>--}}
-{{--   </div>--}}
+    @foreach($ticket->messages as $message)
+    <div class="box" style="width: 30%">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-64x64">
+                    @if( $message->user_id == '1')
+                        <img src="/img/admin2.png" style="width: 65px">
+                        <a class=" has-text-black" href="">Amministratore</a>
+                    @elseif($message->user_id == '2')
+                        <img src="/img/operatore-blu.png">
+                        <a class=" has-text-black" href=""> Operatore</a>
+                    @else
+                        <img src="/img/user-profile.png">
+                        <a class=" has-text-black" href=""> Cliente</a>
+                    @endif
 
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="content">
+                    <p>
+                        <strong>Messaggio:</strong>
+                        <br>
+                        {{ $message->body }}
+                    </p>
+                </div>
+                <nav class="level is-mobile">
+                    <div class="level-left">
 
-{{--    <div class="control mt-5">--}}
-{{--        <div class="mt-5">--}}
-{{--            <table class="table is-bordered mt-5">--}}
-{{--                <tr>--}}
-{{--                    <th>Utente</th>--}}
-{{--                    <th>Messaggio</th>--}}
-{{--                <tr>--}}
-{{--                    @foreach($ticket->messages as $message)--}}
-{{--                        <td>--}}
-{{--                            @if( $message->user_id == '1')--}}
-{{--                                <a class=" has-text-black" href="">Amministratore</a>--}}
-{{--                            @elseif($message->user_id == '2')--}}
-{{--                                <a class=" has-text-black" href=""> Operatore</a>--}}
-{{--                            @else--}}
-{{--                                <a class=" has-text-black" href=""> Cliente</a>--}}
-{{--                            @endif--}}
-{{--                        </td>--}}
-{{--                        <td>--}}
-{{--                            {{ $message->body }}--}}
-{{--                        </td>--}}
-{{--                </tr>--}}
-{{--                @endforeach--}}
-{{--            </table>--}}
-{{--        </div>--}}
+                    </div>
+                </nav>
+            </div>
+        </article>
+    </div>
+    @endforeach
 
-{{--    </div>--}}
     <form method="post" action="{{ route('chat.store')}}">
         @csrf
         <div class="field">
-            <label class="label">Contenuto</label>
-            <div class="control">
-                    <textarea
-                        name="body"
-                        class="textarea"
-                        placeholder="Contenuto"
-                        minlength="5"
-                        maxlength="2000"
-                        required rows="10"
-                    >{{ old('body') }}</textarea>
-            </div>
+            <label class="label">Rispondi</label>
+            <div class="control" style="width: 50%">
+                <div class="header has-background-grey-lighter" style="width: 100%">
+{{--                    <span class="mr-3"> <i class="fa-solid fa-bold"></i></span> <span class="mr-3"><i class="fa-solid fa-italic"></i></span><span class="mr-3"><i class="fa-solid fa-underline"></i></span>--}}
+{{--                    <span class="mr-3"><i class="fa-solid fa-list"></i></span><span class="mr-3"><i class="fa-solid fa-list-ol"></i></span>--}}
+                    <div class="field has-addons">
+                        <p class="control">
+                            <button class="button">
+      <span class="icon is-small">
+        <i class="fas fa-bold"></i>
+      </span>
+                                <span>Bold</span>
+                            </button>
+                        </p>
+                        <p class="control">
+                            <button class="button">
+      <span class="icon is-small">
+        <i class="fas fa-italic"></i>
+      </span>
+                                <span>Italic</span>
+                            </button>
+                        </p>
+                        <p class="control">
+                            <button class="button">
+      <span class="icon is-small">
+        <i class="fas fa-underline"></i>
+      </span>
+                                <span>Underline</span>
+                            </button>
+                        </p>
+                    </div>
+                </div>
+
+                    <textarea class="textarea is-link is-small" name="body" placeholder="Contenuto" minlength="5" maxlength="2000" required rows="10"{{ old('body') }}>
+                    </textarea>
+                </div>
+
         </div>
         <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
 
         <div class="field">
             <div class="control">
                 <button type="submit" class="button is-link is-outlined">Pubblica</button>
+                <a class="button is-link" href="{{ route('admin.home') }}">Torna alla dashboard </a>
             </div>
-            <button class="button is-primary mt-5">
-                <a href="">Chiudi Ticket</a>
-            </button>
+
         </div>
     </form>
 

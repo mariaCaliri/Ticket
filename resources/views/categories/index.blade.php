@@ -16,6 +16,7 @@
         #aside {
             background-color: #212C32;
             padding: 20px;
+            height: 94vh;
         }
 
         #bg-test {
@@ -52,6 +53,9 @@
                         <li><a style="color: lightsteelblue;margin-top: 5px"
                                href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                 gli Operatori</a></li>
+                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
+                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
+                                Torna alla dashboard</a> </li>
                     </ul>
 
 
@@ -114,22 +118,11 @@
                                                 <td>
                                                     <form action="{{ route('categories.destroy', $category->id) }}"
                                                           method="Post">
-                                                          <span class=" has-text-info"> <a
-                                                                  href="{{ route('categories.show', $category->id) }}"
-                                                                  class="btn btn-search "> <i
-                                                                      class="fa-solid fa-magnifying-glass"></i></a>
-                                                          </span>
-                                                        <span class=" has-text-info"> <a
-                                                                href="{{ route('categories.edit', $category->id) }}"
-                                                                class="btn btn-mod "><i class="fa-solid fa-pencil"></i></a></span>
-
+                                                        <a class="button is-info" style="color: black" href="{{ route('categories.show', $category->id) }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+                                                        <a class="button is-primary" style="color: black"  href="{{ route('categories.edit', $category->id) }}"><i class="fa-solid fa-pencil"></i></a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="button" type="submit">
-                                                        <span class="icon is-small">
-                                                        <i class="fa-solid fa-trash has-text-danger "></i>
-                                                        </span>
-                                                        </button>
+                                                        <button class="button is-danger" type="submit"><i class="fa-solid fa-trash has-text-black "></i></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -148,10 +141,6 @@
             </div>
         </div>
     </div>
-    <button class="button is-info"><a class="has-text-white" href="{{ route('admin.home') }}">
-            Torna alla dashboard</a>
-    </button>
-
 </div>
 
 </body>

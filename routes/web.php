@@ -69,12 +69,14 @@ Route::get('user/login-history', [\App\Http\Controllers\ProfileController::class
 Route::get('user/change-password', [\App\Http\Controllers\ProfileController::class, 'ChangePassword'])->name('change-password');
 Route::post('/change-password', [\App\Http\Controllers\ProfileController::class,'updatePassword'])->name('update-password');
 Route::get('/user/profile', [\App\Http\Controllers\ProfileController::class, 'ShowProfile'])->name('user.profile');
+Route::post('profile/{user}',[\App\Http\Controllers\ProfileController::class,'update'])->name('profile.update');
 
 //rotte per profilo operatore
 Route::get('operator/operator-login-history', [\App\Http\Controllers\OperatorProfileController::class, 'LoginHistory'])->name('operator-login-history');
 Route::get('operator/operator-change-password', [\App\Http\Controllers\OperatorProfileController::class, 'ChangePassword'])->name('operator-change-password');
 Route::post('/change-password', [\App\Http\Controllers\OperatorProfileController::class,'updatePassword'])->name('update-password');
 Route::get('/operator/profile', [\App\Http\Controllers\OperatorProfileController::class, 'ShowProfile'])->name('operator.profile');
+Route::post('profile/{user}',[\App\Http\Controllers\OperatorProfileController::class,'update'])->name('profile.update');
 
 
 

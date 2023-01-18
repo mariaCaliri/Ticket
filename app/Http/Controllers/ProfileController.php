@@ -52,4 +52,15 @@ class ProfileController extends Controller
     {
         return view( 'user-profile.index', compact('user'));
     }
+
+    public function update(User $user, Request $request)
+    {
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+
+        ]);
+
+        return redirect()->route('home');
+    }
 }

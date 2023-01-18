@@ -84,16 +84,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name'=>'required',
             'email'=>'required',
             'password'=>'required'
         ]);
+        $user = User::findOrFail($id);
         $user->update($request->all());
 
-        $user->save();
         return redirect()->route('admin.utente.index');
     }
 

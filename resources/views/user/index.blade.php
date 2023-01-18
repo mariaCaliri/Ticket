@@ -19,6 +19,7 @@
         #aside {
             background-color: #212C32;
             padding: 20px;
+            height: 94vh;
         }
 
         #bg-test {
@@ -55,7 +56,9 @@
                         <li><a style="color: lightsteelblue;margin-top: 5px"
                                href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                 gli Operatori</a></li>
-
+                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
+                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
+                                Torna alla dashboard</a> </li>
                     </ul>
 
 
@@ -81,8 +84,9 @@
                                         </button>
                                     </p>
                                 </div>
+                                </div>
                             </div>
-                        </div>
+
 
                     </nav>
                     <div class="card events-card">
@@ -115,23 +119,15 @@
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
-                                                    <form action="{{ route('admin.utente.destroy',$user->id) }}"
-                                                          method="Post">
-                                                          <span class=" has-text-info"> <a
-                                                                  href=" {{ route('admin.utente.show',$user->id) }}"
-                                                                  class="btn btn-search "> <i
+                                                    <form action="{{ route('admin.utente.destroy',$user->id) }}" method="Post">
+                                                        <a class="button is-info" style="color: black" href=" {{ route('admin.utente.show',$user->id) }}"> <i
                                                                       class="fa-solid fa-magnifying-glass"></i></a>
-                                                          </span>
-                                                        <span class=" has-text-info"> <a
-                                                                href="{{ route('admin.utente.edit',$user->id) }}"
-                                                                class="btn btn-mod "><i class="fa-solid fa-pencil"></i></a></span>
-
+                                                        <a class="button is-primary" style="color: black" href="{{ route('admin.utente.edit',$user->id) }}"><i class="fa-solid fa-pencil"></i></a>
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="button" type="submit">
-                                                        <span class="icon is-small">
-                                                        <i class="fa-solid fa-trash has-text-danger "></i>
-                                                        </span>
+                                                        <button class="button is-danger" type="submit">
+
+                                                        <i class="fa-solid fa-trash has-text-black "></i>
                                                         </button>
                                                     </form>
                                                 </td>
@@ -151,9 +147,6 @@
             </div>
         </div>
     </div>
-    <button class="button is-info"><a class="has-text-white" href="{{ route('admin.home') }}">
-        Torna alla dashboard</a>
-    </button>
 
 </div>
 

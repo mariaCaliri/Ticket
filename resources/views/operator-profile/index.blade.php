@@ -13,6 +13,9 @@
                         <li><a style="color: lightsteelblue;" href="{{ route('change-password') }}"> <i class="fa-solid fa-lock"></i> Modifica Password</a>
                         </li>
                         <li><a style="color: lightsteelblue;" href="{{ route('login-history') }}"> <i class="fa-solid fa-list"></i> Lista Accessi</a></li>
+                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('operator.home') }}">
+                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span >Torna alla dashboard</a> </li>
+
                     </ul>
                 </aside>
             </div>
@@ -35,6 +38,7 @@
                                 #aside{
                                     background-color: #212C32;
                                     padding: 20px;
+                                    height: 94vh;
                                 }
                                 #bg-test{
                                     background-color:#1C272C ;
@@ -43,6 +47,8 @@
                         </head>
                         <body>
                         <img style="width: 50px" src="/img/operatore-blu.png">
+                        <form method="post" action="{{ route('profile.update', auth()->id()) }}">
+                            @csrf
                         <h1 style="font-size: 20px;display: inline; text-transform: uppercase">Dettaglio operatore"{{ auth()->user()->id }}"</h1>
                         <hr>
                         <div class="card-table">
@@ -61,16 +67,15 @@
 
                                         </div>
                                         <div class="mt-2">
+                                            <button type="submit" class="btn btn-primary">
+                                                <a style="color: white;" >Salva Modifica</a>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="control mb-5">
-                            <button class="button is-info mt-5">
-                                <a style="color: white;" href=" {{ route('operator.home') }}">Torna alla dashboard</a>
-                            </button>
-                        </div>
+                        </form>
                         </body>
                         </html>
 @endsection
