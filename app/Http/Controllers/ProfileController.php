@@ -17,7 +17,7 @@ class ProfileController extends Controller
     {
         //$logs = LogActivity::latest()->get();
         $logs = LogActivity::where('user_id', Auth::id())->paginate(5);
-        return view('user-profile.login-history');
+        return view('user-profile.login-history')->with(compact('logs'));
     }
 
     public function ChangePassword(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
