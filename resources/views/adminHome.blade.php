@@ -118,17 +118,19 @@
                                     <table class="table is-fullwidth is-striped">
                                         <thead>
                                         <tr>
-                                            <th> Id <i class="fa-solid fa-right-left"></i>
+                                            <th> Id
                                             </th>
-                                            <th>Titolo <i class="fa-solid fa-right-left"></i>
+                                            <th>Titolo
                                             </th>
-                                            <th>Data di apertura <i class="fa-solid fa-right-left"></i>
+                                            <th>Data di apertura
                                             </th>
-                                            <th>Categoria <i class="fa-solid fa-right-left"></i>
+                                            <th>Categoria
                                             </th>
-                                            <th>Stato <i class="fa-solid fa-right-left"></i>
+                                            <th>Stato
                                             </th>
-                                            <th>Actions <i class="fa-solid fa-right-left"></i>
+                                            <th>Assegnato all' operatore
+                                            </th>
+                                            <th>Actions
                                             </th>
                                         </tr>
                                         </thead>
@@ -148,6 +150,7 @@
                                                         <a class=" has-text-success" href=""> Ticket chiuso</a>
                                                     @endif
                                                 </td>
+                                                <td>{{ $ticket->operator_id }}</td>
                                                 <td>
 
                                                     <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
