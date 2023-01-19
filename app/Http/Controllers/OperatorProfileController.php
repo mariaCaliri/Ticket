@@ -29,9 +29,9 @@ class OperatorProfileController extends Controller
 
     public function LoginHistory(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application
     {
-        $logs = LogActivity::latest()->get();
-        //$logs = LogActivity::where('user_id', Auth::id())->limit(5)->get();
-        return view('operator-profile.operator-login-history');
+
+        $logs = LogActivity::whereUserId(auth()->user()->id)->latest()->paginate(10);
+        return view('operator-profile.operator-login-history')->with(compact('logs'));
     }
 
     public function ChangePassword(): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Contracts\Foundation\Application

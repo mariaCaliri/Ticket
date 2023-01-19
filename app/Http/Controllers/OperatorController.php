@@ -8,7 +8,7 @@ use App\Notifications\TicketCreated;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\Notification;
 
 class OperatorController extends Controller
 {
@@ -64,7 +64,7 @@ class OperatorController extends Controller
         $details['end-text'] = $request->get('end-text');
 
         foreach ($operators as $operator){
-            Notification::send($operator, new TicketCreated($details));
+           //
         }
         return redirect()->route('admin.operatore.index');
 

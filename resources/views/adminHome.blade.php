@@ -141,6 +141,7 @@
                                                 <td>{{ $ticket->title }}</td>
                                                 <td>{{ $ticket->registered_at }}</td>
                                                 <td>{{ $ticket->category->name }}</td>
+
                                                 <td>
                                                     @if( $ticket->status =='in attesa')
                                                         <a class=" has-text-danger" href="">In Attesa</a>
@@ -150,7 +151,9 @@
                                                         <a class=" has-text-success" href=""> Ticket chiuso</a>
                                                     @endif
                                                 </td>
-                                                <td>{{ $ticket->operator_id }}</td>
+
+                                                <td>{{ $ticket->operator_id}}</td>
+
                                                 <td>
 
                                                     <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">

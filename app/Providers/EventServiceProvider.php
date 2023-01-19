@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\SendUserNotification;
+use App\Listeners\SendUserCreatedTicket;
 use App\Models\Ticket;
 use App\Observers\TicketObserver;
 use Illuminate\Auth\Events\Registered;
@@ -20,10 +22,11 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        LoginHistory::class => [
-            StoreUserLoginHistory::class,
-        ]
+        'Illuminate\Auth\Events\Login' => [
+            'App\Listeners\LogSuccessfulLogin',],
+
     ];
+
 
     /**
      * Register any events for your application.

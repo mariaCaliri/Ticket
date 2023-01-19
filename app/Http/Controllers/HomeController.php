@@ -29,7 +29,7 @@ class HomeController extends Controller
 
         if (Auth::user()->type == '0') {
             $user = Auth::user();
-            event(new LoginHistory($user));
+
 
             return view('home');
         }
@@ -38,6 +38,7 @@ class HomeController extends Controller
         }
         elseif (Auth::user()->type == '2') {
             return view('operatorHome');
+
         }
         else {
             return view('welcome');
