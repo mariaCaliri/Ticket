@@ -11,7 +11,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class TicketRegistred extends Mailable
+class TicketRegistred extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
@@ -36,7 +36,7 @@ class TicketRegistred extends Mailable
     {
         return new Envelope(
             to: 'maria.caliri@tecnasoft.it',
-            subject: 'Ticket Registred'
+            subject: 'Ticket Inviato'
         );
     }
 

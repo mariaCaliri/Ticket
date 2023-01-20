@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\SendOperatorsNotification;
-use App\Events\SendUserNotification;
-use App\Listeners\SendUserCreatedTicket;
+
 use App\Mail\TicketRegistred;
+use App\Mail\TicketSuccesCreated;
 use App\Models\Chat;
 use App\Models\Operator;
 use App\Models\Ticket;
+use App\Models\User;
 use App\Notifications\OperatorsNotification;
 use App\Notifications\TicketCreated;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Symfony\Component\Console\Input\Input;
@@ -66,16 +66,15 @@ class TicketController extends Controller
           'end_date'=> null
 
       ]);
+
       $ticket->save();
-      Mail::to('maria.caliri@tecnasoft.it')->send(new TicketRegistred());
-//        event( new SendUserNotification($ticket));
-//        event(new SendOperatorsNotification($ticket));
+     Mail::to('maria.caliri@tecnasoft.it')->send(new TicketRegistred());
+     Mail::to($request->user())->send( new TicketSuccesCreated());
+
         $operators = Operator::all();
         foreach ($operators as $operator){
             Notification::send($operator, new OperatorsNotification());
         }
-
-
 
        return redirect()->route('home')->with('Ticket creato correttamente');
 

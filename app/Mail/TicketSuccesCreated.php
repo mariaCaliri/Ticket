@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Operator;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,19 +9,19 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OperatorRegistred extends Mailable implements ShouldQueue
+class TicketSuccesCreated extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
-    public Operator $operator;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Operator $operator)
+    public function __construct()
     {
-        $this->operator = $operator;
+
     }
 
     /**
@@ -33,7 +32,7 @@ class OperatorRegistred extends Mailable implements ShouldQueue
     public function envelope()
     {
         return new Envelope(
-            subject: 'Operatore Registrato',
+            subject: 'Ticket creato correttamente',
         );
     }
 
@@ -45,7 +44,7 @@ class OperatorRegistred extends Mailable implements ShouldQueue
     public function content()
     {
         return new Content(
-            markdown: 'emails.operator-registred',
+            markdown: 'email.ticket-sended',
         );
     }
 

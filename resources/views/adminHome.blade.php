@@ -180,7 +180,7 @@
         </div>
     </div>
 </div>
-
+<script src=" {{ asset('js/nav.js') }}"></script>
 </body>
 
 </html>

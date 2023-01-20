@@ -1,9 +1,9 @@
 <x-mail::message>
 # Benvenuto {{$operator->name}}
 
-The body of your message.
+Sei stato aggiunto come operatore
 
-<x-mail::button :url="''">
+<x-mail::button :url="'accedi alla tua dashboard'">
 Button Text
 </x-mail::button>
 

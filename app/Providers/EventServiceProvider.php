@@ -7,6 +7,7 @@ use App\Events\TicketSended;
 use App\Listeners\SendUserCreatedTicket;
 use App\Listeners\TicketIssended;
 use App\Models\Ticket;
+use App\Notifications\OperatorsNotification;
 use App\Observers\TicketObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -28,7 +29,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\LogSuccessfulLogin',
             ],
         TicketSended::class =>[
-            TicketIssended::class,
+            OperatorsNotification::class
         ]
 
     ];

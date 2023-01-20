@@ -7,7 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class TicketIsSendedNotification extends Notification
+
+class OperatorsNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -41,9 +42,9 @@ class TicketIsSendedNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Un ticket è stato creato'  )
+                    ->action('Accedi alla tua dashboard', url('/'))
+                    ->line('Grazie!');
     }
 
     /**
