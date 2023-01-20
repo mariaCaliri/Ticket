@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\SendUserNotification;
+use App\Events\TicketSended;
 use App\Listeners\SendUserCreatedTicket;
+use App\Listeners\TicketIssended;
 use App\Models\Ticket;
 use App\Observers\TicketObserver;
 use Illuminate\Auth\Events\Registered;
@@ -23,7 +25,11 @@ class EventServiceProvider extends ServiceProvider
             SendEmailVerificationNotification::class,
         ],
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\LogSuccessfulLogin',],
+            'App\Listeners\LogSuccessfulLogin',
+            ],
+        TicketSended::class =>[
+            TicketIssended::class,
+        ]
 
     ];
 
