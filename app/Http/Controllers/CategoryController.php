@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Validator;
 
 class CategoryController extends Controller
 {
@@ -36,6 +37,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request, Category $category)
     {
+
+
         $request->validate([
            'name'=>'required'
         ]);
@@ -69,12 +72,17 @@ class CategoryController extends Controller
         $category = Category::findOrfail($id);
         return view('categories.edit', compact('category'));
     }
+    public function modifica($id)
+    {
+        $category = Category::find($id);
+        return response()->json($category);
+    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Category $category)
@@ -85,10 +93,9 @@ class CategoryController extends Controller
         $category->update($request->all());
         $category->save();
 
-        return redirect()->route('categories.index');
-    }
+        }
 
-    /**
+   /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

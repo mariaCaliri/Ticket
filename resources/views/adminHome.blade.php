@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<div class="container is-fluid">
+<div class="container is-fluid ">
     <div class="columns">
         <div id="aside" class=" box column is-2  ">
             <aside class="menu is-hidden-mobile">
@@ -61,7 +61,7 @@
 
             </aside>
         </div>
-        <div class="column is-9">
+        <div class="column is-10">
             <div class="columns">
                 <div class="column is-12">
                     <!-- Main container -->

@@ -23,6 +23,59 @@
             background-color: #1C272C;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let operatorName = document.querySelector('#operator-name');
+            let btnSave = document.querySelector('#button-save');
+            let operatorId = document.querySelector('#operator-id');
+            let operatorEmail = document.querySelector('#operator-email');
+            let operatorPassword = document.querySelector('#operator-password');
+
+            // Functions to open and close a modal
+            function openModal($el) {
+                $el.classList.add('is-active');
+            }
+
+            function closeModal($el) {
+                $el.classList.remove('is-active');
+            }
+
+            function closeAllModals() {
+                (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+                    closeModal($modal);
+                });
+            }
+
+            // Add a click event on buttons to open a specific modal
+            (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+                const modal = $trigger.dataset.target;
+                const $target = document.getElementById(modal);
+
+                $trigger.addEventListener('click', () => {
+                  ---------------------------------------------------------------
+                    openModal($target);
+                });
+            });
+
+            // Add a click event on various child elements to close the parent modal
+            (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+                const $target = $close.closest('.modal');
+
+                $close.addEventListener('click', () => {
+                    closeModal($target);
+                });
+            });
+
+            // Add a keyboard event to close all modals
+            document.addEventListener('keydown', (event) => {
+                const e = event || window.event;
+
+                if (e.keyCode === 27) { // Escape key
+                    closeAllModals();
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -65,7 +118,7 @@
 
             </aside>
         </div>
-        <div class="column is-9">
+        <div class="column is-10">
             <div class="columns">
                 <div class="column is-12">
                     <!-- Main container -->
@@ -130,6 +183,9 @@
                                                         @method('DELETE')
                                                           <button class="button is-danger" type="submit" >  <i class="fa-solid fa-trash has-text-black "></i></button>
                                                     </form>
+                                                    <button class="js-modal-trigger" data-target="modal-edit-operator">
+                                                       Modifica operatore
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -147,7 +203,45 @@
             </div>
         </div>
     </div>
-
+    <div id="modal-edit-operator" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Modifica Operatore</p>
+                <button class="delete" aria-label="close"></button>
+            </header>
+            <section class="modal-card-body">
+                <!-- Content ... -->
+                <form id="editCategory" method="post">
+                    @csrf
+                    @method('PUT')
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12">
+                            <div class="form-group">
+                                <strong>Nome Operatore:</strong>
+                                <input type="text" name="name"  class="form-control"
+                                       placeholder="nome" id="operator-name">
+                                <input type="hidden" id="operator-id">
+                                @error('name')
+                                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                                <strong>Email:</strong>
+                                <input type="text" name="email"  class="form-control"
+                                       placeholder="email" id="operator-email">
+                                <strong>Password:</strong>
+                                <input type="text" name="password"  class="form-control"
+                                       placeholder="password" id="operator-password">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </section>
+            <footer class="modal-card-foot">
+                <button id="button-save" class="button is-success">Salva</button>
+                <button class="button">Annulla</button>
+            </footer>
+        </div>
+    </div>
 </div>
 
 </body>
