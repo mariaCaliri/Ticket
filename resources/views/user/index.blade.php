@@ -31,71 +31,86 @@
         }
     </style>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        let userId = document.querySelector('#user-id');
-        let userInputName = document.querySelector('#user-name');
-        let userInputEmail = document.querySelector('#user-email');
-        let userInputPassword = document.querySelector('#user-password');
+        document.addEventListener('DOMContentLoaded', () => {
+            let userId = document.querySelector('#user-id');
+            let userInputName = document.querySelector('#user-name');
+            let userInputEmail = document.querySelector('#user-email');
+            let userInputPassword = document.querySelector('#user-password');
 
 
             // Functions to open and close a modal
-    function openModal($el) {
-    $el.classList.add('is-active');
-    }
+            function openModal($el) {
+                $el.classList.add('is-active');
+            }
 
-    function closeModal($el) {
-    $el.classList.remove('is-active');
-    }
+            function closeModal($el) {
+                $el.classList.remove('is-active');
+            }
 
-    function closeAllModals() {
-    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
-    closeModal($modal);
-    });
-    }
+            function closeAllModals() {
+                (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+                    closeModal($modal);
+                });
+            }
 
-    // Add a click event on buttons to open a specific modal
-    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
-    const modal = $trigger.dataset.target;
-    const $target = document.getElementById(modal);
+            // Add a click event on buttons to open a specific modal
+            (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+                const modal = $trigger.dataset.target;
+                const $target = document.getElementById(modal);
 
-    $trigger.addEventListener('click', () => {
-        let id = $trigger.dataset.id;
-        let userDiv = document.querySelector('div[data-id="' + id + '"]');
-        let userName= userDiv.querySelector('.user_name').value;
-        let userEmail = userDiv.querySelector('.user_email').value;
-        console.log(userEmail);
-        let userPassword = userDiv.querySelector('.user_password').value;
-        userInputName.value = userName;
-        userInputEmail.value = userEmail;
-        userInputPassword.value = userPassword;
-        userId = id;
+                $trigger.addEventListener('click', () => {
+                    let id = $trigger.dataset.id;
+                    let userDiv = document.querySelector('div[data-id="' + id + '"]');
+                    let userName = userDiv.querySelector('.user_name').value;
+                    let userEmail = userDiv.querySelector('.user_email').value;
+                    console.log(userEmail);
+                    let userPassword = userDiv.querySelector('.user_password').value;
+                    userInputName.value = userName;
+                    userInputEmail.value = userEmail;
+                    userInputPassword.value = userPassword;
+                    userId = id;
 
+                    openModal($target);
+                });
+            });
 
-   userInputName.value = userName;
-
-
-    openModal($target);
-    });
-    });
+            $('body').on('click', '#button-save', function (e){
+               $.ajax({
+                  type: 'PUT',
+                  url: '/admin/utente/' + userId.value,
+                   headers: {
+                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                   },
+                   data:
+                       {
+                            'name': userInputName.value,
+                           'email': userInputEmail,
+                           'password': userInputPassword
+                       },
+                   success: function (res){
+                      location.reload();
+                   }
+               });
+            });
 
     // Add a click event on various child elements to close the parent modal
-    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
-    const $target = $close.closest('.modal');
+            (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+                const $target = $close.closest('.modal');
 
-    $close.addEventListener('click', () => {
-    closeModal($target);
-    });
-    });
+                $close.addEventListener('click', () => {
+                    closeModal($target);
+                });
+            });
 
-    // Add a keyboard event to close all modals
-    document.addEventListener('keydown', (event) => {
-    const e = event || window.event;
+            // Add a keyboard event to close all modals
+            document.addEventListener('keydown', (event) => {
+                const e = event || window.event;
 
-    if (e.keyCode === 27) { // Escape key
-    closeAllModals();
-    }
-    });
-    });
+                if (e.keyCode === 27) { // Escape key
+                    closeAllModals();
+                }
+            });
+        });
     </script>
 </head>
 <body>

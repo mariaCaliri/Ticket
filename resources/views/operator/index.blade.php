@@ -79,11 +79,12 @@
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
-                    data: {
+                    data:
+                        {
                         'name':  operatorInputName.value ,
                         'email': operatorInputEmail.value,
                         'password': operatorInputPassword.value
-                    },
+                         },
                     success: function (res){
                        location.reload();
                     }
