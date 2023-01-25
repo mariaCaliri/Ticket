@@ -63,37 +63,36 @@
                     let userDiv = document.querySelector('div[data-id="' + id + '"]');
                     let userName = userDiv.querySelector('.user_name').value;
                     let userEmail = userDiv.querySelector('.user_email').value;
-                    console.log(userEmail);
                     let userPassword = userDiv.querySelector('.user_password').value;
                     userInputName.value = userName;
                     userInputEmail.value = userEmail;
                     userInputPassword.value = userPassword;
-                    userId = id;
+                    userId.value = id;
 
                     openModal($target);
                 });
             });
 
-            $('body').on('click', '#button-save', function (e){
-               $.ajax({
-                  type: 'PUT',
-                  url: '/admin/utente/' + userId.value,
-                   headers: {
-                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                   },
-                   data:
-                       {
+            $('body').on('click', '#button-save', function (e) {
+                $.ajax({
+                    type: 'PUT',
+                    url: '/admin/utente/' + userId.value,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data:
+                        {
                             'name': userInputName.value,
-                           'email': userInputEmail,
-                           'password': userInputPassword
-                       },
-                   success: function (res){
-                      location.reload();
-                   }
-               });
+                            'email': userInputEmail.value,
+                            'password': userInputPassword.value
+                        },
+                    success: function (res) {
+                        location.reload();
+                    }
+                });
             });
 
-    // Add a click event on various child elements to close the parent modal
+            // Add a click event on various child elements to close the parent modal
             (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
                 const $target = $close.closest('.modal');
 
@@ -126,30 +125,23 @@
                     AMMINISTRAZIONE
                 </p>
                 <ul class="menu-list has-text-white">
-
                     <li><a style="color: lightsteelblue;margin-bottom: 10px" href="{{ route('admin.utente.index') }}">
                             <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
                     </li>
-
-
                     <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i
                                 class="fa-regular fa-rectangle-list"></i>
                             Categorie</a></li>
-
                     <p id="bg-test"> GESTIONE OPERATORI</p>
-
                     <ul class="menu-list has-text-white">
                         <li><a style="color: lightsteelblue;margin-top: 5px"
                                href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                 gli Operatori</a></li>
-                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
+                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px"
+                                                             class="has-text-white" href="{{ route('admin.home') }}">
                                 <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
-                                Torna alla dashboard</a> </li>
+                                Torna alla dashboard</a></li>
                     </ul>
-
-
                 </ul>
-
             </aside>
         </div>
         <div class="column is-10">
@@ -170,17 +162,14 @@
                                         </button>
                                     </p>
                                 </div>
-                                </div>
                             </div>
-
-
+                        </div>
                     </nav>
                     <div class="card events-card">
                         <header class="card-header">
                             <p class="card-header-title  has-background-grey-lighter ">
-                               Utenti
+                                Utenti
                             </p>
-
                         </header>
                         <div class="table-container">
                             <div class="card-table">
@@ -203,29 +192,44 @@
                                             <tr>
                                                 <td>
                                                     {{ $user->id }}
-                                                    <div class="hidden"  data-id="{{ $user->id }}">
-                                                        <input class="user_name" type="hidden"value="{{ $user->name }}">
-                                                        <input  class="user_email" type="hidden"  value="{{ $user->email }}">
-                                                        <input class="user_password" type="hidden" value="{{ $user->password }}">
+                                                    <div class="hidden" data-id="{{ $user->id }}">
+                                                        <input class="user_name" type="hidden"
+                                                               value="{{ $user->name }}">
+                                                        <input class="user_email" type="hidden"
+                                                               value="{{ $user->email }}">
+                                                        <input class="user_password" type="hidden"
+                                                               value="{{ $user->password }}">
                                                     </div>
                                                 </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
-                                                    <form action="{{ route('admin.utente.destroy',$user->id) }}" method="Post">
-                                                        <a class="button is-info" style="color: black" href=" {{ route('admin.utente.show',$user->id) }}"> <i
-                                                                      class="fa-solid fa-magnifying-glass"></i></a>
-                                                        <a class="button is-primary" style="color: black" href="{{ route('admin.utente.edit',$user->id) }}"><i class="fa-solid fa-pencil"></i></a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="button is-danger" type="submit">
-
-                                                        <i class="fa-solid fa-trash has-text-black "></i>
-                                                        </button>
-                                                    </form>
-                                                    <button class="js-modal-trigger" data-target="modal-edit-user" data-id="{{ $user->id }}">
-                                                        modifica utente
-                                                    </button>
+                                                    <div class="field is-grouped">
+                                                        <p class="control">
+                                                            <a class="button is-info" style="color: black"
+                                                               href=" {{ route('admin.utente.show',$user->id) }}"> <i
+                                                                    class="fa-solid fa-magnifying-glass"></i></a>
+                                                        </p>
+                                                        <p class="control">
+                                                            <button class="js-modal-trigger button is-primary" style="color: #0b0b0b" data-target="modal-edit-user"
+                                                                    data-id="{{ $user->id }}">
+                                                                <i
+                                                                    class="fa-solid fa-pencil"></i>
+                                                            </button>
+                                                        </p>
+                                                        <p class="control">
+                                                        <form action="{{ route('admin.utente.destroy',$user->id) }}"
+                                                              method="Post">
+                                                            <a class="" style="color: black"
+                                                               href="{{ route('admin.utente.edit',$user->id) }}"></a>
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="button is-danger" type="submit">
+                                                                <i class="fa-solid fa-trash has-text-black "></i>
+                                                            </button>
+                                                        </form>
+                                                        </p>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -262,17 +266,17 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Nome Utente:</strong>
-                            <input type="text" name="name"  class="form-control"
+                            <input type="text" name="name" class="form-control"
                                    placeholder="nome" id="user-name">
                             <input type="hidden" id="user-id">
                             @error('name')
                             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                             @enderror
                             <strong>Email:</strong>
-                            <input type="text" name="email"  class="form-control"
+                            <input type="text" name="email" class="form-control"
                                    placeholder="email" id="user-email">
                             <strong>Password:</strong>
-                            <input type="text" name="password"  class="form-control"
+                            <input type="text" name="password" class="form-control"
                                    placeholder="password" id="user-password">
                         </div>
                     </div>

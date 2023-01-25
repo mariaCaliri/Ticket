@@ -15,8 +15,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <style>
-
     #aside{
         background-color: #212C32;
         padding: 20px;
@@ -28,6 +31,55 @@
 </style>
     <title>Admin-dashboard </title>
 </head>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+        // Functions to open and close a modal
+        function openModal($el) {
+            $el.classList.add('is-active');
+        }
+
+        function closeModal($el) {
+            $el.classList.remove('is-active');
+        }
+
+        function closeAllModals() {
+            (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+                closeModal($modal);
+            });
+        }
+
+        // Add a click event on buttons to open a specific modal
+        (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+            const modal = $trigger.dataset.target;
+            const $target = document.getElementById(modal);
+
+            $trigger.addEventListener('click', () => {
+                openModal($target);
+            });
+        });
+
+        // Add a click event on various child elements to close the parent modal
+        (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+            const $target = $close.closest('.modal');
+
+            $close.addEventListener('click', () => {
+                closeModal($target);
+            });
+        });
+
+        // Add a keyboard event to close all modals
+        document.addEventListener('keydown', (event) => {
+            const e = event || window.event;
+
+            if (e.keyCode === 27) { // Escape key
+                closeAllModals();
+            }
+        });
+    });
+
+</script>
 
 <body>
 <div class="container is-fluid ">
@@ -110,7 +162,6 @@
                             <p class="card-header-title  has-background-grey-lighter ">
                                 Tickets
                             </p>
-
                         </header>
                         <div class="table-container">
                             <div class="card-table">
@@ -118,26 +169,26 @@
                                     <table class="table is-fullwidth is-striped">
                                         <thead>
                                         <tr>
-                                            <th> Id
-                                            </th>
-                                            <th>Titolo
-                                            </th>
-                                            <th>Data di apertura
-                                            </th>
-                                            <th>Categoria
-                                            </th>
-                                            <th>Stato
-                                            </th>
-                                            <th>Assegnato all' operatore
-                                            </th>
-                                            <th>Actions
-                                            </th>
+                                            <th> Id</th>
+                                            <th>Titolo</th>
+                                            <th>Data di apertura</th>
+                                            <th>Categoria</th>
+                                            <th>Stato</th>
+                                            <th>Assegnato all' operatore</th>
+                                            <th>Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($tickets as $ticket)
                                             <tr>
-                                                <td>{{ $ticket->id }}</td>
+                                                <td>{{ $ticket->id }}
+                                                    <div class="hidden"  data-id="{{ $ticket->id }}">
+                                                        <input class="ticket_title" type="hidden"value="{{ $ticket->title }}">
+                                                        <input  class="ticket_priority" type="hidden"  value="{{ $ticket->priority }}">
+                                                        <input class="ticket_status" type="hidden" value="{{ $ticket->status }}">
+                                                        <input class="ticket_category" type="hidden" value="{{ $ticket->category->name }}">
+                                                    </div>
+                                                </td>
                                                 <td>{{ $ticket->title }}</td>
                                                 <td>{{ $ticket->registered_at }}</td>
                                                 <td>{{ $ticket->category->name }}</td>
@@ -163,6 +214,9 @@
                                                         @method('DELETE')
                                                         <button class="button is-danger" type="submit"><i class="fa-solid fa-trash has-text-black"></i></button>
                                                     </form>
+                                                    <button class="js-modal-trigger" data-target="ticket-modal" data-id="{{ $ticket->id }}">
+                                                        Open JS example modal
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -180,8 +234,58 @@
         </div>
     </div>
 </div>
-<script src=" {{ asset('js/nav.js') }}"></script>
-</body>
+<div id="ticket-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Modifica Ticket</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- Content ... -->
+            <form id="editCategory" method="post">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Titolo:</strong>
+                            <input type="text" name="title"  class="form-control"
+                                   placeholder="titolo" id="titolo">
+                            <input type="hidden" id="ticket-id">
+                            <div class="select is-multiple ">
+                                <strong>Priorità:</strong>
+                                <select name="priority" >
+                                    <option>{{ $ticket->priority}} </option>
+                                    <option value="urgente" >urgente</option>
+                                    <option value="mediamente urgente" >mediamente urgente</option>
+                                    <option value="non urgente" >non urgente</option>
+                                </select>
+                            </div>
+                            <div class="select is-multiple ">
+                                <strong>Status:</strong>
+                                <select name="status" >
+                                    <option>{{ $ticket->status}} </option>
+                                    <option value="in lavorazione" >in lavorazione</option>
+                                    <option value="completato" >completato</option>
+                                    <option value="in attesa" >in attesa</option>
+                                </select>
+                            </div>
+                            <strong>Categoria</strong>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button id="button-save" class="button is-success">Save changes</button>
+            <button class="button">Cancel</button>
+        </footer>
+    </div>
+</div>
 
+<script src=" {{ asset('js/nav.js') }}"></script>
+{{--<script src="{{ asset('js/modal.js') }}"></script>--}}
+</body>
 </html>
 @endsection

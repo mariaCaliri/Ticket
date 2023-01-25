@@ -64,7 +64,7 @@ Route::put('admin/operatore/{id}', [OperatorController::class, 'update'])->name(
 Route::delete('admin/operatore/{id}',[ OperatorController::class, 'destroy'])->name('admin.operatore.destroy');
 
 
-//rotte per UserProfile
+//rotte per profilo utente
 Route::get('user/login-history', [\App\Http\Controllers\ProfileController::class, 'LoginHistory'])->name('login-history');
 Route::get('user/change-password', [\App\Http\Controllers\ProfileController::class, 'ChangePassword'])->name('change-password');
 Route::post('/change-password', [\App\Http\Controllers\ProfileController::class,'updatePassword'])->name('update-password');
@@ -76,7 +76,7 @@ Route::get('operator/operator-login-history', [\App\Http\Controllers\OperatorPro
 Route::get('operator/operator-change-password', [\App\Http\Controllers\OperatorProfileController::class, 'ChangePassword'])->name('operator-change-password');
 Route::post('/change-password', [\App\Http\Controllers\OperatorProfileController::class,'updatePassword'])->name('update-password');
 Route::get('/operator/profile', [\App\Http\Controllers\OperatorProfileController::class, 'ShowProfile'])->name('operator.profile');
-Route::post('profile/{user}',[\App\Http\Controllers\OperatorProfileController::class,'update'])->name('profile.update');
+Route::post('profile/{operator}',[\App\Http\Controllers\OperatorProfileController::class,'update'])->name('operator.profile.update');
 
 
 

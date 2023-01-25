@@ -22,7 +22,6 @@
             padding: 20px;
             height: 94vh;
         }
-
         #bg-test {
             background-color: #1C272C;
         }
@@ -145,12 +144,8 @@
                         <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
                                 <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
                                 Torna alla dashboard</a> </li>
-
                     </ul>
-
-
                 </ul>
-
             </aside>
         </div>
         <div class="column is-10">
@@ -178,14 +173,12 @@
                             <p class="level-item"><a class="button is-info" href="{{ route('admin.operatore.create') }}"> <span style="margin-right: 2px"><i class="fa-solid fa-plus"></i></span> Aggiungi Operatore</a></p>
                             <p class="level-item"><a class="button is-link" href="{{ route(('send.email.all.view')) }}"><span class="mr-2"> <i class="fa-solid fa-envelopes-bulk"></i> </span> Invia email a tutti gli operatori</a></p>
                         </div>
-
                     </nav>
                     <div class="card events-card">
                         <header class="card-header">
                             <p class="card-header-title  has-background-grey-lighter ">
                                 Operatori
                             </p>
-
                         </header>
                         <div class="table-container">
                             <div class="card-table">
@@ -236,7 +229,6 @@
                                                                   <button class="button is-danger" type="submit" >  <i class="fa-solid fa-trash has-text-black "></i></button>
                                                             </form>
                                                         </p>
-
                                                     </div>
                                                 </td>
                                             </tr>
