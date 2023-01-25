@@ -94,7 +94,6 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-        return redirect()->route('admin.utente.index');
     }
 
     /**

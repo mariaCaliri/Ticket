@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <style>
         #aside {
             background-color: #212C32;
@@ -26,6 +30,73 @@
             background-color: #1C272C;
         }
     </style>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let userId = document.querySelector('#user-id');
+        let userInputName = document.querySelector('#user-name');
+        let userInputEmail = document.querySelector('#user-email');
+        let userInputPassword = document.querySelector('#user-password');
+
+
+            // Functions to open and close a modal
+    function openModal($el) {
+    $el.classList.add('is-active');
+    }
+
+    function closeModal($el) {
+    $el.classList.remove('is-active');
+    }
+
+    function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+    closeModal($modal);
+    });
+    }
+
+    // Add a click event on buttons to open a specific modal
+    (document.querySelectorAll('.js-modal-trigger') || []).forEach(($trigger) => {
+    const modal = $trigger.dataset.target;
+    const $target = document.getElementById(modal);
+
+    $trigger.addEventListener('click', () => {
+        let id = $trigger.dataset.id;
+        let userDiv = document.querySelector('div[data-id="' + id + '"]');
+        let userName= userDiv.querySelector('.user_name').value;
+        let userEmail = userDiv.querySelector('.user_email').value;
+        console.log(userEmail);
+        let userPassword = userDiv.querySelector('.user_password').value;
+        userInputName.value = userName;
+        userInputEmail.value = userEmail;
+        userInputPassword.value = userPassword;
+        userId = id;
+
+
+   userInputName.value = userName;
+
+
+    openModal($target);
+    });
+    });
+
+    // Add a click event on various child elements to close the parent modal
+    (document.querySelectorAll('.modal-background, .modal-close, .modal-card-head .delete, .modal-card-foot .button') || []).forEach(($close) => {
+    const $target = $close.closest('.modal');
+
+    $close.addEventListener('click', () => {
+    closeModal($target);
+    });
+    });
+
+    // Add a keyboard event to close all modals
+    document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+
+    if (e.keyCode === 27) { // Escape key
+    closeAllModals();
+    }
+    });
+    });
+    </script>
 </head>
 <body>
 <div class="container is-fluid">
@@ -66,7 +137,7 @@
 
             </aside>
         </div>
-        <div class="column is-9">
+        <div class="column is-10">
             <div class="columns">
                 <div class="column is-12">
                     <!-- Main container -->
@@ -76,7 +147,7 @@
                             <div class="level-item">
                                 <div class="field has-addons">
                                     <p class="control">
-                                        <input class="input" type="text" placeholder="Cerca un operatore">
+                                        <input class="input" type="text" placeholder="Cerca un utente">
                                     </p>
                                     <p class="control ">
                                         <button class="button is-info">
@@ -92,7 +163,7 @@
                     <div class="card events-card">
                         <header class="card-header">
                             <p class="card-header-title  has-background-grey-lighter ">
-                                Operatori
+                               Utenti
                             </p>
 
                         </header>
@@ -115,7 +186,14 @@
                                         <tbody>
                                         @foreach($users as $user)
                                             <tr>
-                                                <td>{{ $user->id }}</td>
+                                                <td>
+                                                    {{ $user->id }}
+                                                    <div class="hidden"  data-id="{{ $user->id }}">
+                                                        <input class="user_name" type="hidden"value="{{ $user->name }}">
+                                                        <input  class="user_email" type="hidden"  value="{{ $user->email }}">
+                                                        <input class="user_password" type="hidden" value="{{ $user->password }}">
+                                                    </div>
+                                                </td>
                                                 <td>{{ $user->name }}</td>
                                                 <td>{{ $user->email }}</td>
                                                 <td>
@@ -130,6 +208,9 @@
                                                         <i class="fa-solid fa-trash has-text-black "></i>
                                                         </button>
                                                     </form>
+                                                    <button class="js-modal-trigger" data-target="modal-edit-user" data-id="{{ $user->id }}">
+                                                        modifica utente
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -149,7 +230,46 @@
     </div>
 
 </div>
-
+<!--Modale-->
+<div id="modal-edit-user" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Modifica Utente</p>
+            <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+            <!-- Content ... -->
+            <form id="editUser" method="post">
+                @csrf
+                @method('PUT')
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Nome Utente:</strong>
+                            <input type="text" name="name"  class="form-control"
+                                   placeholder="nome" id="user-name">
+                            <input type="hidden" id="user-id">
+                            @error('name')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                            @enderror
+                            <strong>Email:</strong>
+                            <input type="text" name="email"  class="form-control"
+                                   placeholder="email" id="user-email">
+                            <strong>Password:</strong>
+                            <input type="text" name="password"  class="form-control"
+                                   placeholder="password" id="user-password">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+        <footer class="modal-card-foot">
+            <button id="button-save" class="button is-success">Salva</button>
+            <button class="button">Annulla</button>
+        </footer>
+    </div>
+</div>
 </body>
 </html>
 @endsection

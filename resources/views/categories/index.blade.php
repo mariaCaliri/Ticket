@@ -55,11 +55,9 @@
                 const $target = document.getElementById(modal);
                 $trigger.addEventListener('click', () => {
                     let id = $trigger.dataset.id;
-               let categoryName = document.querySelector('input[data-id="'+ id +'"]');
-                categoryInputName.value = categoryName.value;
-                // btnSave.dataset.id = id;
+                    let categoryName = document.querySelector('input[data-id="' + id + '"]');
+                    categoryInputName.value = categoryName.value;
                     categoryId.value = id;
-
                     openModal($target);
                 });
 
@@ -202,7 +200,7 @@
                                                         <a class="button is-info" style="color: black" href="{{ route('categories.show', $category->id) }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
                                                         </p>
                                                         <p class="control">
-                                                        <button class="js-modal-trigger button is-primary is-flex" data-target="modal-js-example" data-id ="{{ $category->id }}"><i class="fa-solid fa-pencil"></i></button>
+                                                        <button class="js-modal-trigger button is-primary"  style="color: black"  data-target="modal-js-example" data-id ="{{ $category->id }}"><i class="fa-solid fa-pencil"></i></button>
                                                         </p>
                                                         <p class="control">
                                                         <form action="{{ route('categories.destroy', $category->id) }}"
@@ -229,6 +227,7 @@
         </div>
     </div>
 </div>
+<!--Modale-->
 <div id="modal-js-example" class="modal">
     <div class="modal-background"></div>
     <div class="modal-card">

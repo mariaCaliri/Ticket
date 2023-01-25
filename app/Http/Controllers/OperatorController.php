@@ -148,7 +148,6 @@ class OperatorController extends Controller
 
         $operator->save();
 
-        return redirect()->route('admin.operatore.index');
     }
 
     /**

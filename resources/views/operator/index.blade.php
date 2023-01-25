@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
           integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <!-- jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
     <style>
         #aside {
             background-color: #212C32;
@@ -25,11 +29,12 @@
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            let operatorName = document.querySelector('#operator-name');
+            let operatorInputName = document.querySelector('#operator-name');
             let btnSave = document.querySelector('#button-save');
             let operatorId = document.querySelector('#operator-id');
-            let operatorEmail = document.querySelector('#operator-email');
-            let operatorPassword = document.querySelector('#operator-password');
+            let operatorInputEmail = document.querySelector('#operator-email');
+            let operatorInputPassword = document.querySelector('#operator-password');
+
 
             // Functions to open and close a modal
             function openModal($el) {
@@ -51,9 +56,38 @@
                 const modal = $trigger.dataset.target;
                 const $target = document.getElementById(modal);
 
+                <!--imposto i dati degli operatori nella modale-->
                 $trigger.addEventListener('click', () => {
-                  ---------------------------------------------------------------
+                    let id = $trigger.dataset.id;
+                    let operatorDiv = document.querySelector('div[data-id="' + id + '"]');
+                    let operatorName = operatorDiv.querySelector('.operator_name').value;
+                    let operatorEmail = operatorDiv.querySelector('.operator_email').value;
+                    let operatorPassword = operatorDiv.querySelector('.operator_password').value;
+                    operatorInputName.value = operatorName;
+                    operatorInputEmail.value = operatorEmail;
+                    operatorInputPassword.value = operatorPassword;
+                    operatorId.value = id;
+
                     openModal($target);
+                });
+            });
+
+            $('body').on('click', '#button-save', function (e){
+                $.ajax({
+                   type: 'PUT',
+                    url: '/admin/operatore/' + operatorId.value,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: {
+                        'name':  operatorInputName.value ,
+                        'email': operatorInputEmail.value,
+                        'password': operatorInputPassword.value
+                    },
+                    success: function (res){
+                       location.reload();
+                    }
+
                 });
             });
 
@@ -171,21 +205,38 @@
                                         <tbody>
                                         @foreach($operators as $operator)
                                             <tr>
-                                                <td>{{ $operator->id }}</td>
+                                                <td>
+                                                    {{ $operator->id }}
+                                                    <div class="hidden"  data-id="{{ $operator->id }}">
+                                                        <input class="operator_name" type="hidden"value="{{ $operator->name }}">
+                                                        <input  class="operator_email" type="hidden"  value="{{ $operator->email }}">
+                                                        <input class="operator_password" type="hidden" value="{{ $operator->password }}">
+                                                    </div>
+                                                </td>
                                                 <td>{{ $operator->name }}</td>
                                                 <td>{{ $operator->email }}</td>
                                                 <td>
-                                                    <form action="{{ route('admin.operatore.destroy',$operator->id) }}" method="Post">
-                                                         <a class="button is-primary" style="color: black" href="{{ route('admin.operatore.edit',$operator->id) }}"><i class="fa-solid fa-pencil"></i></a>
-                                                         <a class="button is-info" style="color: black"  href="{{ route('admin.operatore.show',$operator->id) }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
-                                                        <a class="button is-warning" style="color: black"   href="{{ route('send.email.view',$operator->id) }}"><i class="fa-regular fa-envelope"></i></a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                          <button class="button is-danger" type="submit" >  <i class="fa-solid fa-trash has-text-black "></i></button>
-                                                    </form>
-                                                    <button class="js-modal-trigger" data-target="modal-edit-operator">
-                                                       Modifica operatore
-                                                    </button>
+                                                    <div class="field is-grouped">
+                                                        <p class="control">
+                                                            <button class="js-modal-trigger button is-primary" style="color: black"  data-target="modal-edit-operator" data-id="{{ $operator->id }}">
+                                                                <i class="fa-solid fa-pencil"></i>
+                                                            </button>
+                                                        </p>
+                                                        <p class="control">
+                                                             <a class="button is-info" style="color: black"  href="{{ route('admin.operatore.show',$operator->id) }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+                                                        </p>
+                                                        <p class="control">
+                                                            <a class="button is-warning" style="color: black"   href="{{ route('send.email.view',$operator->id) }}"><i class="fa-regular fa-envelope"></i></a>
+                                                        </p>
+                                                        <p class="control">
+                                                            <form action="{{ route('admin.operatore.destroy',$operator->id) }}" method="Post">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                  <button class="button is-danger" type="submit" >  <i class="fa-solid fa-trash has-text-black "></i></button>
+                                                            </form>
+                                                        </p>
+
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -203,6 +254,7 @@
             </div>
         </div>
     </div>
+    <!--Modale-->
     <div id="modal-edit-operator" class="modal">
         <div class="modal-background"></div>
         <div class="modal-card">
