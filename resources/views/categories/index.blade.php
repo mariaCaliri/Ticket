@@ -195,7 +195,6 @@
 
                                                 <td>
                                                     <div class="field is-grouped">
-
                                                         <p class="control">
                                                         <a class="button is-info" style="color: black" href="{{ route('categories.show', $category->id) }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
                                                         </p>

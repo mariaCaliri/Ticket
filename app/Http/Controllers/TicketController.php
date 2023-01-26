@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Mail\OperatorRegistred;
 use App\Mail\TicketRegistred;
 use App\Mail\TicketSuccesCreated;
 use App\Models\Chat;
@@ -115,7 +116,7 @@ class TicketController extends Controller
      * @param int $id
      * @return RedirectResponse
      */
-    public function update(Request $request, Ticket $ticket): RedirectResponse
+    public function update(Request $request, Ticket $ticket)
     {
 
       $request->validate([
@@ -123,15 +124,10 @@ class TicketController extends Controller
             'priority'=> 'required',
             'status'=> 'required',
             'category_id'=> 'required',
-
-
         ]);
-
              $ticket->update($request->all());
              $ticket->save();
-
-
-      return redirect()->route('admin.home')->with('Ticket Modificato correttamente');
+        Mail::to('maria.caliri@tecnasoft.it')->send(new TicketRegistred());
    }
 
 

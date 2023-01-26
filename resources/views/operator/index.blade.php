@@ -29,7 +29,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let operatorInputName = document.querySelector('#operator-name');
-            let btnSave = document.querySelector('#button-save');
             let operatorId = document.querySelector('#operator-id');
             let operatorInputEmail = document.querySelector('#operator-email');
             let operatorInputPassword = document.querySelector('#operator-password');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\TicketSuccesCreated;
 use App\Models\LogActivity;
 use App\Models\Operator;
 use App\Models\User;
@@ -9,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\StoreUserLoginHistory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class OperatorProfileController extends Controller
 {
@@ -59,6 +61,7 @@ class OperatorProfileController extends Controller
         ]);
 
         return back()->with("status", "Password changed successfully!");
+
     }
 
 

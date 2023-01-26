@@ -30,9 +30,15 @@
     }
 </style>
     <title>Admin-dashboard </title>
-</head>
+
 <script>
     document.addEventListener('DOMContentLoaded', () => {
+        let ticketId = document.querySelector('#ticket-id');
+        let ticketInputTitle = document.querySelector('#titolo');
+        let ticketInputPriority = document.querySelector('#priority');
+        let ticketInputStatus = document.querySelector('#status');
+        let ticketInputCategory = document.querySelector('#category');
+        let categoryId = document.querySelector('#category-id');
 
 
         // Functions to open and close a modal
@@ -56,7 +62,45 @@
             const $target = document.getElementById(modal);
 
             $trigger.addEventListener('click', () => {
+                let id = $trigger.dataset.id;
+                let ticketDiv = document.querySelector('div[data-id="' + id + '"]');
+                let TicketTitle = ticketDiv.querySelector('.ticket_title').value;
+                let TicketPriority = ticketDiv.querySelector('.ticket_priority').value;
+                let TicketStatus = ticketDiv.querySelector('.ticket_status').value;
+                let TicketCategory = ticketDiv.querySelector('.ticket_category').value;
+                let CategoryId = ticketDiv.querySelector('.ticket_category_id').value;
+                ticketInputTitle.value = TicketTitle;
+                ticketInputPriority.value = TicketPriority;
+                ticketInputStatus.value = TicketStatus;
+                ticketInputCategory.value= TicketCategory;
+                categoryId.value = CategoryId;
+                ticketId.value = id;
+                console.log( TicketCategory);
+                console.log(  ticketId);
+
                 openModal($target);
+            });
+        });
+
+        $('body').on('click', '#button-save', function (e){
+
+            $.ajax({
+                type: 'PUT',
+                url: '/tickets/' +  ticketId.value,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data:
+                    {
+                        'title': ticketInputTitle.value,
+                        'priority': ticketInputPriority.value,
+                        'status':  ticketInputStatus.value,
+                        'category_id':categoryId.value
+                    },
+                success: function (res){
+                    location.reload();
+                }
+
             });
         });
 
@@ -80,7 +124,7 @@
     });
 
 </script>
-
+</head>
 <body>
 <div class="container is-fluid ">
     <div class="columns">
@@ -186,6 +230,7 @@
                                                         <input class="ticket_title" type="hidden"value="{{ $ticket->title }}">
                                                         <input  class="ticket_priority" type="hidden"  value="{{ $ticket->priority }}">
                                                         <input class="ticket_status" type="hidden" value="{{ $ticket->status }}">
+                                                        <input class="ticket_category_id" type="hidden" value="{{ $ticket->category->id }}">
                                                         <input class="ticket_category" type="hidden" value="{{ $ticket->category->name }}">
                                                     </div>
                                                 </td>
@@ -195,28 +240,43 @@
 
                                                 <td>
                                                     @if( $ticket->status =='in attesa')
-                                                        <a class=" has-text-danger" href="">In Attesa</a>
+                                                        <a class=" has-text-success" href="">In Attesa</a>
                                                     @elseif($ticket->status == 'in lavorazione')
                                                         <a class=" has-text-warning" href=""> In Lavorazione</a>
                                                     @elseif($ticket->status == 'completato')
-                                                        <a class=" has-text-success" href=""> Ticket chiuso</a>
+                                                        <a class=" has-text-danger" href=""> Ticket chiuso</a>
                                                     @endif
                                                 </td>
 
                                                 <td>{{ $ticket->operator_id}}</td>
 
                                                 <td>
+                                                    <div class="field is-grouped">
+                                                        <p class="control">
+                                                            <a class="button is-info" style="color: black" href=" {{route('tickets.show',$ticket->id)  }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
+                                                        </p>
+                                                        <p class="control">
+                                                            @if($ticket->status == 'completato')
+                                                            <button class="js-modal-trigger button is-primary" title="Disabled button" disabled style="color: black" data-target="ticket-modal" data-id="{{ $ticket->id }}">
+                                                                <i class="fa-solid fa-pencil"></i>
+                                                            </button>
 
-                                                    <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
-                                                         <a class="button is-info" style="color: black" href=" {{route('tickets.show',$ticket->id)  }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
-                                                        <a class="button is-primary" style="color: black" href="{{route('tickets.edit',$ticket->id)  }}"><i class="fa-solid fa-pencil"></i></a>
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="button is-danger" type="submit"><i class="fa-solid fa-trash has-text-black"></i></button>
-                                                    </form>
-                                                    <button class="js-modal-trigger" data-target="ticket-modal" data-id="{{ $ticket->id }}">
-                                                        Open JS example modal
-                                                    </button>
+                                                            @else
+                                                                <button class="js-modal-trigger button is-primary" style="color: black" data-target="ticket-modal" data-id="{{ $ticket->id }}">
+                                                                    <i class="fa-solid fa-pencil"></i>
+                                                                </button>
+                                                            @endif
+                                                        </p>
+                                                        <p class="control">
+
+                                                        <form action="{{ route('tickets.destroy',$ticket->id) }}" method="post">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="button is-danger" type="submit"><i class="fa-solid fa-trash has-text-black"></i></button>
+                                                        </form>
+
+                                                        </p>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -243,7 +303,7 @@
         </header>
         <section class="modal-card-body">
             <!-- Content ... -->
-            <form id="editCategory" method="post">
+            <form id="editTicket" method="post">
                 @csrf
                 @method('PUT')
                 <div class="row">
@@ -252,26 +312,41 @@
                             <strong>Titolo:</strong>
                             <input type="text" name="title"  class="form-control"
                                    placeholder="titolo" id="titolo">
+
                             <input type="hidden" id="ticket-id">
+
                             <div class="select is-multiple ">
                                 <strong>Priorità:</strong>
-                                <select name="priority" >
+                                <select name="priority" id="priority">
                                     <option>{{ $ticket->priority}} </option>
                                     <option value="urgente" >urgente</option>
                                     <option value="mediamente urgente" >mediamente urgente</option>
                                     <option value="non urgente" >non urgente</option>
                                 </select>
                             </div>
+
                             <div class="select is-multiple ">
                                 <strong>Status:</strong>
-                                <select name="status" >
+                                <select name="status" id="status">
                                     <option>{{ $ticket->status}} </option>
                                     <option value="in lavorazione" >in lavorazione</option>
                                     <option value="completato" >completato</option>
                                     <option value="in attesa" >in attesa</option>
                                 </select>
                             </div>
-                            <strong>Categoria</strong>
+
+                            <div class="select is-multiple">
+                                <strong>categoria</strong>
+                                <select name="category" id="category">
+                                    <option>{{ $ticket->category->name }}</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}"> {{ $category->name }}</option>
+                                    @endforeach
+                                    <input type="hidden" id="category-id">
+                                </select>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>

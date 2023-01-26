@@ -43,11 +43,11 @@
 
                     <div class="select is-multiple ">
                         <strong>Priorità:</strong>
-                        <select name="priority" >
+                        <select name="priority">
                             <option>{{ $ticket->priority}} </option>
-                            <option value="urgente" >urgente</option>
-                            <option value="mediamente urgente" >mediamente urgente</option>
-                            <option value="non urgente" >non urgente</option>
+                            <option value="urgente">urgente</option>
+                            <option value="mediamente urgente">mediamente urgente</option>
+                            <option value="non urgente">non urgente</option>
                         </select>
                     </div>
                     @error('name')
@@ -56,31 +56,30 @@
 
                     <div class="select is-multiple ">
                         <strong>Status:</strong>
-                        <select name="status" >
+                        <select name="status">
                             <option>{{ $ticket->status}} </option>
-                            <option value="in lavorazione" >in lavorazione</option>
-                            <option value="completato" >completato</option>
-                            <option value="in attesa" >in attesa</option>
+                            <option value="in lavorazione">in lavorazione</option>
+                            <option value="completato">completato</option>
+                            <option value="in attesa">in attesa</option>
                         </select>
                     </div>
-                    @error('name')
-                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                @enderror
-                                <div class="select is-multiple">
-                                    <strong>Categoria:</strong>
-                                        <select name="category_id" >
-                                            @foreach($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
-                                        </select>
-                                </div>
-                        </div>
+
+                    <div class="select is-multiple">
+                        <strong>Categoria:</strong>
+                        <select name="category_id">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
-                    <footer class="card-footer">
-                        <button type="submit" class="button is-info">Modifica</button>
-                        <button type="submit" class="button is-danger"><a style="color: white;" href="{{ route('admin.home') }}"> Annulla </a></button>
-                    </footer>
-                </form>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <button type="submit" class="button is-info">Modifica</button>
+            <button type="submit" class="button is-danger"><a style="color: white;" href="{{ route('admin.home') }}">
+                    Annulla </a></button>
+        </footer>
+        </form>
     </div>
 </div>
 

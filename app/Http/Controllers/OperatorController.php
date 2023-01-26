@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\OperatorRegistred;
 use App\Models\Operator;
+use App\Notifications\OperatorsNotification;
 use App\Notifications\TicketCreated;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Http\Request;
@@ -147,6 +148,7 @@ class OperatorController extends Controller
         $operator->update($request->all());
 
         $operator->save();
+
 
     }
 

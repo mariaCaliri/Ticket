@@ -2,17 +2,17 @@
 
 namespace App\Providers;
 
+use App\Events\PasswordReset;
 use App\Events\SendUserNotification;
 use App\Events\TicketSended;
+use App\Listeners\SendPasswordResetEmail;
 use App\Listeners\SendUserCreatedTicket;
 use App\Listeners\TicketIssended;
-use App\Models\Ticket;
 use App\Notifications\OperatorsNotification;
 use App\Observers\TicketObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -30,6 +30,9 @@ class EventServiceProvider extends ServiceProvider
             ],
         TicketSended::class =>[
             OperatorsNotification::class
+        ],
+        PasswordReset::class => [
+            SendPasswordResetEmail::class,
         ]
 
     ];
