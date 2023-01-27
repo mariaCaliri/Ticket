@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Operator;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Ticket>
@@ -28,7 +29,7 @@ class TicketFactory extends Factory
             "feedback"=>$this->faker->paragraph(),
             "category_id"=>Category::inRandomOrder()->first()->id,
             "operator_id"=>Operator::inRandomOrder()->first()->id,
-            "user_id"=>User::inRandomOrder()->first()->id
+            "user_id"=> Auth::id(),
         ];
     }
 }

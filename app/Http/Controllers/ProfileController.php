@@ -16,7 +16,6 @@ class ProfileController extends Controller
 
     public function LoginHistory()
     {
-        //$logs = LogActivity::latest()->get();
         $logs = LogActivity::where('user_id', Auth::id())->paginate(5);
         return view('user-profile.login-history')->with(compact('logs'));
     }

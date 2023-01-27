@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Mail\closedTicket;
 use App\Mail\OperatorRegistred;
 use App\Mail\TicketRegistred;
 use App\Mail\TicketSuccesCreated;
@@ -63,7 +64,7 @@ class TicketController extends Controller
           'priority'=>$request->get('priority'),
           'category_id'=> $request->get('category_id'),
           'message'=> $request->get('message'),
-          'user_id'=> 1,
+          'user_id'=> Auth::id(),
           'end_date'=> null
 
       ]);
@@ -127,7 +128,7 @@ class TicketController extends Controller
         ]);
              $ticket->update($request->all());
              $ticket->save();
-        Mail::to('maria.caliri@tecnasoft.it')->send(new TicketRegistred());
+        Mail::to($request->user())->send(new closedTicket());
    }
 
 

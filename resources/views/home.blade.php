@@ -21,7 +21,7 @@
                     </ul>
                 </aside>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-10">
                 <div class="card">
                     <div class="card-header has-background-grey-lighter  ">{{ __('Dashboard') }}</div>
 
@@ -101,8 +101,9 @@
                                                 <th>Titolo</th>
                                                 <th>Data di apertura</th>
                                                 <th>Categoria</th>
+                                                <th>Priorità</th>
                                                 <th>Stato</th>
-                                                <th>Actions</th>
+                                                <th>Azioni</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -112,13 +113,14 @@
                                                     <td>{{ $ticket->title }}</td>
                                                     <td>{{ $ticket->registered_at }}</td>
                                                     <td>{{ $ticket->category->name }}</td>
+                                                    <td>{{ $ticket->priority }}</td>
                                                     <td>
                                                         @if( $ticket->status =='in attesa')
-                                                            <a class=" has-text-danger" href="">In Attesa</a>
+                                                            <a class=" has-text-success" href="">In Attesa</a>
                                                         @elseif($ticket->status == 'in lavorazione')
                                                             <a class=" has-text-warning" href=""> In Lavorazione</a>
                                                         @elseif($ticket->status == 'completato')
-                                                            <a class=" has-text-success" href=""> Ticket chiuso</a>
+                                                            <a class=" has-text-danger" href=""> Ticket chiuso</a>
                                                         @endif
                                                     </td>
                                                     <td class="btn-container">

@@ -204,8 +204,9 @@
                                                     <th>Titolo  </th>
                                                     <th>Data di apertura  </th>
                                                     <th>Categoria  </th>
+                                                    <th>Priorità</th>
                                                     <th>Stato  </th>
-                                                    <th>Actions  </th>
+                                                    <th>Azioni  </th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
@@ -223,6 +224,7 @@
                                                         <td>{{ $ticket->title }}</td>
                                                         <td>{{ $ticket->registered_at }}</td>
                                                         <td>{{ $ticket->category->name }}</td>
+                                                        <td> {{ $ticket->priority }}</td>
                                                         <td>
                                                             @if( $ticket->status =='in attesa')
                                                                 <a class=" has-text-success" href="">In Attesa</a>

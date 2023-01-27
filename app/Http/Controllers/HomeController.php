@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Providers\LoginHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,10 +29,9 @@ class HomeController extends Controller
 
 
         if (Auth::user()->type == '0') {
-            $user = Auth::user();
+            $tickets = Ticket::where('user_id', Auth::id())->get();
 
-
-            return view('home');
+            return view('home')->with(compact('tickets'));
         }
         elseif (Auth::user()->type == '1') {
             return view('adminHome');

@@ -137,24 +137,16 @@
                     AMMINISTRAZIONE
                 </p>
                 <ul class="menu-list has-text-white">
-
                     <li><a style="color: lightsteelblue;margin-bottom: 10px" href="{{ route('admin.utente.index') }}"> <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
                     </li>
-
-
                     <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i class="fa-regular fa-rectangle-list"></i>
                             Categorie</a></li>
-
                       <p id="bg-test">  GESTIONE OPERATORI</p>
-
                         <ul class="menu-list has-text-white">
                             <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
                                     gli Operatori</a></li>
                         </ul>
-
-
                 </ul>
-
             </aside>
         </div>
         <div class="column is-10">
@@ -176,7 +168,7 @@
                                     </p>
                                     <p class="control ">
                                         <button class="button is-info">
-                                            Search
+                                            Cerca
                                         </button>
                                     </p>
 
@@ -185,7 +177,7 @@
                         </div>
 
                         <!-- Right side -->
-                        <div class="level-right">
+                        <div class="level-right ">
                             <label class="radio">
                                 <input type="radio" name="answer">
                                 Tutti
@@ -218,6 +210,7 @@
                                             <th>Data di apertura</th>
                                             <th>Categoria</th>
                                             <th>Stato</th>
+                                            <th>Priorità</th>
                                             <th>Assegnato all' operatore</th>
                                             <th>Actions</th>
                                         </tr>
@@ -247,7 +240,7 @@
                                                         <a class=" has-text-danger" href=""> Ticket chiuso</a>
                                                     @endif
                                                 </td>
-
+                                                <td> {{ $ticket->priority }}</td>
                                                 <td>{{ $ticket->operator_id}}</td>
 
                                                 <td>
@@ -353,8 +346,8 @@
             </form>
         </section>
         <footer class="modal-card-foot">
-            <button id="button-save" class="button is-success">Save changes</button>
-            <button class="button">Cancel</button>
+            <button id="button-save" class="button is-success">Salva</button>
+            <button class="button">Annulla</button>
         </footer>
     </div>
 </div>
