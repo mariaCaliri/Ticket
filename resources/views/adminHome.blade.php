@@ -164,7 +164,7 @@
                             <div class="level-item">
                                 <div class="field has-addons">
                                     <p class="control">
-                                        <input class="input" type="text" placeholder="Find a ticket">
+                                        <input class="input" type="text" placeholder="Trova un ticket">
                                     </p>
                                     <p class="control ">
                                         <button class="button is-info">
@@ -249,16 +249,10 @@
                                                             <a class="button is-info" style="color: black" href=" {{route('tickets.show',$ticket->id)  }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
                                                         </p>
                                                         <p class="control">
-                                                            @if($ticket->status == 'completato')
-                                                            <button class="js-modal-trigger button is-primary" title="Disabled button" disabled style="color: black" data-target="ticket-modal" data-id="{{ $ticket->id }}">
-                                                                <i class="fa-solid fa-pencil"></i>
-                                                            </button>
 
-                                                            @else
                                                                 <button class="js-modal-trigger button is-primary" style="color: black" data-target="ticket-modal" data-id="{{ $ticket->id }}">
                                                                     <i class="fa-solid fa-pencil"></i>
                                                                 </button>
-                                                            @endif
                                                         </p>
                                                         <p class="control">
 
