@@ -22,7 +22,7 @@
 <style>
     #aside{
         background-color: #212C32;
-        padding: 20px;
+
         height: 94vh;
     }
     #bg-test{
@@ -128,28 +128,81 @@
 <body>
 <div class="container is-fluid ">
     <div class="columns">
-        <div id="aside" class=" box column is-2  ">
-            <aside class="menu is-hidden-mobile">
-                <img style="width: 50px" src="/img/logo2.png">
-                <span style="color: lightsteelblue;" > Benvenuto<strong style="color: lightsteelblue;"> Admin </strong></span>
+        <div id="aside" class=" box column is-1">
+            <div class="menu is-hidden-mobile">
+                <img style="width: 45px" src="/img/logo2.png">
+{{--                <div class="dropdown is-hoverable">--}}
+{{--                    <div class="dropdown-trigger">--}}
+{{--                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">--}}
+{{--                            <span>Hover me</span>--}}
+{{--                            <span class="icon is-small"><i class="fas fa-angle-down" aria-hidden="true"></i></span>--}}
+{{--                        </button>--}}
+{{--                    </div>--}}
+{{--                    <div class="dropdown-menu" id="dropdown-menu4" role="menu">--}}
+{{--                        <div class="dropdown-content">--}}
+{{--                            <div class="dropdown-item">--}}
 
-                <p id="bg-test" class="menu-label has-text-white">
-                    AMMINISTRAZIONE
-                </p>
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+            </div>
+
                 <ul class="menu-list has-text-white">
-                    <li><a style="color: lightsteelblue;margin-bottom: 10px" href="{{ route('admin.utente.index') }}"> <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
+                    <li><a style="color: lightsteelblue;margin-bottom: 10px; width: 60px" href="{{ route('admin.utente.index') }}"> <i class="fa-solid fa-users"></i></a>
                     </li>
                     <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i class="fa-regular fa-rectangle-list"></i>
-                            Categorie</a></li>
-                      <p id="bg-test">  GESTIONE OPERATORI</p>
-                        <ul class="menu-list has-text-white">
-                            <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
-                                    gli Operatori</a></li>
-                        </ul>
+                            </a></li>
+                    <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i></a></li>
+                    <li><a style="color: lightsteelblue;margin-top: 5px" href="#"> <i class="fa-solid fa-chart-line"></i></a></li>
+                </ul>
+            <ul class="menu-list has-text-white">
+                <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear"></i></a>
+                </li>
+                <li><a style="color: lightsteelblue;margin-bottom: 20px"> <i class="fa-solid fa-user-plus"></i>
+                    </a></li>
+                <li> <a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question"></i></a></li>
+            </ul>
+        </div>
+    </aside>
+        <!-- seconda colonna -->
+        <div class="column is-2 has-background-grey-lighter">
+            <div class="field has-addons">
+                <p class="control">
+                    <input class="input" type="text" placeholder="Trova un ticket">
+                </p>
+                <p class="control ">
+                    <button class="button is-info">
+                        Cerca
+                    </button>
+                </p>
+            </div>
+            <aside class="menu">
+                <p style="color: #0a58ca" class="menu-label">
+                   Tutti i ticket
+                </p>
+                <ul class="menu-list">
+                    <li><a> Tickets da gestire <span style=" border-radius:50%;background-color: white">10</span> </a></li>
+                    <li><a>Miei ticket <span style=" border-radius:50%;background-color: white">10</span></a> </li>
+                </ul>
+                <p class="menu-label">
+                   La mia vista
+                </p>
+                <ul class="menu-list">
+                    <li><a>Tickets gestiti negli ultimi 7 giorni</a></li>
+
+                </ul>
+                <p class="menu-label">
+                    Status
+                </p>
+                <ul class="menu-list">
+                    <li><a>Aperti</a></li>
+                    <li><a>In attesa</a></li>
+                    <li><a>Chiusi</a></li>
                 </ul>
             </aside>
         </div>
-        <div class="column is-10">
+        <div class="column is-9">
             <div class="columns">
                 <div class="column is-12">
                     <!-- Main container -->
@@ -162,17 +215,7 @@
                                 </p>
                             </div>
                             <div class="level-item">
-                                <div class="field has-addons">
-                                    <p class="control">
-                                        <input class="input" type="text" placeholder="Trova un ticket">
-                                    </p>
-                                    <p class="control ">
-                                        <button class="button is-info">
-                                            Cerca
-                                        </button>
-                                    </p>
 
-                                </div>
                             </div>
                         </div>
 
@@ -211,8 +254,8 @@
                                             <th>Categoria</th>
                                             <th>Stato</th>
                                             <th>Priorità</th>
-                                            <th>Assegnato all' operatore</th>
-                                            <th>Actions</th>
+                                            <th>Assegna</th>
+                                            <th>Azioni</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -241,7 +284,7 @@
                                                     @endif
                                                 </td>
                                                 <td> {{ $ticket->priority }}</td>
-                                                <td>{{ $ticket->operator_id}}</td>
+                                                <td><i class="fa-solid fa-user-plus"></i></td>
 
                                                 <td>
                                                     <div class="field is-grouped">
@@ -278,6 +321,33 @@
                     </div>
                 </div>
             </div>
+            <nav class="pagination" role="navigation" aria-label="pagination">
+                <a class="pagination-previous">Previous</a>
+                <a class="pagination-next">Next page</a>
+                <ul class="pagination-list">
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page 1">1</a>
+                    </li>
+                    <li>
+                        <span class="pagination-ellipsis">&hellip;</span>
+                    </li>
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page 45">45</a>
+                    </li>
+                    <li>
+                        <a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
+                    </li>
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page 47">47</a>
+                    </li>
+                    <li>
+                        <span class="pagination-ellipsis">&hellip;</span>
+                    </li>
+                    <li>
+                        <a class="pagination-link" aria-label="Goto page 86">86</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 </div>
