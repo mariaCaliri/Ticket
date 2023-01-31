@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -65,18 +65,18 @@
 
             $('body').on('click', '#btn-save', function (e) {
 
-               $.ajax({
-                   type: 'PUT',
-                   url: '/categories/' + categoryId.value,
-                   headers: {
-                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                   },
-                   data:
-                       {'name': categoryInputName.value},
-                   success: function (res){
-                       location.reload();
-                   }
-               })
+                $.ajax({
+                    type: 'PUT',
+                    url: '/categories/' + categoryId.value,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data:
+                        {'name': categoryInputName.value},
+                    success: function (res) {
+                        location.reload();
+                    }
+                })
             });
 
             // Add a click event on various child elements to close the parent modal
@@ -102,128 +102,217 @@
     </script>
 </head>
 <body>
-<div class="container is-fluid">
+<div class="container is-fluid" style="padding: 0">
     <div class="columns">
-        <div id="aside" class=" box column is-2  ">
-            <aside class="menu is-hidden-mobile">
-                <img style="width: 50px" src="/img/logo2.png">
-                <span style="color: lightsteelblue;"> Benvenuto<strong
-                        style="color: lightsteelblue;"> Admin </strong></span>
+        <div id="aside" class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
 
-                <p id="bg-test" class="menu-label has-text-white">
-                    AMMINISTRAZIONE
-                </p>
-                <ul class="menu-list has-text-white">
+            <div class="has-text-centered">
+                <img style="width: 45px; margin-bottom: 50px" src="/img/logo2.png">
+            </div>
 
-                    <li><a style="color: lightsteelblue;margin-bottom: 10px" href="{{ route('admin.utente.index') }}">
-                            <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
+            <div class="menu">
+                <ul class="menu-list has-text-white ">
+                    <li>
+                        <a style="color: lightsteelblue;" href="{{ route('admin.utente.index') }}"><span
+                                class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span
+                                class="name ml-4">Utenti</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;" href="{{ route('admin.operatore.index') }}"><span
+                                class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span
+                                class="name ml-4">Operatori</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;" href="{{ route('categories.index') }}"><span class="icon"> <i
+                                    class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;margin-top: 5px" href="#"> <i
+                                class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
                     </li>
 
 
-                    <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i
-                                class="fa-regular fa-rectangle-list"></i>
-                            Categorie</a></li>
-
-                    <p id="bg-test"> GESTIONE OPERATORI</p>
-
-                    <ul class="menu-list has-text-white">
-                        <li><a style="color: lightsteelblue;margin-top: 5px"
-                               href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
-                                gli Operatori</a></li>
-                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
-                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
-                                Torna alla dashboard</a> </li>
-                    </ul>
-
-
+                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear icon fa-xl"></i><span
+                                class="name ml-4">Settings</span></a>
+                    </li>
+                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span
+                                class="name ml-4">Aggiungi</span>
+                        </a></li>
+                    <li><a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question icon fa-xl"></i><span
+                                class="name ml-4">Help</span></a>
+                    </li>
+                    <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px"
+                                                         class="has-text-white" href="{{ route('admin.home') }}">
+                            <span style="color: lightsteelblue"><i class="fa-solid fa-house-user fa-xl"></i></span>
+                            Home</a></li>
                 </ul>
-
-            </aside>
-        </div>
-        <div class="column is-10">
-            <div class="columns">
-                <div class="column is-12">
-                    <!-- Main container -->
-                    <nav class="level">
-                        <!-- Left side -->
-                        <div class="level-left">
-                            <div class="level-item">
-                                <div class="field has-addons">
-                                    <p class="control">
-                                        <input class="input" type="text" placeholder="Cerca una categoria">
-                                    </p>
-                                    <p class="control">
-                                        <button class="button">
-                                            Cerca
-                                        </button>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Right side -->
-                        <div class="level-right">
-                            <p class="level-item"><a class="button is-info" href="{{ route('categories.create') }}"> <span style="margin-right: 2px"><i class="fa-solid fa-plus"></i></span> Aggiungi Categoria</a></p>
-                        </div>
-                    </nav>
-                    <div class="card events-card">
-                        <header class="card-header">
-                            <p class="card-header-title  has-background-grey-lighter ">
-                                Categorie
-                            </p>
-
-                        </header>
-                        <div class="table-container">
-                            <div class="card-table">
-                                <div class="content">
-                                    <table class="table is-fullwidth is-striped">
-                                        <thead>
-                                        <tr>
-                                            <th> Id <i class="fa-solid fa-right-left"></i>
-                                            </th>
-                                            <th>Categoria <i class="fa-solid fa-right-left"></i>
-                                            </th>
-                                            <th>Actions <i class="fa-solid fa-right-left"></i>
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        @foreach($categories as $category)
-                                            <tr>
-                                                <td>{{ $category->id }}</td>
-                                                <td>{{ $category->name }} <input type="hidden" data-id="{{ $category->id }}" value="{{ $category->name }}"></td>
-
-                                                <td>
-                                                    <div class="field is-grouped">
-                                                        <p class="control">
-                                                        <a class="button is-info" style="color: black" href="{{ route('categories.show', $category->id) }}"> <i class="fa-solid fa-magnifying-glass"></i></a>
-                                                        </p>
-                                                        <p class="control">
-                                                        <button class="js-modal-trigger button is-primary"  style="color: black"  data-target="modal-js-example" data-id ="{{ $category->id }}"><i class="fa-solid fa-pencil"></i></button>
-                                                        </p>
-                                                        <p class="control">
-                                                        <form action="{{ route('categories.destroy', $category->id) }}"
-                                                              method="Post">
-                                                            {{--                                                        <a class="button is-primary" style="color: black"  href="{{ route('categories.edit', $category->id) }}"></a>--}}
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="button is-danger" type="submit"><i class="fa-solid fa-trash has-text-black "></i></button>
-                                                        </form>
-                                                        </p>
-                                                    </div>
-                                                </td>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
             </div>
         </div>
+
+        <div class="column is-9">
+            <div>
+                <!-- Main container -->
+                <nav class="level">
+                    <!-- Left side -->
+                    <div class="level-left">
+                        <div class="level-item">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <input class="input" type="text" placeholder="Cerca una categoria">
+                                </p>
+                                <p class="control">
+                                    <button class="button">
+                                        Cerca
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right side -->
+                    <div class="level-right">
+                        <p class="level-item"><a class="button is-info" href="{{ route('categories.create') }}"> <span
+                                    style="margin-right: 2px"><i class="fa-solid fa-plus"></i></span> Aggiungi Categoria</a>
+                        </p>
+                    </div>
+                </nav>
+                <div class="card events-card">
+                    <header class="card-header">
+                        <p class="card-header-title  has-background-grey-lighter ">
+                            Categorie
+                        </p>
+
+                    </header>
+                    <div class="table-container">
+                        <div class="card-table">
+                            <div class="content">
+                                <table class="table is-fullwidth is-striped">
+                                    <thead>
+                                    <tr>
+                                        <th> Id <i class="fa-solid fa-right-left"></i>
+                                        </th>
+                                        <th>Categoria <i class="fa-solid fa-right-left"></i>
+                                        </th>
+                                        <th>Actions <i class="fa-solid fa-right-left"></i>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($categories as $category)
+                                        <tr>
+                                            <td>{{ $category->id }}</td>
+                                            <td>{{ $category->name }} <input type="hidden" data-id="{{ $category->id }}"
+                                                                             value="{{ $category->name }}"></td>
+
+                                            <td>
+                                                <div class="field is-grouped">
+                                                    <p class="control">
+                                                        <a class="button is-info" style="color: black"
+                                                           href="{{ route('categories.show', $category->id) }}"> <i
+                                                                class="fa-solid fa-magnifying-glass"></i></a>
+                                                    </p>
+                                                    <p class="control">
+                                                        <button class="js-modal-trigger button is-primary"
+                                                                style="color: black" data-target="modal-js-example"
+                                                                data-id="{{ $category->id }}"><i
+                                                                class="fa-solid fa-pencil"></i></button>
+                                                    </p>
+                                                    <p class="control">
+                                                    <form action="{{ route('categories.destroy', $category->id) }}"
+                                                          method="Post">
+                                                        {{--                                                        <a class="button is-primary" style="color: black"  href="{{ route('categories.edit', $category->id) }}"></a>--}}
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button class="button is-danger" type="submit"><i
+                                                                class="fa-solid fa-trash has-text-black "></i></button>
+                                                    </form>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+            <div class="column is-2 has-background-white-ter">
+                <nav class="panel">
+                    <p class="panel-heading">
+                        Filtri
+                    </p>
+                    <div class="panel-block">
+                        <p class="control has-icons-left">
+                            <input class="input" type="text" placeholder="Search">
+                            <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+                        </p>
+                    </div>
+                    <p class="panel-tabs">
+                        <a class="is-active">All</a>
+                        <a>Public</a>
+                        <a>Private</a>
+                        <a>Sources</a>
+                        <a>Forks</a>
+                    </p>
+                    <a class="panel-block is-active">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                        bulma
+                    </a>
+                    <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                        marksheet
+                    </a>
+                    <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                        minireset.css
+                    </a>
+                    <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                        jgthms.github.io
+                    </a>
+                    <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-code-branch" aria-hidden="true"></i>
+    </span>
+                        daniellowtw/infboard
+                    </a>
+                    <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-code-branch" aria-hidden="true"></i>
+    </span>
+                        mojs
+                    </a>
+                    <label class="panel-block">
+                        <input type="checkbox">
+                        remember me
+                    </label>
+                    <div class="panel-block">
+                        <button class="button is-link is-outlined is-fullwidth">
+                            Reset all filters
+                        </button>
+                    </div>
+                </nav>
+
+            </div>
     </div>
 </div>
 <!--Modale-->
@@ -236,14 +325,14 @@
         </header>
         <section class="modal-card-body">
             <!-- Content ... -->
-            <form id="editCategory" name="editCategory" method="POST" enctype="multipart/form-data" >
+            <form id="editCategory" name="editCategory" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Nome Categoria:</strong>
-                            <input type="text" name="name"  class="form-control"
+                            <input type="text" name="name" class="form-control"
                                    placeholder="nome" id="category-name">
                             <input type="hidden" id="category-id">
                             @error('name')
@@ -255,7 +344,7 @@
             </form>
         </section>
         <footer class="modal-card-foot">
-            <button id="btn-save" class="button is-link">Salva </button>
+            <button id="btn-save" class="button is-link">Salva</button>
             <button id="btn-close" class="button">Annulla</button>
         </footer>
     </div>

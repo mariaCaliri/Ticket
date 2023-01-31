@@ -112,44 +112,46 @@
 </head>
 <body>
 
-<div class="container is-fluid">
+<div class="container is-fluid" style="padding: 0">
     <div class="columns">
-        <div id="aside" class=" box column is-2  ">
-            <aside class="menu is-hidden-mobile">
-                <img style="width: 50px" src="/img/logo2.png">
-                <span style="color: lightsteelblue;"> Benvenuto<strong
-                        style="color: lightsteelblue;"> Admin </strong></span>
+        <div id="aside" class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
 
-                <p id="bg-test" class="menu-label has-text-white">
-                    AMMINISTRAZIONE
-                </p>
-                <ul class="menu-list has-text-white">
+            <div class="has-text-centered">
+                <img style="width: 45px; margin-bottom: 50px" src="/img/logo2.png">
+            </div>
 
-                    <li><a style="color: lightsteelblue;margin-bottom: 10px" href="{{ route('admin.utente.index') }}">
-                            <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
+            <div class="menu">
+                <ul class="menu-list has-text-white ">
+                    <li>
+                        <a style="color: lightsteelblue;"href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;margin-top: 5px" href="#"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
                     </li>
 
 
-                    <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i
-                                class="fa-regular fa-rectangle-list"></i>
-                            Categorie</a></li>
 
-                    <p id="bg-test"> GESTIONE OPERATORI</p>
-
-                    <ul class="menu-list has-text-white">
-                        <li><a style="color: lightsteelblue;margin-top: 5px"
-                               href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
-                                gli Operatori</a></li>
-                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
-                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
-                                Torna alla dashboard</a> </li>
-                    </ul>
+                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
+                    </li>
+                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>
+                        </a></li>
+                    <li><a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>
+                    </li>
                 </ul>
-            </aside>
+            </div>
         </div>
-        <div class="column is-10">
-            <div class="columns">
-                <div class="column is-12">
+
+        <div class="column is-9">
+                <div >
                     <!-- Main container -->
                     <nav class="level">
                         <!-- Left side -->
@@ -237,14 +239,75 @@
                                 </div>
                             </div>
                         </div>
-                        <footer class="card-footer">
-                            <a href="#" class="card-footer-item">View All</a>
-                        </footer>
                     </div>
                 </div>
-
-            </div>
         </div>
+        <div class="column is-2 has-background-white-ter">
+            <nav class="panel">
+                <p class="panel-heading">
+                    Repositories
+                </p>
+                <div class="panel-block">
+                    <p class="control has-icons-left">
+                        <input class="input" type="text" placeholder="Search">
+                        <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+                    </p>
+                </div>
+                <p class="panel-tabs">
+                    <a class="is-active">All</a>
+                    <a>Public</a>
+                    <a>Private</a>
+                    <a>Sources</a>
+                    <a>Forks</a>
+                </p>
+                <a class="panel-block is-active">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                    bulma
+                </a>
+                <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                    marksheet
+                </a>
+                <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                    minireset.css
+                </a>
+                <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+                    jgthms.github.io
+                </a>
+                <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-code-branch" aria-hidden="true"></i>
+    </span>
+                    daniellowtw/infboard
+                </a>
+                <a class="panel-block">
+    <span class="panel-icon">
+      <i class="fas fa-code-branch" aria-hidden="true"></i>
+    </span>
+                    mojs
+                </a>
+                <label class="panel-block">
+                    <input type="checkbox">
+                    remember me
+                </label>
+                <div class="panel-block">
+                    <button class="button is-link is-outlined is-fullwidth">
+                        Reset all filters
+                    </button>
+                </div>
+            </nav>
     </div>
     <!--Modale-->
     <div id="modal-edit-operator" class="modal">

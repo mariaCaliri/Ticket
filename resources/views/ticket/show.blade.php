@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="utf-8">
@@ -15,13 +15,13 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
 
-        #aside{
+        #aside {
             background-color: #212C32;
-            width: 80px;
             height: 94vh;
         }
-        #bg-test{
-            background-color:#1C272C ;
+
+        #bg-test {
+            background-color: #1C272C;
         }
 
     </style>
@@ -44,216 +44,223 @@
 <body>
 <div class="container is-fluid">
     <div class="columns">
-        <aside>
-        <div id="aside" class=" box column is-1">
-            <div class="menu is-hidden-mobile">
-                <img style="width: 45px" src="/img/logo2.png">
+
+        <div id="aside" class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
+
+            <div class="has-text-centered">
+                <img style="width: 45px; margin-bottom: 50px" src="/img/logo2.png">
             </div>
 
-            <ul class="menu-list has-text-white">
-                <li><a style="color: lightsteelblue;margin-bottom: 10px; width: 60px" href="{{ route('admin.utente.index') }}"> <i class="fa-solid fa-users"></i></a>
-                </li>
-                <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i class="fa-regular fa-rectangle-list"></i>
-                    </a></li>
-                <li><a style="color: lightsteelblue;margin-top: 5px" href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i></a></li>
-                <li><a style="color: lightsteelblue;margin-top: 5px" href="#"> <i class="fa-solid fa-chart-line"></i></a></li>
-            </ul>
-            <ul class="menu-list has-text-white">
-                <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear"></i></a>
-                </li>
-                <li><a style="color: lightsteelblue;margin-bottom: 20px"> <i class="fa-solid fa-user-plus"></i>
-                    </a></li>
-                <li> <a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question"></i></a></li>
-            </ul>
-        </div>
-        </aside>
+            <div class="menu">
+                <ul class="menu-list has-text-white ">
+                    <li>
+                        <a style="color: lightsteelblue;"href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="color: lightsteelblue;margin-top: 5px" href="#"> <i class="icon fa-solid fa-chart-line"></i> <span class="name ml-4">Report</span></a>
+                    </li>
 
-<!-- chat-->
-    <div class="column is-9" style="position: relative">
-        <div id="notification" style="width: 50%;" class="notification is-danger  is-light is-hidden">
-            Questo ticket è stato chiuso!
+                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
+                    </li>
+                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>
+                        </a></li>
+                    <li><a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <article class="media">
-            <figure class="media-left">
-                <p class="image is-64x64">
-                    <img src="/img/user-profile.png" alt="Image">
-                </p>
-            </figure>
-            <div class="media-content">
-                <div class="content">
-                    <p>
-                        <strong>{{ $ticket->user_id }} Utente: </strong>
-                        <br>
-                       {{ $ticket->message }}
-                        <br>
-                        {{$ticket->created_at}}
+        <!-- chat-->
+        <div class="column is-8" style="position: relative">
+            <div id="notification" style="width: 50%;" class="notification is-danger  is-light is-hidden">
+                Questo ticket è stato chiuso!
+            </div>
+
+            <article class="media">
+                <figure class="media-left">
+                    <p class="image is-64x64">
+                        <img src="/img/user-profile.png" alt="Image">
                     </p>
-                </div>
-
-                @foreach($ticket->messages as $message)
-                <article class="media">
-                    <figure class="media-left">
-
-                        @if( $message->user_id == '1')
-                            <img src="/img/admin2.png" style="width: 65px">
-                            <a class=" has-text-black" href=""></a>
-                        @elseif($message->user_id == '2')
-                            <img src="/img/operatore-blu.png" style="width: 65px">
-                            <a class=" has-text-black" href=""> </a>
-                        @else
-                            <img src="/img/user-profile.png" style="width: 65px">
-                            <a class=" has-text-black" href=""> </a>
-                        @endif
-                    </figure>
-
-                    <div class="media-content">
-                        <div class="content">
-                            <p>
-                                <strong>
-                                    @if( $message->user_id == '1')
-                                       Amministratore
-                                    @elseif($message->user_id == '2')
-                                       Operatore
-                                    @else
-                                       {{ $user->name }}
-                                    @endif
-                                </strong>
-                                <br>
-                                {{ $message->body }}
-                                <br>
-                            </p>
-                        </div>
+                </figure>
+                <div class="media-content">
+                    <div class="content">
+                        <p>
+                            <strong>{{ $ticket->user_id }} Utente: </strong>
+                            <br>
+                            {{ $ticket->message }}
+                            <br>
+                            {{$ticket->created_at}}
+                        </p>
                     </div>
-                </article>
-            </div>
-        </article>
-        @endforeach
+                </div>
+            </article>
+                    @foreach($ticket->messages as $message)
+                        <article class="media">
+                            <figure class="media-left">
 
-{{--        <div class="box" style="width: 30%">--}}
-{{--            <article class="media">--}}
-{{--                <div class="media-left">--}}
-{{--                    <figure class="image is-64x64">--}}
-{{--                        <img src="/img/user-profile.png" alt="Image">--}}
-{{--                    </figure>--}}
-{{--                </div>--}}
-{{--                <div class="media-content">--}}
-{{--                    <div class="content">--}}
-{{--                        <p>--}}
-{{--                            <strong>Messaggio:</strong>--}}
-{{--                            <br>--}}
-{{--                            {{ $ticket->message }}--}}
-{{--                        </p>--}}
-{{--                    </div>--}}
-{{--                    <nav class="level is-mobile">--}}
-{{--                        <div class="level-left">--}}
+                                @if( $message->user_id == '1')
+                                    <img src="/img/admin2.png" style="width: 65px">
+                                    <a class=" has-text-black" href=""></a>
+                                @elseif($message->user_id == '2')
+                                    <img src="/img/operatore-blu.png" style="width: 65px">
+                                    <a class=" has-text-black" href=""> </a>
+                                @else
+                                    <img src="/img/user-profile.png" style="width: 65px">
+                                    <a class=" has-text-black" href=""> </a>
+                                @endif
+                            </figure>
 
-{{--                        </div>--}}
-{{--                    </nav>--}}
-{{--                </div>--}}
-{{--            </article>--}}
-{{--        </div>--}}
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <strong>
+                                            @if( $message->user_id == '1')
+                                                Amministratore
+                                            @elseif($message->user_id == '2')
+                                                Operatore
+                                            @else
+                                                {{ $user->name }}
+                                            @endif
+                                        </strong>
+                                        <br>
+                                        {{ $message->body }}
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
 
-{{--        @foreach($ticket->messages as $message)--}}
-{{--            <article style="width: 30%" class="message is-medium is-info">--}}
-{{--                <div class="message-header">--}}
-{{--                    @if( $message->user_id == '1')--}}
-{{--                        <img src="/img/admin2.png" style="width: 65px">--}}
-{{--                        <a class=" has-text-black" href=""></a>--}}
-{{--                    @elseif($message->user_id == '2')--}}
-{{--                        <img src="/img/operatore-blu.png" style="width: 65px">--}}
-{{--                        <a class=" has-text-black" href=""> </a>--}}
-{{--                    @else--}}
-{{--                        <img src="/img/user-profile.png" style="width: 65px">--}}
-{{--                        <a class=" has-text-black" href=""> </a>--}}
-{{--                    @endif--}}
+            @endforeach
 
-{{--                </div>--}}
-{{--                <div class="message-body">--}}
-{{--                    <strong>Messaggio:</strong>--}}
-{{--                    <br>--}}
-{{--                    {{ $message->body }}--}}
-{{--                </div>--}}
-{{--            </article>--}}
+            {{--        <div class="box" style="width: 30%">--}}
+            {{--            <article class="media">--}}
+            {{--                <div class="media-left">--}}
+            {{--                    <figure class="image is-64x64">--}}
+            {{--                        <img src="/img/user-profile.png" alt="Image">--}}
+            {{--                    </figure>--}}
+            {{--                </div>--}}
+            {{--                <div class="media-content">--}}
+            {{--                    <div class="content">--}}
+            {{--                        <p>--}}
+            {{--                            <strong>Messaggio:</strong>--}}
+            {{--                            <br>--}}
+            {{--                            {{ $ticket->message }}--}}
+            {{--                        </p>--}}
+            {{--                    </div>--}}
+            {{--                    <nav class="level is-mobile">--}}
+            {{--                        <div class="level-left">--}}
 
-{{--        @endforeach--}}
-        <div style="position: absolute;bottom: 0px;left: 150px; width: 50%"  >
-            @if($ticket->status == 'completato')
-                <button class="button" title="Disabled button" disabled>Rispondi</button>
-            @else
-            <button id="open-text" class="button is-link is-light" style="margin-bottom: 10px;">Rispondi</button>
-            @endif
-            <form id="textarea" method="post" action="{{ route('chat.store')}}">
-                @csrf
-                        <textarea class="textarea is-hovered textarea is-medium" name="body" placeholder="Contenuto" minlength="5"
-                                  maxlength="2000">
+            {{--                        </div>--}}
+            {{--                    </nav>--}}
+            {{--                </div>--}}
+            {{--            </article>--}}
+            {{--        </div>--}}
+
+            {{--        @foreach($ticket->messages as $message)--}}
+            {{--            <article style="width: 30%" class="message is-medium is-info">--}}
+            {{--                <div class="message-header">--}}
+            {{--                    @if( $message->user_id == '1')--}}
+            {{--                        <img src="/img/admin2.png" style="width: 65px">--}}
+            {{--                        <a class=" has-text-black" href=""></a>--}}
+            {{--                    @elseif($message->user_id == '2')--}}
+            {{--                        <img src="/img/operatore-blu.png" style="width: 65px">--}}
+            {{--                        <a class=" has-text-black" href=""> </a>--}}
+            {{--                    @else--}}
+            {{--                        <img src="/img/user-profile.png" style="width: 65px">--}}
+            {{--                        <a class=" has-text-black" href=""> </a>--}}
+            {{--                    @endif--}}
+
+            {{--                </div>--}}
+            {{--                <div class="message-body">--}}
+            {{--                    <strong>Messaggio:</strong>--}}
+            {{--                    <br>--}}
+            {{--                    {{ $message->body }}--}}
+            {{--                </div>--}}
+            {{--            </article>--}}
+
+            {{--        @endforeach--}}
+            <div style="position: absolute;bottom: 0px;left: 150px; width: 50%">
+                <form id="textarea" method="post" action="{{ route('chat.store')}}">
+                    @csrf
+                    <textarea class="textarea is-hovered textarea is-medium" name="body" placeholder="Contenuto"
+                              minlength="5"
+                              maxlength="2000">
                         </textarea>
 
-                <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+                    <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
 
-                <div style="margin-top: 10px" class="field">
-                    <div class="control">
-                        <button type="submit" class="button is-link is-outlined">Pubblica</button>
-
+                    <div style="margin-top: 10px" class="field">
+                        <div class="control">
+                            @if($ticket->status == 'completato')
+                            <button type="submit" class="button is-link is-outlined" title="Disabled button" disabled>Pubblica</button>
+                            @else
+                                <button type="submit" class="button is-link is-outlined" >Pubblica</button>
+                            @endif
+                        </div>
                     </div>
-                </div>
-            </form>
-        </div>
-
-        <div class="column is-4" style="background-color: lightgrey">
-            <div class="card ">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        Dettaglio Ticket "{{ $ticket->id }}"
-                    </p>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        <strong>Titolo: </strong>
-                        <span>{{ $ticket->title }}</span>
-                    </div>
-                    <div>
-                        <strong>Data di Apertura</strong>
-                        <span>{{ $ticket->registered_at }}</span>
-                    </div>
-                    <div>
-                        <strong>Priorità</strong>
-                        <span>{{ $ticket->priority }}</span>
-                    </div>
-                    <div>
-                        <strong>Status</strong>
-                        <span id="status">{{ $ticket->status }}</span>
-                    </div>
-                    <div>
-                        <strong>Categoria</strong>
-                        <span>{{ $ticket->category->name }}</span>
-                    </div>
-
-                </div>
+                </form>
             </div>
-            <div class="card" style="margin-top: 20px">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        Richiedente:
-                    </p>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        {{$ticket->user_id}}
+        </div>
+            <div class="column is-3 has-background-white-ter"  style="position: relative">
+                <div class="card ">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Dettaglio Ticket "{{ $ticket->id }}"
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            <strong>Titolo: </strong>
+                            <span>{{ $ticket->title }}</span>
+                        </div>
+                        <div>
+                            <strong>Data di Apertura</strong>
+                            <span>{{ $ticket->registered_at }}</span>
+                        </div>
+                        <div>
+                            <strong>Priorità</strong>
+                            <span>{{ $ticket->priority }}</span>
+                        </div>
+                        <div>
+                            <strong>Status</strong>
+                            <span id="status">{{ $ticket->status }}</span>
+                        </div>
+                        <div>
+                            <strong>Categoria</strong>
+                            <span>{{ $ticket->category->name }}</span>
+                        </div>
 
-                        <br>
-                        <time datetime="2016-1-1">{{$ticket->created_at}}</time>
                     </div>
                 </div>
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Save</a>
-                    <a href="#" class="card-footer-item">Edit</a>
-                    <a href="#" class="card-footer-item">Delete</a>
-                </footer>
+
+
+                <div class="card" style="margin-top: 20px">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            Richiedente:
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <div class="content">
+                            {{$ticket->user_id}}
+
+                            <br>
+                            <time datetime="2016-1-1">{{$ticket->created_at}}</time>
+                        </div>
+                    </div>
+                </div>
+                <a style="position: absolute;bottom: 0px;" class="button is-link" href="{{ route('admin.home') }}">Torna alla dashboard </a>
             </div>
-            <a class="button is-link" href="{{ route('admin.home') }}">Torna alla dashboard </a>
         </div>
-    </div>
     </div>
 </div>
 </body>
