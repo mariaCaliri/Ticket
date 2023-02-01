@@ -25,7 +25,7 @@ return new class extends Migration
 
             $table->foreignId('category_id')->index()->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->nullable();
-            $table->foreignId('operator_id')->default('2')->index()->nullOnDelete();
+            $table->foreignId('operator_id')->nullOnDelete();
             $table->timestamps();
         });
     }

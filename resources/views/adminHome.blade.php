@@ -19,6 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <style>
 
         *{
@@ -41,14 +43,37 @@
             background-color: #1C272C;
         }
 
-        .icon {
-            margin-bottom: 30px;
-        }
     </style>
     <title>Admin-dashboard </title>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            const chart = Highcharts.chart('container-chart', {
+                chart: {
+                    type: 'bar'
+                },
+                title: {
+                    text: 'Ticket Risolti'
+                },
+                xAxis: {
+                    categories: ['Aperti', 'Chiusi', 'In attesa']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Ultimo mese'
+                    }
+                },
+                series: [{
+                    name: 'In attesa',
+                    data: [1, 0, 4]
+                }, {
+                    name: 'Risolti',
+                    data: [5, 7, 3]
+                }]
+            });
+
+
             let ticketId = document.querySelector('#ticket-id');
             let ticketInputTitle = document.querySelector('#titolo');
             let ticketInputPriority = document.querySelector('#priority');
@@ -150,8 +175,6 @@
 <div style="padding: 0" id="container" class="container is-fluid">
     <div class="columns">
         <!--barra di navigazione laterale-->
-
-{{--        <div id="aside" class="column is-1 has-background-white-ter" style="position: relative">--}}
             <div id="aside" class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
 
                     <div class="has-text-centered">
@@ -220,14 +243,14 @@
                     </div>
                 </section>
             </div>
-            <div class="card events-card">
+            <div class="card events-card" style="margin-bottom: 50px">
                 <header class="card-header">
                     <p class="card-header-title  has-background-grey-lighter ">
                         Tickets
                     </p>
                 </header>
-                <div class="table-container">
-                    <div class="card-table">
+                <div>
+                    <div class="card-content">
                         <div class="content">
                             <table class="table is-fullwidth is-striped">
                                 <thead>
@@ -238,7 +261,7 @@
                                     <th>Categoria</th>
                                     <th>Stato</th>
                                     <th>Priorità</th>
-                                    <th>Assegna</th>
+                                    <th>Operatore</th>
                                     <th>Azioni</th>
                                 </tr>
                                 </thead>
@@ -273,7 +296,7 @@
                                             @endif
                                         </td>
                                         <td> {{ $ticket->priority }}</td>
-                                        <td><i class="fa-solid fa-user-plus"></i></td>
+                                        <td>{{$ticket->operator_id}}</td>
 
                                         <td>
                                             <div class="field is-grouped">
@@ -315,7 +338,11 @@
                 </div>
 
             </div>
+            <!-- diagramma-->
+
+            <div class="mt-5" id="container-chart" style="width:100%; height:400px;"></div>
         </div>
+
         <!-- seconda colonna -->
         <div class="column is-2 has-background-white-ter">
             <nav class="panel">
@@ -386,7 +413,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Titolo:</strong>
-                            <input type="text" name="title" class="form-control"
+                            <input type="text" name="title" class="input"
                                    placeholder="titolo" id="titolo">
 
                             <input type="hidden" id="ticket-id">
