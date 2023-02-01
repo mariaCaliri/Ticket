@@ -175,10 +175,10 @@
 <div style="padding: 0" id="container" class="container is-fluid">
     <div class="columns">
         <!--barra di navigazione laterale-->
-            <div id="aside" class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
+            <div id="aside" class="column is-1 is-fullheight has-background-grey-dark">
 
                     <div class="has-text-centered">
-                        <img style="width: 45px; margin-bottom: 50px" src="/img/logo2.png">
+                        <img style="width: 75px; margin-bottom: 50px" src="/img/admin2.png">
                     </div>
 
                 <div class="menu">
@@ -252,7 +252,7 @@
                 <div>
                     <div class="card-content">
                         <div class="content">
-                            <table class="table is-fullwidth is-striped">
+                            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                                 <thead>
                                 <tr>
                                     <th> Id</th>

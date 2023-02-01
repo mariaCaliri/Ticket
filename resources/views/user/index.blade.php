@@ -115,13 +115,18 @@
 <body>
 <div class="container is-fluid" style="padding: 0">
     <div class="columns">
-        <div id="aside"  class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
+        <div id="aside"  class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
             <div class="has-text-centered">
-                <img style="width: 45px; margin-bottom: 50px" src="/img/logo2.png">
+                <img style="width: 75px; margin-bottom: 50px" src="/img/admin2.png">
             </div>
 
             <div class="menu">
                 <ul class="menu-list has-text-white ">
+                    <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 20px"
+                                                         class="has-text-white" href="{{ route('admin.home') }}">
+                            <span style="color: lightsteelblue"><i class="fa-solid fa-house-user fa-xl"></i></span style="color: lightsteelblue">
+                            Home</a></li>
+
                     <li>
                         <a style="color: lightsteelblue;margin-top: 20px"href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
                         </a>
@@ -149,26 +154,9 @@
                 </ul>
             </div>
         </div>
-        <div class="column is-9">
+        <div class="column is-8">
                 <div>
                     <!-- Main container -->
-                    <nav class="level">
-                        <!-- Left side -->
-                        <div class="level-left">
-                            <div class="level-item">
-                                <div class="field has-addons">
-                                    <p class="control">
-                                        <input class="input" type="text" placeholder="Cerca un utente">
-                                    </p>
-                                    <p class="control ">
-                                        <button class="button is-info">
-                                            Cerca
-                                        </button>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
                     <div class="card events-card">
                         <header class="card-header">
                             <p class="card-header-title  has-background-grey-lighter ">
@@ -178,7 +166,7 @@
                         <div class="table-container">
                             <div class="card-table">
                                 <div class="content">
-                                    <table class="table is-fullwidth is-striped">
+                                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                                         <thead>
                                         <tr>
                                             <th> Id </i>
@@ -248,66 +236,42 @@
         <div class="column is-2 has-background-white-ter">
             <nav class="panel">
                 <p class="panel-heading">
-                    Repositories
+                   Utenti
                 </p>
                 <div class="panel-block">
                     <p class="control has-icons-left">
-                        <input class="input" type="text" placeholder="Search">
+                        <input class="input" type="text" placeholder="Cerca Utente">
                         <span class="icon is-left">
         <i class="fas fa-search" aria-hidden="true"></i>
       </span>
                     </p>
                 </div>
-                <p class="panel-tabs">
-                    <a class="is-active">All</a>
-                    <a>Public</a>
-                    <a>Private</a>
-                    <a>Sources</a>
-                    <a>Forks</a>
-                </p>
                 <a class="panel-block is-active">
     <span class="panel-icon">
       <i class="fas fa-book" aria-hidden="true"></i>
     </span>
-                    bulma
+                  Tutti
                 </a>
                 <a class="panel-block">
     <span class="panel-icon">
       <i class="fas fa-book" aria-hidden="true"></i>
     </span>
-                    marksheet
+                 Attivi
                 </a>
                 <a class="panel-block">
     <span class="panel-icon">
-      <i class="fas fa-book" aria-hidden="true"></i>
-    </span>
-                    minireset.css
+      <i class="fa-solid fa-plus"></i>
+                       </span>
+                   Aggiungi utente
                 </a>
-                <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-book" aria-hidden="true"></i>
-    </span>
-                    jgthms.github.io
-                </a>
-                <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-code-branch" aria-hidden="true"></i>
-    </span>
-                    daniellowtw/infboard
-                </a>
-                <a class="panel-block">
-    <span class="panel-icon">
-      <i class="fas fa-code-branch" aria-hidden="true"></i>
-    </span>
-                    mojs
-                </a>
+
                 <label class="panel-block">
                     <input type="checkbox">
-                    remember me
+                   Ricorda Filtri
                 </label>
                 <div class="panel-block">
                     <button class="button is-link is-outlined is-fullwidth">
-                        Reset all filters
+                        Resetta Filtri
                     </button>
                 </div>
             </nav>

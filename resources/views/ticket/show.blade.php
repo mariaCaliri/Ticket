@@ -45,10 +45,20 @@
 <div class="container is-fluid">
     <div class="columns">
 
-        <div id="aside" class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
+        <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
 
             <div class="has-text-centered">
-                <img style="width: 45px; margin-bottom: 50px" src="/img/logo2.png">
+                @if( \Illuminate\Support\Facades\Auth::id() == '1')
+                    <img src="/img/admin2.png" style="width: 65px">
+                    <a class=" has-text-black" href=""></a>
+                @elseif(Auth::id()  == '2')
+                    <img src="/img/operatore-blu.png" style="width: 65px">
+                    <a class=" has-text-black" href=""> </a>
+                @else
+                    <img src="/img/user-profile.png" style="width: 65px">
+                    <a class=" has-text-black" href=""> </a>
+                @endif
+
             </div>
 
             <div class="menu">
@@ -80,7 +90,7 @@
         </div>
 
         <!-- chat-->
-        <div class="column is-8" style="position: relative">
+        <div class="column is-7" style="position: relative">
             <div id="notification" style="width: 50%;" class="notification is-danger  is-light is-hidden">
                 Questo ticket è stato chiuso!
             </div>

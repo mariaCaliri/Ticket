@@ -16,8 +16,6 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         #aside {
-            background-color: #212C32;
-            padding: 20px;
             height: 94vh;
         }
 
@@ -28,46 +26,46 @@
 
 </head>
 <body>
-<div class="container is-fluid">
+<div class="container is-fluid" style="padding: 0px">
     <div class="columns">
-        <div id="aside" class=" box column is-2  ">
+        <div id="aside" class="column is-2  is-fullheight has-background-grey-dark" style="position: relative">
             <aside class="menu is-hidden-mobile">
-                <img style="width: 50px" src="/img/logo2.png">
-                <span style="color: lightsteelblue;"> Benvenuto<strong
-                        style="color: lightsteelblue;"> Admin </strong></span>
 
-                <p id="bg-test" class="menu-label has-text-white">
-                    AMMINISTRAZIONE
-                </p>
-                <ul class="menu-list has-text-white">
+                <div class="has-text-centered">
+                    <img style="width: 75px; margin-bottom: 50px" src="/img/admin2.png">
+                </div>
 
-                    <li><a style="color: lightsteelblue;margin-bottom: 10px" href="{{ route('admin.utente.index') }}">
-                            <i class="fa-regular fa-user"></i>Tutti gli Utenti</a>
-                    </li>
+                <div class="menu">
+                    <ul class="menu-list has-text-white ">
+                        <li>
+                            <a style="color: lightsteelblue;"href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color: lightsteelblue;" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color: lightsteelblue;" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color: lightsteelblue;margin-top: 5px" href="#"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
+                        </li>
 
 
-                    <li><a style="color: lightsteelblue;margin-bottom: 5px" href="{{ route('categories.index') }}"> <i
-                                class="fa-regular fa-rectangle-list"></i>
-                            Categorie</a></li>
 
-                    <p id="bg-test"> GESTIONE OPERATORI</p>
-
-                    <ul class="menu-list has-text-white">
-                        <li><a style="color: lightsteelblue;margin-top: 5px"
-                               href="{{ route('admin.operatore.index') }}"> <i class="fa-solid fa-users-line"></i> Tutti
-                                gli Operatori</a></li>
-                        <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 5px" class="has-text-white" href="{{ route('admin.home') }}">
-                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user"></i></span>
-                                Torna alla dashboard</a> </li>
-
+                        <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
+                        </li>
+                        <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>
+                            </a></li>
+                        <li><a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>
+                        </li>
                     </ul>
-
-
-                </ul>
-
-            </aside>
+                </div>
         </div>
-        <div class="column is-four-fifths">
+
+        <div class="column is-9">
             <div class="card">
                 <header class="card-header">
                     <p class="card-header-title">
@@ -82,12 +80,7 @@
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <form method="get" action="{{ route('categories.edit', $category->id )  }}">
-                        @csrf
-                        @method('PUT')
-                        <button class="button is-info mt-5">Modifica</button>
-                    </form>
-
+                    <a href="{{ route('admin.home') }}" class="button is-info mt-5">Indietro</a>
                 </footer>
             </div>
         </div>

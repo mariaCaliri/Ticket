@@ -16,8 +16,6 @@
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
         #aside {
-            background-color: #212C32;
-            padding: 20px;
             height: 94vh;
         }
 
@@ -27,12 +25,13 @@
     </style>
 </head>
 <body>
-<div class="container is-fluid">
+<div class="container is-fluid" style="padding: 0">
     <div class="columns">
-        <div id="aside" class="column is-2 ">
+        <div id="aside" class="column is-2 has-background-grey-dark">
             <aside class="menu is-hidden-mobile">
-
-                <img style="width: 80px;margin-top: 5px;" src="/img/user-img.png"><br>
+                <div class="text-center">
+                <img style="width: 80px;margin-top: 5px;" src="/img/user-img.png">
+                </div>
                 <p id="bg-text" class="menu-label has-text-white" style="font-size: 20px;"><i
                         class="fas fa-user-cog"></i> GENERALE</p>
 
@@ -43,14 +42,18 @@
                             <span style="color: lightsteelblue">Home</span>
                         </a>
                     </li>
-                    <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('operator.profile') }}"> <i
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('user.profile') }}"> <i
                                 class="fa-solid fa-user fa-xl"></i> Profilo</a></li>
-                    <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('operator-change-password') }}"> <i
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('change-password') }}"> <i
                                 class="fa-solid fa-lock fa-xl"></i> Modifica Password</a>
                     </li>
-                    <li><a style="color: lightsteelblue;margin-bottom: 20px;" href="{{ route('operator-login-history') }}"> <i
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px;" href="{{ route('login-history') }}"> <i
                                 class="fa-solid fa-list fa-xl"></i> Lista Accessi
                         </a>
+                    </li>
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px"><i
+                                class="fa-solid fa-circle-question icon fa-xl"></i><span
+                                class="name ml-4">Help</span></a>
                     </li>
 
                 </ul>
@@ -58,9 +61,7 @@
         </div>
         <div class="column is-10">
             <div class="card">
-                <div class="card-body">
-
-                    <div class="card-table">
+                <div class="card-content">
                         <div class="content">
                             <table class="table is-bordered is-striped ">
                                 <thead>
@@ -80,7 +81,7 @@
                                 @endforeach
                             </table>
                         </div>
-                    </div>
+
                 </div>
             </div>
         </div>

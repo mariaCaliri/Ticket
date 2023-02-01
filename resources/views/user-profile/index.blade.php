@@ -25,7 +25,7 @@
 <body>
     <div class="container is-fluid" style="padding: 0px">
         <div class="columns">
-            <div id="aside" class=" column is-2  ">
+            <div id="aside" class=" column is-2 has-background-grey-dark ">
                 <aside class="menu is-hidden-mobile">
                         <img style="width: 80px;margin-top: 5px;" src="/img/user-img.png">
                     <p id="bg-text" style="font-size: 20px;" class="menu-label has-text-white">
@@ -36,6 +36,10 @@
                         <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('change-password') }}"> <i class="fa-solid fa-lock fa-xl"></i> Modifica Password</a>
                         </li>
                         <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('login-history') }}"> <i class="fa-solid fa-list fa-xl" ></i> Lista Accessi</a></li>
+                        <li><a style="color: lightsteelblue;margin-bottom: 20px"><i
+                                    class="fa-solid fa-circle-question icon fa-xl"></i><span
+                                    class="name ml-4">Help</span></a>
+                        </li>
                     </ul>
                 </aside>
             </div>
@@ -45,7 +49,7 @@
                                     <img style="width: 70px" src="/img/user-profile.png">
                                     <h1 style="font-size: 20px;display: inline; text-transform: uppercase">Dettaglio utente"{{ auth()->user()->id }}"</h1>
                                 </div>
-                            <div class="card-content-content">
+                            <div class="card-content">
                                 <div class="content">
                                     <div class="field">
                                         <div class="control">
@@ -58,6 +62,7 @@
                                     </div>
                                     <div class="field">
                                         <div class="control">
+                                            <label class="label">Email</label>
                                             <input class="input" type="text" id="email" name="email"
                                                    value="{{ auth()->user()->email }}"
                                                    placeholder="john.doe@example.com">

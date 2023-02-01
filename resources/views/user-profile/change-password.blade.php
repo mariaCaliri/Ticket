@@ -27,7 +27,48 @@
         }
     </style>
 </head>
-    <div class="container-fluid">
+    <div class="container-fluid" style="padding: 0">
+        <div class="columns">
+            <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
+
+                <div class="has-text-centered">
+                    <img style="width: 80px" src="/img/user-img.png">
+                </div>
+
+                <p id="bg-test" style="font-size: 20px;" class="menu-label has-text-white">
+                    <i class="fas fa-user-cog"></i> GENERALE
+                </p>
+                <div class="menu">
+                    <ul class="menu-list has-text-white">
+                        <li style="color: lightsteelblue;margin-bottom: 20px"><a
+                                style="color: lightsteelblue;margin-top: 5px" href="{{ route('home') }}">
+                                <span style="color: lightsteelblue"><i class="fa-solid fa-house-user fa-xl"></i></span>Torna
+                                alla dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('user.profile') }}">
+                                <span class="icon">  <i class="fa-solid fa-user fa-xl"></i> </span><span class="name ml-4"> Profilo</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color:lightsteelblue;margin-bottom: 20px" href="{{ route('change-password') }}"> <span
+                                    class="icon">  <i class="fa-solid fa-lock fa-xl"></i></span><span class="name ml-4"> Modifica Password</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('login-history') }}"> <span
+                                    class="icon"><i class="fa-solid fa-list fa-xl"></i></span><span class="name ml-4"> Lista Accessi</span>
+                            </a>
+                        </li>
+                        <li><a style="color: lightsteelblue;margin-bottom: 20px"><i
+                                    class="fa-solid fa-circle-question icon fa-xl"></i><span
+                                    class="name ml-4">Help</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="column is-10">
                 <div class="card">
                     <div class="card-header">{{ __('Cambia Password') }}</div>
                     <div class="card-content">
@@ -81,14 +122,11 @@
                                 <div class="control">
                                  <button class="button is-danger"><a style="color: white" href="{{ route('home') }}"> Annulla</a></button>
                                 </div>
-                                <div class="control">
-                                 <button class="button is-primary"><a style="color: white" href="{{ route('home') }}">Torna alla dashboard</a></button>
-                                </div>
                             </div>
 
                         </form>
                     </div>
                 </div>
-
+            </div>
     </div>
 @endsection

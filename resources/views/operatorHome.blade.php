@@ -125,7 +125,7 @@
     </script>
 </head>
 <body>
-<div class="container is-fluid">
+<div class="container is-fluid" style="padding: 0px">
     <div class="columns">
         <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
             <aside class="menu is-hidden-mobile">

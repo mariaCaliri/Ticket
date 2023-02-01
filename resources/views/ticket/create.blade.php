@@ -35,7 +35,7 @@
                       enctype="multipart/form-data">
                     @csrf
                     <strong>Titolo:</strong>
-                    <input type="text" name="title" class="form-control"
+                    <input type="text" name="title" class="input"
                            placeholder="titolo">
                     @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -64,11 +64,15 @@
 
             </div>
         </div>
-        <footer class="card-footer">
+        <div class="field is-grouped">
+            <div class="control">
             <button type="submit" class="button is-info">Aggiungi</button>
+            </div>
+            <div class="control">
             <button type="submit" class="button is-danger"><a style="color: white;" href="{{ route('admin.home') }}">
                     Annulla </a></button>
-        </footer>
+            </div>
+            </div>
         </form>
     </div>
 </div>

@@ -114,10 +114,10 @@
 
 <div class="container is-fluid" style="padding: 0">
     <div class="columns">
-        <div id="aside" class="column is-1 is-fullheight has-background-grey-dark" style="position: relative">
+        <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
 
             <div class="has-text-centered">
-                <img style="width: 45px; margin-bottom: 50px" src="/img/logo2.png">
+                <img style="width: 75px; margin-bottom: 50px" src="/img/admin2.png">
             </div>
 
             <div class="menu">
@@ -155,7 +155,7 @@
             </div>
         </div>
 
-        <div class="column is-9">
+        <div class="column is-8">
                 <div >
                     <!-- Main container -->
                     <div class="card events-card">
@@ -164,10 +164,10 @@
                                 Operatori
                             </p>
                         </header>
-                        <div class="table-container">
-                            <div class="card-table">
+                        <div class="card">
+                            <div class="card-content">
                                 <div class="content">
-                                    <table class="table is-fullwidth is-striped">
+                                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                                         <thead>
                                         <tr>
                                             <th> Id </i>
