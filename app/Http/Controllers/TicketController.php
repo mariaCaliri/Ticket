@@ -15,6 +15,7 @@ use App\Notifications\OperatorsNotification;
 use App\Notifications\TicketCreated;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -125,10 +126,12 @@ class TicketController extends Controller
             'priority'=> 'required',
             'status'=> 'required',
             'category_id'=> 'required',
+            'feedback' => 'min:5|max:200'
         ]);
              $ticket->update($request->all());
              $ticket->save();
-        Mail::to($request->user())->send(new closedTicket());
+      //  Mail::to($request->user())->send(new closedTicket());
+            dd($request);
    }
 
 
@@ -144,5 +147,24 @@ class TicketController extends Controller
         $ticket->delete();
 
         return redirect()->route('admin.home')->with('Il ticket è stato cancellato');
+    }
+
+    public function feedback(Request $request, Ticket $ticket ): RedirectResponse
+    {
+        $request->validate([
+           'feedback'=>'min:5|max:200'
+        ]);
+        $ticket = $request->get('ticket_id');
+
+//        $ticket->where('id', $ticket_id)->update('feedback')->get( $request->get('feedback'));
+//        $ticket->save();
+
+
+       DB::table('tickets')->where('id', $ticket)->update([
+           'feedback'=> $request->get('feedback')
+       ]);
+
+
+        return to_route('home', with('ticket'));
     }
 }

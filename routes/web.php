@@ -43,6 +43,7 @@ Route::resource('categories', \App\Http\Controllers\CategoryController::class);
 
 //rotte per il crud del ticket
 Route::resource('tickets', TicketController::class);
+Route::patch('tickets', [TicketController::class, 'feedback'])->name('feedback');
 
 //Rotte per utente
 Route::get('admin/utente', [UserController::class, 'index'])->name('admin.utente.index');

@@ -28,10 +28,8 @@
     <script>
 
         window.addEventListener('DOMContentLoaded', (event) => {
-            let notification = document.querySelector('#notification');
+            let notification = document.querySelector('.notification');
             let status = document.querySelector('#status').textContent;
-            let textarea = document.querySelector('#textarea');
-            let openText = document.querySelector('#open-text')
 
             if (status === 'completato') {
                 notification.classList.remove('is-hidden');
@@ -42,58 +40,82 @@
 
 </head>
 <body>
-<div class="container is-fluid">
-    <div class="columns">
+<div class="container is-fluid" style="padding: 0px">
+    <div class="columns" style="height: 94vh">
 
-        <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
+{{--        <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">--}}
 
-            <div class="has-text-centered">
-                @if( \Illuminate\Support\Facades\Auth::id() == '1')
-                    <img src="/img/admin2.png" style="width: 65px">
-                    <a class=" has-text-black" href=""></a>
-                @elseif(Auth::id()  == '2')
-                    <img src="/img/operatore-blu.png" style="width: 65px">
-                    <a class=" has-text-black" href=""> </a>
-                @else
-                    <img src="/img/user-profile.png" style="width: 65px">
-                    <a class=" has-text-black" href=""> </a>
-                @endif
+{{--            <div class="has-text-centered">--}}
+{{--                @if( \Illuminate\Support\Facades\Auth::id() == '1')--}}
+{{--                    <img src="/img/admin2.png" style="width: 65px">--}}
+{{--                    <a class=" has-text-black" href=""></a>--}}
+{{--                @elseif(Auth::id()  == '2')--}}
+{{--                    <img src="/img/operatore-blu.png" style="width: 65px">--}}
+{{--                    <a class=" has-text-black" href=""> </a>--}}
+{{--                @else--}}
+{{--                    <img src="/img/user-profile.png" style="width: 65px">--}}
+{{--                    <a class=" has-text-black" href=""> </a>--}}
+{{--                @endif--}}
 
-            </div>
+{{--            </div>--}}
 
-            <div class="menu">
-                <ul class="menu-list has-text-white ">
-                    <li>
-                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a style="color: lightsteelblue;margin-top: 20px" href="#"> <i class="icon fa-solid fa-chart-line"></i> <span class="name ml-4">Report</span></a>
-                    </li>
+{{--            <div class="menu">--}}
+{{--                <ul class="menu-list has-text-white ">--}}
+{{--                    <li>--}}
+{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
+{{--                    <li>--}}
+{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="#"> <i class="icon fa-solid fa-chart-line"></i> <span class="name ml-4">Report</span></a>--}}
+{{--                    </li>--}}
 
-                    <li><a style="color: lightsteelblue;margin-top: 20px"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
-                    </li>
-                    <li><a style="color: lightsteelblue;margin-top: 20px"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>
-                        </a></li>
-                    <li><a style="color: lightsteelblue;margin-top: 20px"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+{{--                    <li><a style="color: lightsteelblue;margin-top: 20px"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>--}}
+{{--                    </li>--}}
+{{--                    <li><a style="color: lightsteelblue;margin-top: 20px"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>--}}
+{{--                        </a></li>--}}
+{{--                    <li><a style="color: lightsteelblue;margin-top: 20px"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>--}}
+{{--                    </li>--}}
+{{--                </ul>--}}
+{{--            </div>--}}
+{{--        </div>--}}
 
         <!-- chat-->
-        <div class="column is-7" style="position: relative">
-            <div id="notification" style="width: 50%;" class="notification is-danger  is-light is-hidden">
-                Questo ticket è stato chiuso!
+        <div class="column is-9 " style="position: relative">
+            <div style="width: 50%;margin-left: 200px" class="notification is-danger is-light is-hidden has-text-centered">
+                Ciao! Questo ticket è stato chiuso in giorno {{ $ticket->updated_at->format('d M Y') }}
             </div>
+            <div style="width: 50%;margin-left: 200px" class="notification is-info is-light is-hidden">
+                Aiutaci a migliorare! Lascia una recensione della tua esperienza
+                <form method="post" action="{{ route('feedback', $ticket->id) }}">
+                    @method('PATCH')
+                    @csrf
+                <textarea class="textarea is-hovered" name="feedback" >
+
+                </textarea>
+                <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+                    <button type="submit" class="button is-link mt-5">Invia</button>
+                </form>
+            </div>
+
+            <section class="hero is-info">
+                <div class="hero-body">
+                    <p class="title">
+                        <i class="fa-regular fa-message fa-xl"></i>    Chatta
+                    </p>
+                    <p class="subtitle">
+                    </p>
+                </div>
+            </section>
+            <div class="column is-three-fifths
+           is-offset-one-fifth" style="height: 80vh">
 
             <article class="media">
                 <figure class="media-left">
@@ -113,6 +135,7 @@
                     </div>
                 </div>
             </article>
+
                     @foreach($ticket->messages as $message)
                         <article class="media">
                             <figure class="media-left">
@@ -152,7 +175,7 @@
             @endforeach
 
             <div style="position: absolute;bottom: 0px;left: 150px; width: 50%">
-                <form id="textarea" method="post" action="{{ route('chat.store')}}">
+                <form method="post" action="{{ route('chat.store')}}">
                     @csrf
                     <textarea class="textarea is-hovered textarea is-medium" name="body" placeholder="Contenuto"
                               minlength="5"
@@ -171,6 +194,7 @@
                         </div>
                     </div>
                 </form>
+            </div>
             </div>
         </div>
             <div class="column is-3 has-background-white-ter"  style="position: relative">
