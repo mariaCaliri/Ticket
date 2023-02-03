@@ -74,11 +74,10 @@
                     ticketInputCategory.value = TicketCategory;
                     categoryId.value = CategoryId;
                     ticketId.value = id;
-                    console.log(TicketCategory);
-                    console.log(ticketId);
 
                     openModal($target);
                 });
+
             });
 
             $('body').on('click', '#button-save', function (e) {
@@ -120,6 +119,14 @@
                     closeAllModals();
                 }
             });
+            //
+            // let openBtn = document.querySelector('#openFilters');
+            // let filters = document.querySelector('#filters')
+            // openBtn.addEventListener('click', function() {
+            //     console.log('cliccato');
+            //     filters.classList.remove('is-hidden');
+            // });
+
         });
 
     </script>
@@ -129,7 +136,7 @@
     <div class="columns">
         <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
             <aside class="menu is-hidden-mobile">
-                <div class="tile is-ancestor has-text-centered">
+                <div class=" has-text-centered mt-2">
                     <img style="width: 50px" src="/img/logo2.png">
                 </div>
                 <p class="menu-label has-text-white">
@@ -283,11 +290,13 @@
                                 </div>
                             </div>
         <!-- seconda colonna -->
-        <div class="column is-2 has-background-white-ter">
+
+        <div id="filters" class="column is-2 has-background-white-ter">
+            <p class="panel-heading">
+{{--                <button id="openFilters" class="button">Filtri</button>--}}
+                Filtri
+            </p>
             <nav class="panel">
-                <p class="panel-heading">
-                    Filtri
-                </p>
                 <div class="panel-block">
                     <p class="control has-icons-left">
                         <input class="input" type="text" placeholder="Cerca un ticket">
@@ -356,7 +365,7 @@
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <strong>Titolo:</strong>
-                                                <input type="text" name="title" class="form-control"
+                                                <input type="text" name="title" class="input"
                                                        placeholder="titolo" id="titolo">
 
                                                 <input type="hidden" id="ticket-id">
@@ -400,8 +409,8 @@
                                 </form>
                             </section>
                             <footer class="modal-card-foot">
-                                <button id="button-save" class="button is-success">Save changes</button>
-                                <button class="button">Cancel</button>
+                                <button id="button-save" class="button is-success">Salva</button>
+                                <button class="button">Annulla</button>
                             </footer>
                         </div>
                     </div>

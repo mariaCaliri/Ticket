@@ -126,12 +126,13 @@ class TicketController extends Controller
             'priority'=> 'required',
             'status'=> 'required',
             'category_id'=> 'required',
-            'feedback' => 'min:5|max:200'
+            'feedback' => 'min:5|max:200',
+            'operator_id'=>''
         ]);
              $ticket->update($request->all());
              $ticket->save();
       //  Mail::to($request->user())->send(new closedTicket());
-            dd($request);
+
    }
 
 
@@ -156,9 +157,6 @@ class TicketController extends Controller
         ]);
         $ticket = $request->get('ticket_id');
 
-//        $ticket->where('id', $ticket_id)->update('feedback')->get( $request->get('feedback'));
-//        $ticket->save();
-
 
        DB::table('tickets')->where('id', $ticket)->update([
            'feedback'=> $request->get('feedback')
@@ -166,5 +164,21 @@ class TicketController extends Controller
 
 
         return to_route('home', with('ticket'));
+    }
+
+    public function showFeedback()
+    {
+       $tickets =  Ticket::all();
+        return view('reports', compact('tickets'));
+    }
+
+    public function operatorEdit( Request $request, Ticket $ticket)
+    {
+        $ticket = Ticket::find($request->get('ticket_id'));
+        $ticket->operator_id = $request->get('operator_id');
+       $ticket->save();
+
+
+        return to_route('admin.home', with('ticket'));
     }
 }

@@ -38,12 +38,16 @@ Route::post('/chat',[ChatsController::class, 'store'])->name('chat.store');
 Route::get('/chat/{id}', [ChatsController::class, 'show'])->name('chat.show');
 Route::get('chat/{id}/edit', [ChatsController::class, 'edit'])->name('chat.edit');
 
- //rotte per categorie
+ //rotte per categorie (admin)
 Route::resource('categories', \App\Http\Controllers\CategoryController::class);
 
-//rotte per il crud del ticket
+//rotte per il crud del ticket(admin)
 Route::resource('tickets', TicketController::class);
 Route::patch('tickets', [TicketController::class, 'feedback'])->name('feedback');
+Route::put('tickets/{id}', [TicketController::class, 'operatorEdit'])->name('operatorEdit');
+
+//rotte feedback(admin-operator)
+Route::get('/reports', [TicketController::class, 'showFeedback'])->name('reports');
 
 //Rotte per utente
 Route::get('admin/utente', [UserController::class, 'index'])->name('admin.utente.index');

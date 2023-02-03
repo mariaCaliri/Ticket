@@ -27,7 +27,9 @@
         <div class="columns">
             <div id="aside" class=" column is-2 has-background-grey-dark ">
                 <aside class="menu is-hidden-mobile">
+                    <div class=" has-text-centered mt-2">
                         <img style="width: 80px;margin-top: 5px;" src="/img/user-img.png">
+                    </div>
                     <p id="bg-text" style="font-size: 20px;" class="menu-label has-text-white">
                         <i class="fas fa-user-cog"></i> GENERALE
                     </p>

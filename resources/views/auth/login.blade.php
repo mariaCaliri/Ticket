@@ -17,12 +17,8 @@
                             @csrf
                             <div class="field">
                                 <div class="control">
-
-
                                         <label for="email">{{ __('Email Address') }}</label>
                                     <input class="input is-large" type="email" placeholder=" Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong></span>

@@ -31,7 +31,7 @@
     <div class="columns">
         <div id="aside" class="column is-2 is-fullheight has-background-grey-dark">
             <aside class="menu is-hidden-mobile">
-                <div class="text-center">
+                <div class=" has-text-centered mt-2">
                     <img style="width: 50px; border-radius: 50%;" src="/img/logo2.png">
                 </div>
                 <p style="color: white;" class="menu-label has-text-white">
@@ -40,18 +40,18 @@
                 <ul class="menu-list">
                     <li style="color: lightsteelblue;margin-bottom: 20px"><a
                             style="color: lightsteelblue;margin-top: 5px" href="{{ route('operator.home') }}"><span
-                                style="color: lightsteelblue">
-                                    <i class="fa-solid fa-house-user fa-xl"></i></span>Torna alla dashboard
+                                style="color: lightsteelblue;margin-right: 10px">
+                                    <i class="fa-solid fa-house-user fa-xl"></i></span>Home
                         </a>
                     </li>
-                    <li><a style="color:lightsteelblue;margin-bottom: 20px" href="{{ route('operator.profile') }}"> <i
+                    <li><a style="color:lightsteelblue;margin-bottom: 20px;margin-right: 10px" href="{{ route('operator.profile') }}"> <i
                                 class="fa-solid fa-user fa-xl"></i> Profilo</a></li>
-                    <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('operator-change-password') }}"> <i
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px;margin-right: 10px" href="{{ route('operator-change-password') }}"> <i
                                 class="fa-solid fa-lock fa-xl"></i> Modifica Password</a>
                     </li>
-                    <li><a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('operator-login-history') }}"> <i
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px;margin-right: 10px" href="{{ route('operator-login-history') }}"> <i
                                 class="fa-solid fa-list fa-xl"></i> Lista Accessi</a></li>
-                    <li><a style="color: lightsteelblue;margin-bottom: 20px"><i
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px;margin-right: 10px"><i
                                 class="fa-solid fa-circle-question icon fa-xl"></i><span
                                 class="name ml-4">Help</span></a>
                     </li>
@@ -88,7 +88,6 @@
                         <div class="field is-grouped">
                             <div class="control">
                                     <button type="submit" class="button is-link">Modifica</button>
-                                    <a style="color: white;">Salva Modifica</a>
                             </div>
                             <div class="control">
                                 <a href=" {{ route('operator.home') }}" class="button is-link is-light">Cancella</a>

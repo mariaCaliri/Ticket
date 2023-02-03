@@ -140,7 +140,7 @@
                         </a>
                     </li>
                     <li>
-                        <a style="color: lightsteelblue;margin-top: 20px" href="#"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
+                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('reports') }}"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
                     </li>
 
 
@@ -170,20 +170,20 @@
                                     <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                                         <thead>
                                         <tr>
-                                            <th> Id </i>
+                                            <th style="text-align: center"> Id </i>
                                             </th>
-                                            <th>Nome </i>
+                                            <th style="text-align: center">Nome </i>
                                             </th>
-                                            <th>Email </i>
+                                            <th style="text-align: center">Email </i>
                                             </th>
-                                            <th>Actions </i>
+                                            <th style="text-align: center">Actions </i>
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($operators as $operator)
                                             <tr>
-                                                <td>
+                                                <td style="text-align: center">
                                                     {{ $operator->id }}
                                                     <div class="hidden"  data-id="{{ $operator->id }}">
                                                         <input class="operator_name" type="hidden"value="{{ $operator->name }}">
@@ -191,10 +191,10 @@
                                                         <input class="operator_password" type="hidden" value="{{ $operator->password }}">
                                                     </div>
                                                 </td>
-                                                <td>{{ $operator->name }}</td>
-                                                <td>{{ $operator->email }}</td>
+                                                <td style="text-align: center">{{ $operator->name }}</td>
+                                                <td style="text-align: center">{{ $operator->email }}</td>
                                                 <td>
-                                                    <div class="field is-grouped">
+                                                    <div style="justify-content: center" class="field is-grouped">
                                                         <p class="control">
                                                             <button class="js-modal-trigger button is-primary" style="color: black"  data-target="modal-edit-operator" data-id="{{ $operator->id }}">
                                                                 <i class="fa-solid fa-pencil"></i>

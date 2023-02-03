@@ -94,6 +94,8 @@
                     closeAllModals();
                 }
             });
+
+
         })
 
     </script>
@@ -135,7 +137,7 @@
                         </a>
                     </li>
                     <li>
-                        <a style="color: lightsteelblue;margin-top: 20px" href="#"> <i
+                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('reports') }}"> <i
                                 class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
                     </li>
 
@@ -157,9 +159,6 @@
         <div class="column is-8">
             <div>
                 <!-- Main container -->
-
-
-                    <!-- Right side -->
                 <div class="card events-card">
                     <header class="card-header">
                         <p class="card-header-title  has-background-grey-lighter ">
@@ -173,24 +172,24 @@
                                 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                                     <thead>
                                     <tr>
-                                        <th> Id
+                                        <th style="text-align: center"> Id
                                         </th>
-                                        <th>Categoria
+                                        <th style="text-align: center">Categoria
                                         </th>
-                                        <th>Actions
+                                        <th style="text-align: center">Actions
                                         </th>
-                                        <th>Operatori</th>
+                                        <th style="text-align: center">Operatori</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($categories as $category)
                                         <tr>
-                                            <td>{{ $category->id }}</td>
-                                            <td>{{ $category->name }} <input type="hidden" data-id="{{ $category->id }}"
+                                            <td style="text-align: center">{{ $category->id }}</td>
+                                            <td style="text-align: center">{{ $category->name }} <input type="hidden" data-id="{{ $category->id }}"
                                                                              value="{{ $category->name }}"></td>
 
                                             <td>
-                                                <div class="field is-grouped">
+                                                <div style="justify-content: center" class="field is-grouped">
                                                     <p class="control">
                                                         <a class="button is-info" style="color: black"
                                                            href="{{ route('categories.show', $category->id) }}"> <i
@@ -214,9 +213,9 @@
                                                     </p>
                                                 </div>
                                             </td>
-                                           @foreach($tickets as $ticket)
-                                            <td>{{ $ticket->operator_id }}</td>
-                                          @endforeach
+                                               @foreach($category->operator as $operator)
+                                            <td>{{ $operator->id }}</td>
+                                    @endforeach
                                     @endforeach
                                     </tbody>
                                 </table>

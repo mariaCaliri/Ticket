@@ -16,7 +16,11 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $categories = $categories->load(['operator']);
+
         return view('categories.index', compact('categories'));
+
+
     }
 
     /**

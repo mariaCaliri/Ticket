@@ -30,9 +30,16 @@
         window.addEventListener('DOMContentLoaded', (event) => {
             let notification = document.querySelector('.notification');
             let status = document.querySelector('#status').textContent;
+            let notification2 = document.querySelector('#notificationFeedback');
+            window.userID = {{ auth()->id() }};
 
             if (status === 'completato') {
                 notification.classList.remove('is-hidden');
+            }
+
+            if (status === 'completato' && window.userID === 3 ) {
+                notification2.classList.remove('is-hidden');
+                console.log( window.userID);
             }
 
         });
@@ -43,56 +50,14 @@
 <div class="container is-fluid" style="padding: 0px">
     <div class="columns" style="height: 94vh">
 
-{{--        <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">--}}
 
-{{--            <div class="has-text-centered">--}}
-{{--                @if( \Illuminate\Support\Facades\Auth::id() == '1')--}}
-{{--                    <img src="/img/admin2.png" style="width: 65px">--}}
-{{--                    <a class=" has-text-black" href=""></a>--}}
-{{--                @elseif(Auth::id()  == '2')--}}
-{{--                    <img src="/img/operatore-blu.png" style="width: 65px">--}}
-{{--                    <a class=" has-text-black" href=""> </a>--}}
-{{--                @else--}}
-{{--                    <img src="/img/user-profile.png" style="width: 65px">--}}
-{{--                    <a class=" has-text-black" href=""> </a>--}}
-{{--                @endif--}}
-
-{{--            </div>--}}
-
-{{--            <div class="menu">--}}
-{{--                <ul class="menu-list has-text-white ">--}}
-{{--                    <li>--}}
-{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>--}}
-{{--                        </a>--}}
-{{--                    </li>--}}
-{{--                    <li>--}}
-{{--                        <a style="color: lightsteelblue;margin-top: 20px" href="#"> <i class="icon fa-solid fa-chart-line"></i> <span class="name ml-4">Report</span></a>--}}
-{{--                    </li>--}}
-
-{{--                    <li><a style="color: lightsteelblue;margin-top: 20px"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>--}}
-{{--                    </li>--}}
-{{--                    <li><a style="color: lightsteelblue;margin-top: 20px"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>--}}
-{{--                        </a></li>--}}
-{{--                    <li><a style="color: lightsteelblue;margin-top: 20px"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>--}}
-{{--                    </li>--}}
-{{--                </ul>--}}
-{{--            </div>--}}
-{{--        </div>--}}
 
         <!-- chat-->
         <div class="column is-9 " style="position: relative">
             <div style="width: 50%;margin-left: 200px" class="notification is-danger is-light is-hidden has-text-centered">
                 Ciao! Questo ticket è stato chiuso in giorno {{ $ticket->updated_at->format('d M Y') }}
             </div>
-            <div style="width: 50%;margin-left: 200px" class="notification is-info is-light is-hidden">
+            <div id="notificationFeedback" style="width: 50%;margin-left: 200px" class="notification is-info is-light is-hidden">
                 Aiutaci a migliorare! Lascia una recensione della tua esperienza
                 <form method="post" action="{{ route('feedback', $ticket->id) }}">
                     @method('PATCH')

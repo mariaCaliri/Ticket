@@ -140,7 +140,7 @@
                         </a>
                     </li>
                     <li>
-                        <a style="color: lightsteelblue;margin-top: 20px" href="#"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
+                        <a style="color: lightsteelblue;margin-top: 20px" href="{{ route('reports') }}"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
                     </li>
 
 
@@ -166,23 +166,23 @@
                         <div class="table-container">
                             <div class="card-table">
                                 <div class="content">
-                                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                                    <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth text-align-left">
                                         <thead>
                                         <tr>
-                                            <th> Id </i>
+                                            <th style="text-align: center"> Id </i>
                                             </th>
-                                            <th>Nome </i>
+                                            <th style="text-align: center">Nome </i>
                                             </th>
-                                            <th>Email </i>
+                                            <th style="text-align: center">Email </i>
                                             </th>
-                                            <th>Actions </i>
+                                            <th style="text-align: center">Actions </i>
                                             </th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         @foreach($users as $user)
                                             <tr>
-                                                <td>
+                                                <td style="text-align: center">
                                                     {{ $user->id }}
                                                     <div class="hidden" data-id="{{ $user->id }}">
                                                         <input class="user_name" type="hidden"
@@ -193,10 +193,10 @@
                                                                value="{{ $user->password }}">
                                                     </div>
                                                 </td>
-                                                <td>{{ $user->name }}</td>
-                                                <td>{{ $user->email }}</td>
+                                                <td style="text-align: center">{{ $user->name }}</td>
+                                                <td style="text-align: center">{{ $user->email }}</td>
                                                 <td>
-                                                    <div class="field is-grouped">
+                                                    <div style="justify-content: center" class="field is-grouped">
                                                         <p class="control">
                                                             <a class="button is-info" style="color: black"
                                                                href=" {{ route('admin.utente.show',$user->id) }}"> <i

@@ -19,6 +19,6 @@ class Category extends Model
 
     public function operator()
     {
-        return $this->belongsToMany('App\Operator', 'operator_has_categories', 'category_id', 'operator_id');
+        return $this->belongsToMany('App\Models\Operator', 'operator_has_categories', 'category_id', 'operator_id');
     }
 }

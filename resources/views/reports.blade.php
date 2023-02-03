@@ -50,7 +50,7 @@
 <div style="padding: 0" id="container" class="container is-fluid">
     <div class="columns">
         <!--barra di navigazione laterale-->
-        <div id="aside" class="column is-1 is-fullheight has-background-grey-dark">
+        <div id="aside" class="column is-2 is-fullheight has-background-grey-dark">
 
             <div class="has-text-centered">
                 <img style="width: 75px; margin-bottom: 50px" src="/img/admin2.png">
@@ -59,33 +59,67 @@
             <div class="menu">
                 <ul class="menu-list has-text-white ">
                     <li>
-                        <a style="color: lightsteelblue;"href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
+                        <a style="color: lightsteelblue;margin-bottom: 20px"href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
                         </a>
                     </li>
                     <li>
-                        <a style="color: lightsteelblue;" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>
+                        <a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('admin.operatore.index') }}"><span class="icon"><i class="icon fa-solid fa-users-line  fa-xl"></i> </span><span class="name ml-4">Operatori</span>
                         </a>
                     </li>
                     <li>
-                        <a style="color: lightsteelblue;" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>
+                        <a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('categories.index') }}"><span class="icon"> <i class="icon fa-regular fa-rectangle-list  fa-xl"></i></span><span class="name ml-4">Categorie</span>
                         </a>
                     </li>
                     <li>
-                        <a style="color: lightsteelblue;margin-top: 5px" href="#"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
+                        <a style="color: lightsteelblue;margin-bottom: 20px" href="#"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
                     </li>
 
 
 
-                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
                     </li>
-                    <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>
                         </a></li>
-                    <li><a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>
+                    <li><a style="color: lightsteelblue;margin-bottom: 20px"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="column is-9">
+            <div class="card events-card">
+                <header class="card-header">
+                    <p class="card-header-title  has-background-grey-lighter ">
+                        Feedback dagli utenti
+                    </p>
+                </header>
+                <div class="table-container">
+                    <div class="card-table">
+                        <div class="content">
+                            <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Nome Utente
+                                    </th>
+                                    <th>
+                                        Recensione
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($tickets as $ticket)
+                                    <tr>
+                                        <td>{{ $ticket->user_id }}</td>
+                                        <td> {{ $ticket->feedback }}</td>
+
+                                        @endforeach
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="column is-2 has-background-white-ter">
             <nav class="panel">
@@ -142,3 +176,4 @@
 </div>
 </body>
 </html>
+@endsection

@@ -116,8 +116,6 @@
                     ticketInputCategory.value = TicketCategory;
                     categoryId.value = CategoryId;
                     ticketId.value = id;
-                    console.log(TicketCategory);
-                    console.log(ticketId);
 
                     openModal($target);
                 });
@@ -162,12 +160,36 @@
                     closeAllModals();
                 }
             });
+
+            $('.operatorSelect').on('change', function (e){
+
+              let id = ($(this).val());
+
+                $.ajax({
+                    url: '/tickets/' + id,
+                    type : 'PUT',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data:
+                        {
+                            'operator_id': id
+                        },
+                    error: function(result) {
+                        console.log('error ' + result);
+                    },
+                    success: function (res) {
+                        location.reload();
+                    }
+
+                })
+            });
+
+
+
+
         });
-        var dropdown = document.querySelector('.dropdown');
-        dropdown.addEventListener('click', function(event) {
-            event.stopPropagation();
-            dropdown.classList.toggle('is-active');
-        });
+
 
     </script>
 </head>
@@ -175,9 +197,9 @@
 <div style="padding: 0" id="container" class="container is-fluid">
     <div class="columns">
         <!--barra di navigazione laterale-->
-            <div id="aside" class="column is-1 is-fullheight has-background-grey-dark">
+            <div id="aside" class="column is-2 is-fullheight has-background-grey-dark">
 
-                    <div class="has-text-centered">
+                    <div class="has-text-centered mt-2">
                         <img style="width: 75px; margin-bottom: 50px" src="/img/admin2.png">
                     </div>
 
@@ -196,7 +218,7 @@
                             </a>
                         </li>
                         <li>
-                            <a style="color: lightsteelblue;margin-top: 5px" href="#"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
+                            <a style="color: lightsteelblue;margin-top: 5px" href="{{ route('reports') }}"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
                         </li>
 
 
@@ -211,7 +233,7 @@
                 </div>
             </div>
 
-        <div class="column is-9">
+        <div class="column is-8">
             <div class="mb-5">
                 <!-- Main container -->
                 <section class="info-tiles">
@@ -255,20 +277,20 @@
                             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                                 <thead>
                                 <tr>
-                                    <th> Id</th>
-                                    <th>Titolo</th>
-                                    <th>Data di apertura</th>
-                                    <th>Categoria</th>
-                                    <th>Stato</th>
-                                    <th>Priorità</th>
-                                    <th>Operatore</th>
-                                    <th>Azioni</th>
+                                    <th style="text-align: center"> Id</th>
+                                    <th style="text-align: center">Titolo</th>
+                                    <th style="text-align: center">Data di apertura</th>
+                                    <th style="text-align: center">Categoria</th>
+                                    <th style="text-align: center">Stato</th>
+                                    <th style="text-align: center">Priorità</th>
+                                    <th style="text-align: center">Operatore</th>
+                                    <th style="text-align: center">Azioni</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($tickets as $ticket)
                                     <tr>
-                                        <td>{{ $ticket->id }}
+                                        <td style="text-align: center">{{ $ticket->id }}
                                             <div class="hidden" data-id="{{ $ticket->id }}">
                                                 <input class="ticket_title" type="hidden"
                                                        value="{{ $ticket->title }}">
@@ -282,11 +304,11 @@
                                                        value="{{ $ticket->category->name }}">
                                             </div>
                                         </td>
-                                        <td>{{ $ticket->title }}</td>
-                                        <td>{{ $ticket->registered_at }}</td>
-                                        <td>{{ $ticket->category->name }}</td>
+                                        <td style="text-align: center">{{ $ticket->title }}</td>
+                                        <td style="text-align: center">{{ $ticket->registered_at }}</td>
+                                        <td style="text-align: center">{{ $ticket->category->name }}</td>
 
-                                        <td>
+                                        <td style="text-align: center">
                                             @if( $ticket->status =='in attesa')
                                                 <a class=" has-text-success" href="">In Attesa</a>
                                             @elseif($ticket->status == 'in lavorazione')
@@ -295,11 +317,25 @@
                                                 <a class=" has-text-danger" href=""> Ticket chiuso</a>
                                             @endif
                                         </td>
-                                        <td> {{ $ticket->priority }}</td>
-                                        <td>{{$ticket->operator_id}}</td>
+                                        <td style="text-align: center"> {{ $ticket->priority }}</td>
+
+                                        <td style="text-align: center">
+                                            <form method="post">
+                                                @method('PUT')
+                                                @csrf
+                                                <div class="select" >
+                                                    <select name="operator_id" class="operatorSelect">
+                                                        <option>Assegna Operatore</option>
+                                                        @foreach($operators as $operator)
+                                                        <option value="{{ $operator->id }}">{{$operator->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </form>
+                                        </td>
 
                                         <td>
-                                            <div class="field is-grouped">
+                                            <div style="justify-content: center" class="field is-grouped">
                                                 <p class="control">
                                                     <a class="button is-info" style="color: black"
                                                        href=" {{route('tickets.show',$ticket->id)  }}"> <i
