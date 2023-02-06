@@ -23,12 +23,6 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <style>
 
-        #container{
-
-            margin-right: 0px;
-            margin-left: 0px;
-        }
-
         #aside {
 
         height: 94vh;
@@ -54,7 +48,8 @@
         }
         #main {
             transition: margin-right .5s; /* If you want a transition effect */
-            padding: 20px;
+            padding: 0px;
+            margin-top: 30px;
         }
 
         #closeBtn{
@@ -71,31 +66,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            const chart = Highcharts.chart('container-chart', {
-                chart: {
-                    type: 'bar'
-                },
-                title: {
-                    text: 'Ticket Risolti'
-                },
-                xAxis: {
-                    categories: ['Aperti', 'Chiusi', 'In attesa']
-                },
-                yAxis: {
-                    title: {
-                        text: 'Ultimo mese'
-                    }
-                },
-                series: [{
-                    name: 'In attesa',
-                    data: [1, 0, 4]
-                }, {
-                    name: 'Risolti',
-                    data: [5, 7, 3]
-                }]
-            });
-
 
             let ticketId = document.querySelector('#ticket-id');
             let ticketInputTitle = document.querySelector('#titolo');
@@ -253,18 +223,13 @@
                             </a>
                         </li>
                         <li>
-                            <a style="color: lightsteelblue;margin-top: 5px" href="{{ route('reports') }}"> <i class="icon fa-solid fa-chart-line fa-xl"></i> <span class="name ml-4">Report</span></a>
+                            <a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('feedback') }}"> <i class="fa-regular fa-comment-dots fa-xl"></i> <span class="name ml-4">Feedback</span></a>
                         </li>
-
-
-
-                        <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
-                        </li>
-                        <li><a style="color: lightsteelblue;"> <i class="fa-solid fa-user-plus icon fa-xl"></i><span class="name ml-4">Aggiungi</span>
+                        <li><a style="color: lightsteelblue;" href="{{ route('reports') }}"> <i class="icon fa-solid fa-chart-line fa-xl"></i><span class="name ml-4">Reports</span>
                             </a></li>
-                        <li><a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span></a>
+                        <li><a style="color: lightsteelblue;" > <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
                         </li>
-                        <li> <button id="openFilters" class="button">Filtri</button></li>
+
                     </ul>
                 </div>
             </div>
@@ -306,8 +271,9 @@
                     <p class="card-header-title  has-background-grey-lighter ">
                         Tickets
                     </p>
+                    <p style="margin-right: 30px"><button id="openFilters" class="button">Filtri</button></p>
                 </header>
-                <div>
+
                     <div class="card-content">
                         <div class="content">
                             <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -356,6 +322,7 @@
                                         <td style="text-align: center"> {{ $ticket->priority }}</td>
 
                                         <td style="text-align: center">
+
                                             <form method="post">
                                                 @method('PUT')
                                                 @csrf
@@ -402,21 +369,16 @@
                                 @endforeach
                                 </tbody>
                             </table>
-
-                        </div>
-
-
                     </div>
                 </div>
 
             </div>
-            <!-- diagramma-->
 
-            <div class="mt-5" id="container-chart" style="width:100%; height:400px;"></div>
+
         </div>
 
         <!-- seconda colonna -->
-        <div id="filters" class="column has-background-white-ter">
+        <div id="filters" class="has-background-white-ter">
             <p class="panel-heading">
                 <span id="closeBtn" style=" right: 25px;">
                  <i class="fa-solid fa-xmark"></i>

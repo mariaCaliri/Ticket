@@ -81,8 +81,6 @@ class TicketController extends Controller
 
        return redirect()->route('home')->with('Ticket creato correttamente');
 
-
-
     }
 
     /**
@@ -169,7 +167,7 @@ class TicketController extends Controller
     public function showFeedback()
     {
        $tickets =  Ticket::all();
-        return view('reports', compact('tickets'));
+        return view('feedback', compact('tickets'));
     }
 
     public function operatorEdit( Request $request, int $id)
@@ -178,5 +176,10 @@ class TicketController extends Controller
         $ticket->update($request->all());
        $ticket->save();
 
+    }
+
+    public function showReports()
+    {
+        return view('reports');
     }
 }

@@ -164,11 +164,9 @@
 
             <div class="menu">
                 <ul class="menu-list has-text-white ">
-                    <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 20px"
-                                                         class="has-text-white" href="{{ route('admin.home') }}">
+                    <li style="color: lightsteelblue"><a style="color: lightsteelblue;margin-top: 20px" class="has-text-white" href="{{ route('admin.home') }}">
                             <span style="color: lightsteelblue"><i class="fa-solid fa-house-user fa-xl"></i></span style="color: lightsteelblue">
                             Home</a></li>
-
                     <li>
                         <a style="color: lightsteelblue;margin-top: 20px"href="{{ route('admin.utente.index') }}"><span class="icon"> <i class=" icon fa-solid fa-users fa-xl"></i></span><span class="name ml-4">Utenti</span>
                         </a>

@@ -26,7 +26,6 @@ class TicketFactory extends Factory
             "end_date"=>$this->faker->dateTime(),
             "priority"=>$this->faker->randomKey(['urgente'=>1, 'mediamente urgente'=>2, 'non urgente'=>3]),
             "status"=>$this->faker->randomKey(['completato' =>1, 'in lavorazione'=>2,'in attesa'=>3 ]),
-            "feedback"=>$this->faker->paragraph(),
             "category_id"=>Category::inRandomOrder()->first()->id,
             "operator_id"=>Operator::inRandomOrder()->first()->id,
             "user_id"=> Auth::id(),
