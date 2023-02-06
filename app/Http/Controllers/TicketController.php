@@ -172,13 +172,11 @@ class TicketController extends Controller
         return view('reports', compact('tickets'));
     }
 
-    public function operatorEdit( Request $request, Ticket $ticket)
+    public function operatorEdit( Request $request, int $id)
     {
-        $ticket = Ticket::find($request->get('ticket_id'));
-        $ticket->operator_id = $request->get('operator_id');
+        $ticket = Ticket::findOrFail($id);
+        $ticket->update($request->all());
        $ticket->save();
 
-
-        return to_route('admin.home', with('ticket'));
     }
 }

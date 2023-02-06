@@ -31,19 +31,23 @@
     <div class="columns">
         <div id="aside" class="column is-2 is-fullheight has-background-grey-dark">
             <aside class="menu is-hidden-mobile">
+                <div class="has-text-centered" style="margin-bottom: 10px">
+                    <img style="width: 50px" src="/img/logo2.png">
+                </div>
                 <p class="menu-label has-text-white">
                     <span style="font-size: 20px" id="bg-text"><i class="fas fa-user-cog"></i> GENERALE</span>
                 </p>
                 <ul class="menu-list">
-                    <li style="color: lightsteelblue;margin-bottom: 20px"><a
+
+
+                    <li style="color: lightsteelblue;margin-bottom: 20px;"><a
                             style="color: lightsteelblue;margin-top: 5px" href="{{ route('operator.home') }}">
-                            <span style="color: lightsteelblue"><i class="fa-solid fa-house-user fa-xl"></i></span>Torna
-                            alla dashboard
+                            <span style="color: lightsteelblue;margin-right: 10px"><i class="fa-solid fa-house-user fa-xl"></i></span>Home
                         </a>
                     </li>
 
                     <li>
-                        <a style="color: lightsteelblue;margin-bottom: 20px" href="{{ route('operator.profile') }}"><i
+                        <a style="color: lightsteelblue;margin-bottom: 20px;margin-right: 10px" href="{{ route('operator.profile') }}"><i
                                 class="fa-solid fa-user fa-xl"></i> Profilo
                         </a>
                     </li>

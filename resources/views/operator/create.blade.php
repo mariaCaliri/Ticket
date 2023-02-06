@@ -37,18 +37,18 @@
                       enctype="multipart/form-data">
                     @csrf
                     <strong>Nome Operatore:</strong>
-                    <input type="text" name="name"  class="form-control"
+                    <input type="text" name="name"  class="input"
                            placeholder="nome">
                     @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror   <strong>Email Operatore:</strong>
-                    <input type="email" name="email"  class="form-control"
+                    <input type="email" name="email"  class="input"
                            placeholder="email">
                     @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                 @enderror
                     <strong>Password Operatore:</strong>
-                    <input type="text" name="password"  class="form-control"
+                    <input type="text" name="password"  class="input"
                            placeholder="password">
                     @error('name')
                     <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>

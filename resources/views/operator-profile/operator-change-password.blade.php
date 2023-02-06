@@ -31,7 +31,7 @@
     <div class="columns">
         <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
             <aside class="menu is-hidden-mobile">
-                <div class="tile is-ancestor has-text-centered">
+                <div class="has-text-centered" style="margin-bottom: 10px">
                     <img style="width: 50px" src="/img/logo2.png">
                 </div>
                 <p class="menu-label has-text-white">
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <label for="newPasswordInput" class="input">Nuova Password</label>
+                                <label for="newPasswordInput">Nuova Password</label>
                                 <div class="control">
                                     <input name="new_password" type="password" class=input
                                            @error('new_password') is-invalid @enderror" id="newPasswordInput"

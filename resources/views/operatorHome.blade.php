@@ -25,6 +25,34 @@
             padding: 20px;
             height: 94vh;
         }
+        #filters{
+            height: 100%; /* 100% Full-height */
+            width: 0; /* 0 width - change this with JavaScript */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Stay on top */
+            top: 0;
+           right: 0;
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 60px; /* Place content 60px from the top */
+            transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+        }
+        #openFilters{
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+        #main {
+            transition: margin-right .5s; /* If you want a transition effect */
+            padding: 20px;
+        }
+
+        #closeBtn{
+            display: flex;
+            justify-content: flex-end;
+        }
 
         #bg-test {
             background-color: #1C272C;
@@ -119,22 +147,30 @@
                     closeAllModals();
                 }
             });
-            //
-            // let openBtn = document.querySelector('#openFilters');
-            // let filters = document.querySelector('#filters')
-            // openBtn.addEventListener('click', function() {
-            //     console.log('cliccato');
-            //     filters.classList.remove('is-hidden');
-            // });
+
+            let openBtn = document.querySelector('#openFilters');
+            let filters = document.querySelector('#filters');
+            let closBtn = document.querySelector('#closeBtn');
+            let main = document.querySelector('#main');
+            openBtn.addEventListener('click', function() {
+                filters.style.width = "250px";
+                main.style.marginRight = "250px";
+            });
+
+            closBtn.addEventListener('click', function(){
+                filters.style.width = "0%";
+                main.style.marginRight = "0%";
+            });
+
 
         });
 
     </script>
 </head>
 <body>
-<div class="container is-fluid" style="padding: 0px">
+<div class="container is-fluid" style="padding: 0px" >
     <div class="columns">
-        <div id="aside" class="column is-2 is-fullheight has-background-grey-dark" style="position: relative">
+        <div id="aside" class="column is-2 has-background-grey-dark" style="position: relative">
             <aside class="menu is-hidden-mobile">
                 <div class=" has-text-centered mt-2">
                     <img style="width: 50px" src="/img/logo2.png">
@@ -162,10 +198,12 @@
                         <a style="color: lightsteelblue;"><i class="fa-solid fa-circle-question icon fa-xl"></i><span class="name ml-4">Help</span>
                         </a>
                     </li>
+                    <li> <button id="openFilters" class="button">Filtri</button></li>
+
                 </ul>
             </aside>
         </div>
-        <div class="column is-8">
+        <div class="column" id="main">
             <div class="mb-5">
                 <!-- Main container -->
                 <section class="info-tiles">
@@ -291,10 +329,11 @@
                             </div>
         <!-- seconda colonna -->
 
-        <div id="filters" class="column is-2 has-background-white-ter">
+        <div id="filters" class=" has-background-white-ter">
             <p class="panel-heading">
-{{--                <button id="openFilters" class="button">Filtri</button>--}}
-                Filtri
+                <span id="closeBtn" style=" right: 25px;">
+                 <i class="fa-solid fa-xmark"></i>
+                </span>
             </p>
             <nav class="panel">
                 <div class="panel-block">

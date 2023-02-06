@@ -22,6 +22,35 @@
             padding: 20px;
             height: 94vh;
         }
+        #filters{
+            height: 100%; /* 100% Full-height */
+            width: 0; /* 0 width - change this with JavaScript */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Stay on top */
+            top: 0;
+            right: 0;
+            overflow-x: hidden; /* Disable horizontal scroll */
+            padding-top: 60px; /* Place content 60px from the top */
+            transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+        }
+        #openFilters{
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+        }
+        #main {
+            transition: margin-right .5s; /* If you want a transition effect */
+            padding: 20px;
+        }
+
+        #closeBtn{
+            display: flex;
+            justify-content: flex-end;
+        }
+
 
         #bg-test {
             background-color: #1C272C;
@@ -94,6 +123,19 @@
                     closeAllModals();
                 }
             });
+            let openBtn = document.querySelector('#openFilters');
+            let filters = document.querySelector('#filters');
+            let closBtn = document.querySelector('#closeBtn');
+            let main = document.querySelector('#main');
+            openBtn.addEventListener('click', function() {
+                filters.style.width = "250px";
+                main.style.marginRight = "250px";
+            });
+
+            closBtn.addEventListener('click', function(){
+                filters.style.width = "0%";
+                main.style.marginRight = "0%";
+            });
 
 
         })
@@ -151,12 +193,13 @@
                     <li><a style="color: lightsteelblue;margin-top: 20px"><i class="fa-solid fa-circle-question icon fa-xl"></i><span
                                 class="name ml-4">Help</span></a>
                     </li>
+                    <li> <button id="openFilters" class="button">Filtri</button></li>
 
                 </ul>
             </div>
         </div>
 
-        <div class="column is-8">
+        <div class="column" id="main">
             <div>
                 <!-- Main container -->
                 <div class="card events-card">
@@ -178,7 +221,7 @@
                                         </th>
                                         <th style="text-align: center">Actions
                                         </th>
-                                        <th style="text-align: center">Operatori</th>
+{{--                                        <th style="text-align: center">Operatori</th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -213,9 +256,9 @@
                                                     </p>
                                                 </div>
                                             </td>
-                                               @foreach($category->operator as $operator)
-                                            <td>{{ $operator->id }}</td>
-                                    @endforeach
+{{--                                               @foreach($category->operator as $operator)--}}
+{{--                                            <td>{{ $operator->id }}</td>--}}
+{{--                                    @endforeach--}}
                                     @endforeach
                                     </tbody>
                                 </table>
@@ -229,10 +272,12 @@
 
         </div>
 
-            <div class="column is-2 has-background-white-ter">
+            <div id="filters" class=" has-background-white-ter">
                 <nav class="panel">
                     <p class="panel-heading">
-                        Filtri
+                        <span id="closeBtn" style=" right: 25px;">
+                 <i class="fa-solid fa-xmark"></i>
+                </span>
                     </p>
                     <div class="panel-block">
                         <p class="control has-icons-left">
