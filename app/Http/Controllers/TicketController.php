@@ -182,4 +182,10 @@ class TicketController extends Controller
     {
         return view('reports');
     }
+
+    public function bootstrap()
+    {
+        $tickets = Ticket::all();
+        return view('bootstrap', compact('tickets'));
+    }
 }

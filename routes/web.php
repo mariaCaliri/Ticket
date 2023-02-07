@@ -49,6 +49,7 @@ Route::put('tickets/operator/edit/{id}', [TicketController::class, 'operatorEdit
 //rotte feedback(admin-operator)
 Route::get('/feedback', [TicketController::class, 'showFeedback'])->name('feedback');
 Route::get('/reports', [TicketController::class, 'showReports'])->name('reports');
+Route::get('/bootstrap', [TicketController::class, 'bootstrap'])->name('bootstrap');
 
 //Rotte per utente
 Route::get('admin/utente', [UserController::class, 'index'])->name('admin.utente.index');

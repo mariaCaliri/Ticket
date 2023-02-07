@@ -227,7 +227,7 @@
                         </li>
                         <li><a style="color: lightsteelblue;" href="{{ route('reports') }}"> <i class="icon fa-solid fa-chart-line fa-xl"></i><span class="name ml-4">Reports</span>
                             </a></li>
-                        <li><a style="color: lightsteelblue;" > <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
+                        <li><a href="{{ route('bootstrap') }}" style="color: lightsteelblue;" > <i class="fa-solid fa-gear icon fa-xl"></i><span class="name ml-4">Settings</span></a>
                         </li>
 
                     </ul>

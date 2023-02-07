@@ -1,8 +1,22 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TicketSystem</title>
+    <link rel="shortcut icon" href="../images/fav_icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <!-- Bulma Version 0.9.0-->
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <style>
+    </style>
+</head>
 
-@section('content')
+<body>
 
-    <section class="hero is-light is-fullheight">
+    <section class="hero is-light is-fullheight" style="background-color: #3459ad">
         <div class="hero-body">
             <div class="container has-text-centered">
                 <div class="column is-4 is-offset-4">
@@ -44,7 +58,7 @@
                         </form>
                     </div>
                     @if (Route::has('password.request'))
-                        <a class="btn is-link" href="{{ route('password.request') }}">
+                        <a style="color: red" class="btn is-link" href="{{ route('password.request') }}">
                             {{ __('Forgot Your Password?') }}
                         </a>
                     @endif
@@ -126,5 +140,5 @@
 {{--        </div>--}}
 {{--    </div>--}}
 {{--</div>--}}
+</body>
 
-@endsection

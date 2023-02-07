@@ -13,20 +13,19 @@
 
     <style>
         body{
-            background-image:url("{{ asset('img/background.jpeg') }}");
+            background-image:url("{{ asset('img/back.jpg') }}");
             background-position: center;
             background-size: cover;
         }
         .overlay{
             position: fixed; /* Sit on top of the page content */
-            display: none; /* Hidden by default */
             width: 100%; /* Full width (cover the whole page) */
             height: 100%; /* Full height (cover the whole page) */
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+            background-color: rgba(0,0,0,0.2); /* Black background with opacity */
             z-index: 2;
         }
     </style>
@@ -59,7 +58,7 @@
         <nav class="navbar">
             <div class="container">
                 <div class="navbar-brand">
-                    <a class="navbar-item" href="../">
+                    <a style="color: white;text-transform: uppercase;font-weight: bold" class="navbar-item" href="../">
                        TicketSystem
                     </a>
                     <span class="navbar-burger burger" data-target="navbarMenu">
@@ -96,10 +95,10 @@
     <div class="hero-body">
         <div class="container has-text-centered">
             <div class="column is-6 is-offset-3">
-                <h1 class="title">
-                   Hai bisogno di aiuto?
+                <h1 class="title" style="color: white;font-size: 55px">
+                  <strong> Hai bisogno di aiuto?</strong>
                 </h1>
-                <h2 class="subtitle">
+                <h2 class="subtitle" style="color: red;font-size: 25px">
                    Registrati o effettua il login e contattaci!
 
                 </h2>
